@@ -1,45 +1,44 @@
 # Worklog — Premium Journalist Portfolio (Abdullah Mozomdar)
 
 ---
-Task ID: 0
+Task ID: 1
 Agent: main
-Task: Plan and build a production-quality journalist portfolio website per the master brief.
+Task: Complete visual redesign + full Bangla localization of existing journalist portfolio.
 
 Work Log:
-- Read full 2353-line brief from upload
-- Classified as Type 3 (Interactive Web Development)
-- Initialized Next.js 16 + TypeScript + Tailwind 4 + shadcn/ui environment
-- Dev server confirmed running on port 3000
-- Built editorial design system in globals.css: warm off-white #F7F6F2, charcoal #111, newsroom burgundy #A51C30, border #DAD8D2; display-headline / section-headline / prose-editorial utilities; reading-column width 672px; print styles; reduced-motion support.
-- Loaded Newsreader (serif) + Inter (sans) via next/font with variable axes, Latin subset, font-display swap; weights limited per brief.
-- Created content data layer in src/content/: site.ts, profile.ts, experiences.ts, education.ts, memberships.ts, reporting-areas.ts, stories.ts, gallery.ts — fully typed, CMS-ready.
-- Built editorial UI primitives: Container, SectionHeading, Tag, Breadcrumbs, Divider, Eyebrow, EditorialButton, PortraitPlaceholder.
-- Built layout: SkipLink (skip-to-content), SiteHeader (sticky, compacts on scroll, active nav indicator, EN/বাংলা architecture, mobile menu trigger), MobileNav (drawer with focus management, Escape to close, body scroll lock), SiteFooter (sticky-to-bottom via flex-1 layout).
-- Built homepage with 11 sections: Hero, Ticker (status bar), FeaturedWork (lead + 3 secondary editorial grid), LatestStories (compact list), ExperiencePreview (timeline), AboutPreview (two-column with drop-cap), Credentials, ReportingAreas (with demo-content note), EducationPreview, Philosophy (dark inverted section), ContactCTA.
-- Built internal pages: /about (magazine layout + sticky sidebar), /experience (full timeline), /work (filter by category/year/publication + search), /work/[slug] (story detail with reading column, share buttons, prev/next, related), /articles (text-heavy list with filters), /articles/[slug] (long-form reading with reading progress bar), /gallery (responsive editorial grid + accessible lightbox with keyboard navigation), /contact (form with client+server validation, honeypot, rate limiting, success/error states).
-- Built /api/contact server route with honeypot, server-side validation, in-memory rate limiting (5 req/min per IP), input length caps.
-- Built 404 page with editorial styling.
-- Implemented SEO infrastructure: per-page metadata via generateMetadata, dynamic canonical URLs, OG/Twitter cards, JSON-LD structured data (Person, WebSite, NewsArticle, BreadcrumbList), sitemap.ts covering all static + dynamic routes, robots.ts.
-- Created favicon.svg with AM wordmark in newsroom burgundy.
-- Lint passes clean (0 errors, 0 warnings after auto-fix).
-- Browser-verified via Agent Browser:
-  * Homepage renders all 11 sections with proper semantic landmarks (banner, main, region per section, article where applicable).
-  * All routes return 200: /, /about, /experience, /work, /work/[slug], /articles, /articles/[slug], /gallery, /contact.
-  * 404 page renders correctly for missing routes.
-  * Work page filters work (filtering by Reports correctly narrows results).
-  * Contact form validation fires on empty submit; full submission returns success state and posts to /api/contact (server logs received submission).
-  * Mobile nav drawer opens (aria-expanded=true), all nav links visible, close button works, Escape closes drawer.
-  * Gallery lightbox opens with close/previous/next buttons and proper aria-labels.
-  * Structured data emitted in HTML for Person, WebSite, NewsArticle, BreadcrumbList schemas.
-  * OG and Twitter card meta tags present.
-  * sitemap.xml and robots.txt serve correctly.
-- VLM (vision) review of homepage hero rated it "top-tier journalist portfolio template" with sophisticated editorial feel and excellent typography. The only note — portrait placeholder — is intentional per brief (no fake portraits allowed).
+- Refactored entire content layer to locale-keyed `{ en, bn }` fields with shared types (types.ts, site.ts, profile.ts, experiences.ts, education.ts, memberships.ts, reporting-areas.ts, stories.ts, gallery.ts, site-messages.ts).
+- Built i18n architecture: `[locale]` dynamic segment, root `/` → `/en` redirect via next.config.ts, old paths (`/about` → `/en/about` etc.) permanent 308 redirects, localeHref/switchLocalePath/stripLocale helpers.
+- Redesigned globals.css with new editorial design system: warm paper #F7F6F2, charcoal #111, newsroom burgundy #A51C30, night #14130F dark chapters; 12-column grid utilities; oversized display headline clamp(3rem, 9vw, 9rem); ghost background typography; chapter mark system (00/ 01/ 02/...); Bangla font support via html[lang="bn"] CSS overrides with relaxed letter-spacing and increased line-height.
+- Loaded Noto_Serif_Bengali via next/font (400-700, bengali subset, preload) alongside Newsreader + Inter.
+- Redesigned Header: fixed, transparent over hero, compacts to paper/ink on scroll; active nav indicator; EN | বাংলà switcher preserving page path; mobile drawer with locale-aware labels.
+- Redesigned Footer as dark "back cover": oversized name in serif, 4-column grid (nav, contact, memberships, language), VLM-confirmed as "colophon of a premium print publication."
+- Built 11 redesigned home chapters: Hero (88svh full-screen cover, oversized headline with italic accent, large 4:5 portrait frame, ghost AM background, scroll hint); Selected Reporting (asymmetric editorial spread, lead 7/5 grid, 3 secondary stories with different layouts); News Desk (large list with desktop hover thumbnail preview, 12-col grid); Dark Statement (REPORT. VERIFY. EXPLAIN. — full-bleed night section with ghost type); Career (oversized dates clamp(2.5rem, 5vw, 4rem), current position visually dominates with paper-deep background); Profile Spread (45/45 magazine layout with drop-cap, sidebar with current/based/languages); Credentials (typography-led rows, no cards, numbered 01/02 with large org names); Reporting Areas (numbered list 01-07, not chips, demo badges); Education (oversized years with horizontal rules); Principles (full-width dark, ACCURACY. CLARITY. PUBLIC INTEREST. oversized); Contact (HAVE A STORY? LET'S TALK. with italic accent).
+- Created all internal pages under `[locale]/`: about, experience, work, work/[slug], articles, articles/[slug], gallery, contact, not-found — all with locale-aware content, metadata, hreflang, and breadcrumbs.
+- Updated WorkExplorer + ArticlesExplorer to accept locale prop, use localized content for filtering/search, and build locale-prefixed URLs.
+- Updated ContactForm with full locale support for all labels, validation messages, success/error states.
+- Updated GalleryExplorer with locale-aware alt text, captions, and lightbox labels.
+- Implemented hreflang via alternates.languages in every page's generateMetadata (en, bn, x-default).
+- Updated sitemap.ts to include both locales for all static + dynamic routes, with alternates.languages cross-references.
+- Preserved: contact API route (honeypot, rate limiting, server validation), JSON-LD structured data (Person, WebSite, NewsArticle, BreadcrumbList — now locale-aware), 404 behavior, gallery lightbox, story filtering, reading progress bar, share buttons, print styles, reduced-motion support.
+- Lint: 0 errors, 0 warnings.
+- Browser-verified:
+  * All 18 routes return 200: /en, /bn, /en/about, /bn/about, /en/experience, /bn/experience, /en/work, /bn/work, /en/work/[slug], /bn/work/[slug], /en/articles, /bn/articles, /en/articles/[slug], /bn/articles/[slug], /en/gallery, /bn/gallery, /en/contact, /bn/contact.
+  * Old paths redirect: / → /en (307), /about → /en/about (308), /work/[slug] → /en/work/[slug] (308).
+  * Language switcher preserves path: /en/work → বাংলা → /bn/work.
+  * Contact form validation + submission works (success state confirmed).
+  * Mobile nav drawer opens with locale-aware labels.
+  * Sitemap includes both locales with alternates.
+  * Structured data (Person, WebSite, NewsArticle, BreadcrumbList) emitted correctly.
+  * Bangla text renders correctly with Noto Serif Bengali font.
+- VLM review confirms:
+  * Hero: "highly successful transformation into a personal newsroom — feels expensive, authoritative, distinctly editorial — mimics a magazine cover layout — reminiscent of The New York Times Magazine or The Atlantic"
+  * Bangla: "rendering is excellent — crisp, legible, high-quality typeface — no encoding errors"
+  * Footer: "successfully mimics the colophon of a premium print publication — creates visual sense of finality and weight"
+  * Mobile: "editorial identity preserved — high-contrast sections, bold serif typography, structured grid numbers create magazine-like feel"
 
 Stage Summary:
-- Deliverable: production-ready, multi-page Next.js 16 portfolio website for journalist Abdullah Mozomdar.
-- Visual identity: editorial / newsroom aesthetic with warm paper background, charcoal ink, newsroom burgundy accent.
-- Content layer is fully editable in src/content/*.ts — ready to migrate to a CMS (Prisma schema, Supabase, Sanity, etc.) without touching components.
-- All factual constraints respected: no fabricated articles/awards/quotes/social accounts; demo content clearly labeled; private CV information omitted; portrait placeholder (not a fake photo).
-- Tech stack: Next.js 16 App Router, Server Components by default (only ~7 client components for interaction), TypeScript strict, Tailwind 4 with editorial design tokens, shadcn/ui primitives, lucide-react icons.
-- Accessibility: skip-to-content, semantic HTML, ARIA labels on interactive elements, keyboard nav, focus traps in MobileNav + Lightbox, prefers-reduced-motion respected.
-- Performance: minimal client JS, image placeholders, no animation frameworks, no carousel libraries, no external search infrastructure, lazy-loaded below-fold images.
+- Deliverable: completely redesigned bilingual (EN/BN) journalist portfolio with editorial "personal newsroom" aesthetic.
+- Visual identity transformed from "elegant CV" to "premium digital publication" with 11 distinct chapter sections, asymmetric layouts, dark/light rhythm, oversized typography, and a recurring section index system (00/ through 09/).
+- Full Bangla localization: /en/* and /bn/* with independently crawlable URLs, hreflang, canonical, locale-specific metadata, Bangla numerals for dates, Bangla UI throughout.
+- Tech stack preserved: Next.js 16 App Router, Server Components by default, TypeScript strict, Tailwind 4 with editorial design tokens, Noto Serif Bengali for Bangla, Newsreader + Inter for Latin.
+- All factual constraints preserved: no fabricated content, demo items labeled, private CV info omitted, portrait placeholder (not fake photo), Bangla name spelling marked as editable/unverified.

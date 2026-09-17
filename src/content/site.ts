@@ -1,38 +1,44 @@
-/**
- * Site-wide configuration
- * Editable content layer — CMS-ready. Migrate to a database later without touching components.
- */
+import type { Localized, NavItem } from "./types";
+import { L } from "./types";
 
 export const siteConfig = {
-  name: "Abdullah Mozomdar",
-  shortName: "AM",
-  wordmark: "AM.",
-  title: "Journalist & Senior Reporter",
-  location: "Dhaka, Bangladesh",
+  // Structural / non-localized
   email: "amozomdar@gmail.com",
   url: "https://abdullahmozomdar.com",
-  description:
-    "Portfolio of Bangladeshi journalist Abdullah Mozomdar, Senior Reporter at Daily Banijjo Pratidin, featuring professional experience, selected reporting and contact information.",
-  locale: "en",
-  languages: [
-    { code: "en", label: "English" },
-    { code: "bn", label: "বাংলা" },
-  ],
-  social: [] as Array<{
-    label: string;
-    href: string;
-    verified: boolean;
-  }>,
-  // Future CMS: nav items can come from site_settings table.
-  nav: [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Experience", href: "/experience" },
-    { label: "Work", href: "/work" },
-    { label: "Articles", href: "/articles" },
-    { label: "Gallery", href: "/gallery" },
-    { label: "Contact", href: "/contact" },
-  ],
+  defaultLocale: "en" as const,
+  locales: ["en", "bn"] as const,
+  portrait: null, // Real portrait path — null renders editorial placeholder
 } as const;
+
+export const siteName: Localized<string> = L("Abdullah Mozomdar", "আবদুল্লাহ মোজোমদার");
+
+/**
+ * NOTE: The English CV spells the name "Abdullah Mozomdar".
+ * The Bangla transliteration "আবদুল্লাহ মোজোমদার" is an editable placeholder
+ * until a verified Bangla spelling is provided by the owner.
+ * Do NOT treat the Bangla spelling as authoritative until verified.
+ */
+export const nameEditabilityNote: Localized<string> = L(
+  "Bangla name spelling is editable — awaiting verification.",
+  "বাংলা নামের বানান সম্পাদনযোগ্য — যাচাইয়ের অপেক্ষায়।",
+);
+
+export const navItems: NavItem[] = [
+  { label: L("About", "পরিচিতি"), href: "/about" },
+  { label: L("Experience", "অভিজ্ঞতা"), href: "/experience" },
+  { label: L("Work", "কাজ"), href: "/work" },
+  { label: L("Articles", "প্রতিবেদন"), href: "/articles" },
+  { label: L("Gallery", "গ্যালারি"), href: "/gallery" },
+];
+
+export const navContact: NavItem = {
+  label: L("Contact", "যোগাযোগ"),
+  href: "/contact",
+};
+
+export const languageLabels = {
+  en: "EN",
+  bn: "বাংলা",
+};
 
 export type SiteConfig = typeof siteConfig;

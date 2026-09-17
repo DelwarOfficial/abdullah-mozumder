@@ -5,76 +5,97 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/content/site";
+import { navItems, navContact, languageLabels } from "@/content/site";
+import { siteName } from "@/content/site-messages";
 import { MobileNav } from "./MobileNav";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { localeHref, otherLocale } from "@/i18n/config";
+import type { Locale } from "@/content/types";
 
-export function SiteHeader() {
+interface SiteHeaderProps {
+  locale: Locale;
+}
+
+export function SiteHeader({ locale }: SiteHeaderProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [atTop, setAtTop] = useState(true);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 40);
+      setAtTop(y < 10);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Determine if we're on the homepage (hero is full-screen there)
+  const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
+
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b transition-all duration-300",
-        scrolled
-          ? "bg-paper/95 backdrop-blur-md border-rule supports-[backdrop-filter]:bg-paper/85 py-2"
-          : "bg-paper border-transparent py-3.5",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        isHome && atTop
+          ? "bg-transparent"
+          : "bg-paper/95 backdrop-blur-md border-b border-rule supports-[backdrop-filter]:bg-paper/85",
       )}
     >
-      <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4">
+      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
+        <div className={cn(
+          "flex items-center justify-between gap-4 transition-all duration-300",
+          scrolled ? "h-14" : "h-16 lg:h-20",
+        )}>
           {/* Wordmark */}
           <Link
-            href="/"
-            className="group inline-flex items-baseline gap-2 font-serif font-semibold text-ink hover:text-newsroom transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
-            aria-label={`${siteConfig.name} — home`}
+            href={localeHref("/", locale)}
+            className="group inline-flex items-baseline gap-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink shrink-0"
+            aria-label={`${siteName[locale]} — home`}
           >
             <span className={cn(
-              "transition-all duration-300",
-              scrolled ? "text-base" : "text-lg",
+              "font-serif font-bold tracking-tight transition-all duration-300",
+              isHome && atTop ? "text-paper" : "text-ink",
+              scrolled ? "text-xl" : "text-2xl",
             )}>
               {siteConfig.wordmark}
             </span>
             <span className={cn(
-              "hidden sm:inline-block text-ink-muted font-sans font-medium tracking-wide transition-all duration-300",
-              scrolled ? "text-[0.7rem]" : "text-xs",
+              "hidden sm:inline-block font-sans font-medium tracking-wide transition-all duration-300 text-xs",
+              isHome && atTop ? "text-paper/70" : "text-ink-muted",
             )}>
-              {siteConfig.name}
+              {siteName[locale]}
             </span>
           </Link>
 
           {/* Desktop nav */}
           <nav
             aria-label="Primary"
-            className="hidden lg:flex items-center gap-7"
+            className="hidden lg:flex items-center gap-8"
           >
-            {siteConfig.nav.slice(1).map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname?.startsWith(item.href);
+            {navItems.map((item) => {
+              const href = localeHref(item.href, locale);
+              const isActive = pathname === href || (item.href !== "/" && pathname?.startsWith(href));
               return (
                 <Link
                   key={item.href}
-                  href={item.href}
+                  href={href}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "relative text-sm font-medium tracking-wide transition-colors",
-                    "hover:text-ink",
-                    isActive ? "text-ink" : "text-ink-muted",
+                    "relative text-sm font-medium tracking-wide transition-colors hover:opacity-100",
+                    isHome && atTop
+                      ? isActive ? "text-paper" : "text-paper/70 hover:text-paper"
+                      : isActive ? "text-ink" : "text-ink-muted hover:text-ink",
                   )}
                 >
-                  {item.label}
+                  {item.label[locale]}
                   <span
                     aria-hidden="true"
                     className={cn(
-                      "absolute -bottom-1.5 left-0 h-[2px] bg-newsroom transition-all duration-300",
+                      "absolute -bottom-1.5 left-0 h-[2px] transition-all duration-300",
+                      isHome && atTop ? "bg-paper" : "bg-newsroom",
                       isActive ? "w-full" : "w-0",
                     )}
                   />
@@ -84,26 +105,28 @@ export function SiteHeader() {
           </nav>
 
           {/* Right cluster */}
-          <div className="flex items-center gap-2">
-            {/* Language toggle (architecture only — does not switch content yet) */}
-            <span
-              className="hidden sm:inline-flex items-center gap-1 text-[0.7rem] font-medium text-ink-muted"
-              aria-label="Language (architecture ready — Bangla content not yet implemented)"
-              title="Language switching architecture ready. Bangla content will be added."
-            >
-              <span className="text-ink">EN</span>
-              <span aria-hidden="true" className="text-rule">/</span>
-              <span className="opacity-50">বাংলা</span>
-            </span>
+          <div className="flex items-center gap-3 lg:gap-5">
+            <LanguageSwitcher
+              locale={locale}
+              other={otherLocale[locale]}
+              otherLabel={languageLabels[otherLocale[locale]]}
+              isHome={isHome && atTop}
+            />
 
             <Link
-              href="/contact"
-              className="hidden lg:inline-flex items-center px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] bg-ink text-paper hover:bg-newsroom transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+              href={localeHref(navContact.href, locale)}
+              className={cn(
+                "hidden lg:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors duration-300",
+                isHome && atTop
+                  ? "border border-paper/30 text-paper hover:bg-paper hover:text-ink"
+                  : "bg-ink text-paper hover:bg-newsroom",
+              )}
             >
-              Get in touch
+              {navContact.label[locale]}
+              <span aria-hidden="true" className="text-[0.9em]">↗</span>
             </Link>
 
-            <MobileNav />
+            <MobileNav locale={locale} isHome={isHome && atTop} />
           </div>
         </div>
       </div>

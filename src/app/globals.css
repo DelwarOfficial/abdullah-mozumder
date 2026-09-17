@@ -4,18 +4,20 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ============================================================
-   Editorial design tokens — Abdullah Mozomdar
-   Warm off-white paper, charcoal ink, newsroom burgundy.
+   EDITORIAL DESIGN SYSTEM — Abdullah Mozomdar
+   Personal Newsroom / Journalist Archive
    ============================================================ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-serif: var(--font-newsreader);
+  --font-bangla: var(--font-bangla-serif);
   --font-mono: var(--font-geist-mono);
 
   --color-paper: var(--paper);
   --color-paper-deep: var(--paper-deep);
+  --color-paper-darker: var(--paper-darker);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-ink-muted: var(--ink-muted);
@@ -24,8 +26,9 @@
   --color-newsroom: var(--newsroom);
   --color-newsroom-deep: var(--newsroom-deep);
   --color-newsroom-soft: var(--newsroom-soft);
+  --color-night: var(--night);
+  --color-night-deep: var(--night-deep);
 
-  /* shadcn aliases (kept for compatibility with shadcn/ui components) */
   --color-card: var(--paper);
   --color-card-foreground: var(--ink);
   --color-popover: var(--paper);
@@ -55,16 +58,19 @@
   /* Editorial palette */
   --paper: #F7F6F2;
   --paper-deep: #EFEEE7;
+  --paper-darker: #E5E3DB;
   --ink: #111111;
   --ink-soft: #2A2A28;
-  --ink-muted: #5F5F5F;
+  --ink-muted: #6B6862;
   --rule: #DAD8D2;
   --rule-soft: #ECEAE4;
   --newsroom: #A51C30;
   --newsroom-deep: #7E1222;
   --newsroom-soft: #F3E2E4;
+  --night: #14130F;
+  --night-deep: #0A0908;
 
-  /* shadcn-compatible aliases (light) */
+  /* shadcn aliases */
   --background: #F7F6F2;
   --foreground: #111111;
   --card: #F7F6F2;
@@ -76,7 +82,7 @@
   --secondary: #EFEEE7;
   --secondary-foreground: #111111;
   --muted: #EFEEE7;
-  --muted-foreground: #5F5F5F;
+  --muted-foreground: #6B6862;
   --accent: #A51C30;
   --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
@@ -85,7 +91,7 @@
   --ring: #111111;
 
   --chart-1: #A51C30;
-  --chart-2: #5F5F5F;
+  --chart-2: #6B6862;
   --chart-3: #2A2A28;
   --chart-4: #8A8A85;
   --chart-5: #C9A57A;
@@ -103,6 +109,7 @@
 .dark {
   --paper: #14130F;
   --paper-deep: #1B1A16;
+  --paper-darker: #222019;
   --ink: #F2EFE6;
   --ink-soft: #D8D5CC;
   --ink-muted: #9A978E;
@@ -111,6 +118,8 @@
   --newsroom: #D4495C;
   --newsroom-deep: #B83247;
   --newsroom-soft: #2A171A;
+  --night: #14130F;
+  --night-deep: #0A0908;
 
   --background: #14130F;
   --foreground: #F2EFE6;
@@ -142,6 +151,7 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -151,22 +161,35 @@
     font-feature-settings: "kern", "liga", "calt";
   }
 
-  /* Editorial selection */
+  /* Bangla locale: switch to Bangla serif for editorial feel */
+  html[lang="bn"] body,
+  html[lang="bn"] .font-serif,
+  html[lang="bn"] .display-headline,
+  html[lang="bn"] .section-headline,
+  html[lang="bn"] .chapter-title,
+  html[lang="bn"] .prose-editorial {
+    font-family: var(--font-bangla), var(--font-newsreader), Georgia, serif;
+  }
+
+  html[lang="bn"] body {
+    line-height: 1.75;
+  }
+
+  /* Bangla needs more breathing room — no tight letter-spacing */
+  html[lang="bn"] .editorial-eyebrow,
+  html[lang="bn"] .editorial-meta {
+    letter-spacing: 0.06em;
+  }
+
   ::selection {
     background: var(--newsroom);
     color: #FFFFFF;
   }
 
-  /* Editorial focus ring — visible, accessible, restrained */
   :focus-visible {
-    outline: 2px solid var(--ink);
+    outline: 2px solid currentColor;
     outline-offset: 3px;
     border-radius: 1px;
-  }
-
-  /* Smooth but restrained scrolling */
-  html {
-    scroll-behavior: smooth;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -183,12 +206,31 @@
 }
 
 /* ============================================================
-   Editorial typography utilities
+   EDITORIAL TYPOGRAPHY UTILITIES
    ============================================================ */
 @layer components {
   .font-serif {
-    font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+    font-family: var(--font-newsreader), Georgia, "Times New Roman", serif;
     font-feature-settings: "kern", "liga", "onum";
+  }
+
+  /* Chapter index — 00 /, 01 /, etc. */
+  .chapter-mark {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5em;
+  }
+  .chapter-mark::before {
+    content: attr(data-chapter);
+    color: var(--newsroom);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
   }
 
   .editorial-eyebrow {
@@ -221,7 +263,6 @@
     width: 100%;
   }
 
-  /* Animated underline for links */
   .link-underline {
     background-image: linear-gradient(currentColor, currentColor);
     background-position: 0% 100%;
@@ -234,18 +275,50 @@
     background-size: 100% 1px;
   }
 
-  /* Article reading column */
+  /* Display typography */
+  .display-headline {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+  }
+
+  .section-headline {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 600;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+  }
+
+  .chapter-title {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  /* Oversized background typography for visual depth */
+  .ghost-type {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--rule);
+    user-select: none;
+    pointer-events: none;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+
+  /* Prose for article reading */
   .prose-editorial {
-    max-width: 42rem; /* 672px — close to 700px reading width */
+    max-width: 42rem;
     margin-inline: auto;
     font-family: var(--font-serif), Georgia, serif;
     font-size: 1.1875rem;
     line-height: 1.75;
     color: var(--ink);
   }
-  .prose-editorial p {
-    margin-block: 1.25rem;
-  }
+  .prose-editorial p { margin-block: 1.25rem; }
   .prose-editorial h2 {
     font-family: var(--font-serif), serif;
     font-size: 1.875rem;
@@ -283,12 +356,8 @@
     text-underline-offset: 3px;
     text-decoration-thickness: 1px;
   }
-  .prose-editorial a:hover {
-    text-decoration-thickness: 2px;
-  }
-  .prose-editorial figure {
-    margin: 2rem 0;
-  }
+  .prose-editorial a:hover { text-decoration-thickness: 2px; }
+  .prose-editorial figure { margin: 2rem 0; }
   .prose-editorial figcaption {
     font-family: var(--font-sans), sans-serif;
     font-size: 0.8125rem;
@@ -296,33 +365,33 @@
     margin-top: 0.5rem;
     line-height: 1.5;
   }
-  .prose-editorial img {
-    width: 100%;
-    height: auto;
+  .prose-editorial img { width: 100%; height: auto; }
+
+  /* 12-column editorial grid */
+  .editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .editorial-grid { gap: 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .editorial-grid { gap: 2rem; }
   }
 
-  /* Display headline using clamp() */
-  .display-headline {
-    font-family: var(--font-serif), Georgia, serif;
-    font-weight: 700;
-    line-height: 0.98;
-    letter-spacing: -0.025em;
-    font-size: clamp(2.75rem, 8vw, 6.5rem);
-  }
-  .section-headline {
-    font-family: var(--font-serif), Georgia, serif;
-    font-weight: 600;
-    line-height: 1.05;
-    letter-spacing: -0.015em;
-    font-size: clamp(1.875rem, 4vw, 3rem);
+  /* Full-bleed container — touches viewport edges */
+  .full-bleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
   }
 }
 
 /* ============================================================
-   Print styles — articles only
+   PRINT STYLES
    ============================================================ */
 @media print {
-  header, footer, nav, .no-print, [aria-label="breadcrumb"], .share-buttons {
+  header, footer, nav, .no-print, [aria-label="breadcrumb"], .share-buttons, .reading-progress {
     display: none !important;
   }
   body {
@@ -336,20 +405,39 @@
 }
 
 /* ============================================================
-   Thin custom scrollbar for filter panels / story lists
+   SCROLLBAR
    ============================================================ */
 .scroll-thin {
   scrollbar-width: thin;
   scrollbar-color: var(--rule) transparent;
 }
-.scroll-thin::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+.scroll-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 0; }
+.scroll-thin::-webkit-scrollbar-track { background: transparent; }
+
+/* ============================================================
+   ANIMATIONS — lightweight, editorial
+   ============================================================ */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.scroll-thin::-webkit-scrollbar-thumb {
-  background: var(--rule);
-  border-radius: 0;
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
-.scroll-thin::-webkit-scrollbar-track {
-  background: transparent;
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out both;
+}
+
+@keyframes scroll-hint {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+.animate-scroll-hint {
+  animation: scroll-hint 2s ease-in-out infinite;
 }

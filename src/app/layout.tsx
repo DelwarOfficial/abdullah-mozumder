@@ -1,11 +1,8 @@
-import type { Metadata } from "next";
-import { Inter, Newsreader } from "next/font/google";
+import { Inter, Newsreader, Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-import { SiteHeader } from "@/components/layout/SiteHeader";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SkipLink } from "@/components/layout/SkipLink";
 import { siteConfig } from "@/content/site";
+import { siteName, siteDescription } from "@/content/site-messages";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -23,41 +20,24 @@ const newsreader = Newsreader({
   style: ["normal", "italic"],
 });
 
-export const metadata: Metadata = {
+const banglaSerif = Noto_Serif_Bengali({
+  variable: "--font-bangla-serif",
+  subsets: ["bengali"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+  preload: true,
+});
+
+export const metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Journalist & Senior Reporter`,
-    template: `%s — ${siteConfig.name}`,
+    default: `${siteName.en} | ${siteDescription.en.slice(0, 50)}`,
+    template: `%s — ${siteName.en}`,
   },
-  description: siteConfig.description,
-  keywords: [
-    "Abdullah Mozomdar",
-    "Bangladeshi journalist",
-    "Senior Reporter",
-    "Daily Banijjo Pratidin",
-    "Dhaka journalist",
-    "Bangladesh news",
-    "journalism portfolio",
-  ],
-  authors: [{ name: siteConfig.name }],
-  creator: siteConfig.name,
-  publisher: siteConfig.name,
-  applicationName: siteConfig.name,
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "profile",
-    locale: "en_US",
-    url: siteConfig.url,
-    siteName: siteConfig.name,
-    title: `${siteConfig.name} | Journalist & Senior Reporter`,
-    description: siteConfig.description,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${siteConfig.name} | Journalist & Senior Reporter`,
-    description: siteConfig.description,
+  description: siteDescription.en,
+  applicationName: siteName.en,
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   robots: {
     index: true,
@@ -70,12 +50,6 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
-  },
-  category: "journalism",
 };
 
 export const viewport = {
@@ -92,14 +66,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${newsreader.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
+        className={`${inter.variable} ${newsreader.variable} ${banglaSerif.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
       >
-        <SkipLink />
-        <SiteHeader />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <SiteFooter />
+        {children}
         <Toaster />
       </body>
     </html>

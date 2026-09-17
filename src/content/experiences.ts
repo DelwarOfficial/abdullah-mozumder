@@ -1,57 +1,38 @@
-/**
- * Professional experience timeline.
- * Sourced from CV — do not invent entries.
- * Future CMS: maps to an `experiences` table.
- */
-
-export interface Experience {
-  id: string;
-  organization: string;
-  role: string;
-  startDate: string; // ISO-ish, e.g. "2025-01"
-  endDate: string | null; // null = current
-  periodLabel: string;
-  location: string;
-  description: string | null;
-  responsibilities: string[] | null;
-  current: boolean;
-}
+import type { Experience } from "./types";
+import { L } from "./types";
 
 export const experiences: Experience[] = [
   {
     id: "exp-1",
-    organization: "Daily Banijjo Pratidin",
-    role: "Senior Reporter",
+    organization: L("Daily Banijjo Pratidin", "দৈনিক বাণিজ্য প্রতিদিন"),
+    role: L("Senior Reporter", "সিনিয়র রিপোর্টার"),
     startDate: "2025",
     endDate: null,
-    periodLabel: "2025 — Present",
-    location: "Dhaka, Bangladesh",
-    description: null, // Not supplied in CV — leave empty until verified.
-    responsibilities: null,
+    periodLabel: L("2025 — Present", "২০২৫ — বর্তমান"),
+    location: L("Dhaka, Bangladesh", "ঢাকা, বাংলাদেশ"),
+    description: null,
     current: true,
   },
   {
     id: "exp-2",
-    organization: "Dhaka Times",
-    role: "Reporter",
+    organization: L("Dhaka Times", "ঢাকা টাইমস"),
+    role: L("Reporter", "রিপোর্টার"),
     startDate: "2024",
     endDate: "2025",
-    periodLabel: "2024 — 2025",
-    location: "Dhaka, Bangladesh",
+    periodLabel: L("2024 — 2025", "২০২৪ — ২০২৫"),
+    location: L("Dhaka, Bangladesh", "ঢাকা, বাংলাদেশ"),
     description: null,
-    responsibilities: null,
     current: false,
   },
   {
     id: "exp-3",
-    organization: "Daily Banglar Nabokantha",
-    role: "Reporter",
+    organization: L("Daily Banglar Nabokantha", "দৈনিক বাংলার নবোকণ্ঠ"),
+    role: L("Reporter", "রিপোর্টার"),
     startDate: "2019",
     endDate: "2024",
-    periodLabel: "2019 — 2024",
-    location: "Dhaka, Bangladesh",
+    periodLabel: L("2019 — 2024", "২০১৯ — ২০২৪"),
+    location: L("Dhaka, Bangladesh", "ঢাকা, বাংলাদেশ"),
     description: null,
-    responsibilities: null,
     current: false,
   },
 ];

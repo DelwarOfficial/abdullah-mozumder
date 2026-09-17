@@ -1,29 +1,19 @@
-/**
- * Education credentials.
- * Future CMS: maps to an `education` table.
- */
-
-export interface Education {
-  id: string;
-  degree: string;
-  institution: string;
-  year: string;
-  field: string;
-}
+import type { Education } from "./types";
+import { L } from "./types";
 
 export const education: Education[] = [
   {
     id: "edu-1",
-    degree: "Master of Arts (M.A.)",
-    institution: "Jagannath University, Dhaka",
+    degree: L("Master of Arts", "কলা শাখায় স্নাতকোত্তর"),
+    institution: L("Jagannath University, Dhaka", "জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা"),
     year: "2009",
-    field: "Bangla",
+    field: L("Bangla", "বাংলা"),
   },
   {
     id: "edu-2",
-    degree: "Bachelor of Arts (B.A.)",
-    institution: "Jagannath University, Dhaka",
+    degree: L("Bachelor of Arts", "কলা শাখায় স্নাতক"),
+    institution: L("Jagannath University, Dhaka", "জগন্নাথ বিশ্ববিদ্যালয়, ঢাকা"),
     year: "2008",
-    field: "Bangla",
+    field: L("Bangla", "বাংলা"),
   },
 ];

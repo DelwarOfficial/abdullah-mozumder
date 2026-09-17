@@ -1,90 +1,165 @@
 import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
-import { Container } from "@/components/ui-editorial/Container";
-import { Eyebrow } from "@/components/ui-editorial/Eyebrow";
+import { ArrowRight, ArrowDown } from "lucide-react";
 import { profile } from "@/content/profile";
-import { siteConfig } from "@/content/site";
-import { PortraitPlaceholder } from "@/components/ui-editorial/PortraitPlaceholder";
+import { siteName } from "@/content/site-messages";
+import { localeHref } from "@/i18n/config";
+import type { Locale } from "@/content/types";
 
-export function Hero() {
+interface HeroProps {
+  locale: Locale;
+}
+
+export function Hero({ locale }: HeroProps) {
   return (
     <section
-      className="relative border-b border-rule"
       aria-labelledby="hero-heading"
+      className="relative bg-night text-paper min-h-[88svh] flex flex-col overflow-hidden"
     >
-      <Container size="wide" className="py-12 sm:py-16 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left — copy */}
-          <div className="lg:col-span-8 order-2 lg:order-1">
-            <Eyebrow>
-              Journalist · {siteConfig.location}
-            </Eyebrow>
+      {/* Ghost background typography */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+      >
+        <span
+          className="font-serif font-bold text-paper/[0.04] leading-none tracking-[-0.05em]"
+          style={{ fontSize: "clamp(12rem, 35vw, 32rem)" }}
+        >
+          {locale === "en" ? "AM" : "আম"}
+        </span>
+      </div>
 
-            <h1
-              id="hero-heading"
-              className="display-headline mt-5 text-ink"
-            >
-              Reporting stories
-              <br />
-              <span className="text-newsroom italic font-normal">that matter.</span>
-            </h1>
+      {/* Top bar — wordmark + language (handled by fixed header, this is spacing) */}
+      <div className="h-16 lg:h-20 shrink-0" aria-hidden="true" />
 
-            <div className="mt-8 max-w-xl">
-              <p className="font-serif text-2xl sm:text-3xl text-ink leading-tight tracking-[-0.01em]">
-                {profile.name}
-              </p>
-              <p className="mt-1.5 text-base text-ink-soft font-medium tracking-wide">
-                {profile.title}
-              </p>
-              <p className="mt-5 text-base sm:text-lg text-ink-soft leading-relaxed">
-                {profile.shortBio}
-              </p>
-            </div>
+      {/* Main hero grid */}
+      <div className="relative flex-1 flex flex-col justify-between px-5 sm:px-8 lg:px-12 pb-8">
+        <div className="mx-auto w-full max-w-[1560px] flex-1 flex flex-col justify-center py-8 lg:py-12">
+          {/* 12-column grid */}
+          <div className="grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-8 items-start">
+            {/* Left — eyebrow + name */}
+            <div className="col-span-12 lg:col-span-7 xl:col-span-8">
+              {/* Eyebrow */}
+              <div className="flex items-center gap-3 mb-6 lg:mb-10">
+                <span className="editorial-eyebrow text-paper/60">
+                  {locale === "en" ? "Journalist" : "সাংবাদিক"} · {profile.location[locale]}
+                </span>
+                <span className="h-px flex-1 max-w-[120px] bg-paper/20" aria-hidden="true" />
+              </div>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <Link
-                href="/work"
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-ink text-paper text-sm font-semibold uppercase tracking-[0.14em] hover:bg-newsroom transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+              {/* Oversized headline */}
+              <h1
+                id="hero-heading"
+                className="display-headline text-paper"
+                style={{ fontSize: "clamp(3rem, 9vw, 9rem)" }}
               >
-                View selected work
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-ink text-ink text-sm font-semibold uppercase tracking-[0.14em] hover:bg-ink hover:text-paper transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-              >
-                <Mail className="h-4 w-4" aria-hidden="true" />
-                Contact
-              </Link>
+                {locale === "en" ? (
+                  <>
+                    <span className="block">Reporting</span>
+                    <span className="block">stories</span>
+                    <span className="block italic font-normal text-newsroom">that matter.</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="block">খবরের পেছনের</span>
+                    <span className="block italic font-normal text-newsroom">গল্প</span>
+                    <span className="block">তুলে ধরা।</span>
+                  </>
+                )}
+              </h1>
+
+              {/* Name + title */}
+              <div className="mt-8 lg:mt-12 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                <span className="font-serif text-xl sm:text-2xl lg:text-3xl font-semibold text-paper">
+                  {profile.name[locale]}
+                </span>
+                <span className="h-3 w-px bg-paper/30" aria-hidden="true" />
+                <span className="text-sm sm:text-base text-paper/70 font-medium">
+                  {profile.title[locale]}
+                </span>
+              </div>
             </div>
 
-            {/* Current position */}
-            <div className="mt-10 pt-6 border-t border-rule-soft flex flex-wrap items-baseline gap-x-4 gap-y-1.5">
-              <span className="editorial-eyebrow">Currently</span>
-              <span className="text-sm text-ink font-medium">
-                {profile.currentPosition.role}
-              </span>
-              <span aria-hidden="true" className="text-rule">·</span>
-              <span className="text-sm text-ink-soft">
-                {profile.currentPosition.organization}
-              </span>
-              <span aria-hidden="true" className="text-rule">·</span>
-              <span className="text-sm text-ink-muted">
-                {profile.currentPosition.period}
-              </span>
+            {/* Right — portrait frame */}
+            <div className="col-span-12 lg:col-span-5 xl:col-span-4 lg:flex lg:justify-end">
+              <HeroPortrait locale={locale} />
             </div>
-          </div>
-
-          {/* Right — portrait */}
-          <div className="lg:col-span-4 order-1 lg:order-2 flex justify-center lg:justify-end">
-            <PortraitPlaceholder
-              size="lg"
-              label={profile.name}
-              alt={profile.portraitAlt}
-            />
           </div>
         </div>
-      </Container>
+
+        {/* Bottom bar — current position + CTA + scroll hint */}
+        <div className="relative mx-auto w-full max-w-[1560px] border-t border-paper/15 pt-6">
+          <div className="grid grid-cols-12 gap-4 items-end">
+            {/* Current position */}
+            <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+              <p className="editorial-eyebrow text-paper/50 mb-1">
+                {locale === "en" ? "01 / Current" : "০১ / বর্তমান"}
+              </p>
+              <p className="font-serif text-lg sm:text-xl font-semibold text-paper leading-tight">
+                {profile.currentPosition.role[locale]}
+              </p>
+              <p className="text-sm text-paper/60 mt-0.5">
+                {profile.currentPosition.organization[locale]}
+              </p>
+            </div>
+
+            {/* CTA */}
+            <div className="col-span-12 sm:col-span-6 lg:col-span-4 lg:text-center">
+              <Link
+                href={localeHref("/work", locale)}
+                className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-paper hover:text-newsroom transition-colors"
+              >
+                {locale === "en" ? "Selected Reporting" : "নির্বাচিত প্রতিবেদন"}
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5"
+                  aria-hidden="true"
+                />
+              </Link>
+            </div>
+
+            {/* Scroll hint */}
+            <div className="col-span-12 lg:col-span-4 lg:text-right hidden lg:flex items-end justify-end gap-2 text-paper/50">
+              <span className="editorial-eyebrow">
+                {locale === "en" ? "Scroll" : "স্ক্রল"}
+              </span>
+              <ArrowDown className="h-4 w-4 animate-scroll-hint" aria-hidden="true" />
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+  );
+}
+
+function HeroPortrait({ locale }: { locale: Locale }) {
+  return (
+    <div
+      className="relative aspect-[4/5] w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[340px] xl:max-w-[380px] border border-paper/20 bg-paper/5 flex flex-col items-center justify-center overflow-hidden"
+      role="img"
+      aria-label={`${profile.portraitAlt[locale]} — ${locale === "en" ? "portrait to be added" : "প্রতিকৃতি যোগ করা হবে"}`}
+    >
+      {/* Inner frame */}
+      <div
+        className="absolute inset-3 border border-paper/10 pointer-events-none"
+        aria-hidden="true"
+      />
+
+      {/* Large initials */}
+      <span
+        className="font-serif font-bold text-paper/20 leading-none"
+        style={{ fontSize: "clamp(4rem, 12vw, 8rem)" }}
+      >
+        AM
+      </span>
+
+      {/* Label */}
+      <div className="absolute bottom-6 left-6 right-6 text-center">
+        <p className="editorial-eyebrow text-paper/40">
+          {locale === "en" ? "Portrait" : "প্রতিকৃতি"}
+        </p>
+        <p className="text-xs text-paper/60 mt-1 font-medium uppercase tracking-[0.14em]">
+          {locale === "en" ? "To be added" : "যোগ করা হবে"}
+        </p>
+      </div>
+    </div>
   );
 }

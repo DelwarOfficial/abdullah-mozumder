@@ -4,30 +4,51 @@ import { stories } from "@/content/stories";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  const locales = siteConfig.locales;
 
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${siteConfig.url}/`, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
-    { url: `${siteConfig.url}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${siteConfig.url}/experience`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${siteConfig.url}/work`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${siteConfig.url}/articles`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${siteConfig.url}/gallery`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${siteConfig.url}/contact`, lastModified: now, changeFrequency: "yearly", priority: 0.7 },
-  ];
+  const staticPaths = ["", "/about", "/experience", "/work", "/articles", "/gallery", "/contact"];
 
-  const storyRoutes: MetadataRoute.Sitemap = stories.map((s) => ({
-    url: `${siteConfig.url}/work/${s.slug}`,
-    lastModified: new Date(s.publishedAt),
-    changeFrequency: "yearly",
-    priority: 0.7,
-  }));
+  const staticRoutes: MetadataRoute.Sitemap = locales.flatMap((locale) =>
+    staticPaths.map((path) => ({
+      url: `${siteConfig.url}/${locale}${path}`,
+      lastModified: now,
+      changeFrequency: path === "" ? "weekly" : "monthly" as const,
+      priority: path === "" ? 1.0 : path === "/work" || path === "/about" ? 0.9 : 0.7,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [l, `${siteConfig.url}/${l}${path}`]),
+        ),
+      },
+    })),
+  );
 
-  const articleRoutes: MetadataRoute.Sitemap = stories.map((s) => ({
-    url: `${siteConfig.url}/articles/${s.slug}`,
-    lastModified: new Date(s.publishedAt),
-    changeFrequency: "yearly",
-    priority: 0.6,
-  }));
+  const storyRoutes: MetadataRoute.Sitemap = locales.flatMap((locale) =>
+    stories.map((s) => ({
+      url: `${siteConfig.url}/${locale}/work/${s.slug}`,
+      lastModified: new Date(s.publishedAt),
+      changeFrequency: "yearly" as const,
+      priority: 0.7,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [l, `${siteConfig.url}/${l}/work/${s.slug}`]),
+        ),
+      },
+    })),
+  );
+
+  const articleRoutes: MetadataRoute.Sitemap = locales.flatMap((locale) =>
+    stories.map((s) => ({
+      url: `${siteConfig.url}/${locale}/articles/${s.slug}`,
+      lastModified: new Date(s.publishedAt),
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [l, `${siteConfig.url}/${l}/articles/${s.slug}`]),
+        ),
+      },
+    })),
+  );
 
   return [...staticRoutes, ...storyRoutes, ...articleRoutes];
 }

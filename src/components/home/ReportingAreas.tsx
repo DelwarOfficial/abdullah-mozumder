@@ -1,53 +1,76 @@
-import { Container } from "@/components/ui-editorial/Container";
-import { SectionHeading } from "@/components/ui-editorial/SectionHeading";
+import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { reportingAreas, digitalSkills } from "@/content/reporting-areas";
+import type { Locale } from "@/content/types";
 
-export function ReportingAreas() {
+interface ReportingAreasProps {
+  locale: Locale;
+}
+
+export function ReportingAreas({ locale }: ReportingAreasProps) {
+  const chapterLabel = locale === "en" ? "Beats" : "প্রতিবেদনের ক্ষেত্র";
+  const sectionTitle = locale === "en" ? "Areas of Reporting" : "প্রতিবেদনের ক্ষেত্রসমূহ";
+  const demoLabel = locale === "en" ? "Demo" : "নমুনা";
+  const skillsLabel = locale === "en" ? "Digital Skills" : "ডিজিটাল দক্ষতা";
+  const disclaimer = locale === "en"
+    ? "The CV does not establish specific reporting beats. The labels above are placeholders demonstrating the data architecture. Replace with verified specialties before launch."
+    : "সিভিতে নির্দিষ্ট প্রতিবেদনের ক্ষেত্র উল্লেখ নেই। উপরের লেবেলগুলো তথ্যকাঠামো প্রদর্শনের নমুনা। লঞ্চের আগে যাচাইকৃত বিষয় দিয়ে প্রতিস্থাপন করুন।";
+
   return (
-    <section
-      aria-labelledby="areas-heading"
-      className="py-16 sm:py-24 border-t border-rule bg-paper-deep/30"
-    >
-      <Container size="wide">
-        <SectionHeading
-          eyebrow="Reporting Areas"
-          title={<span id="areas-heading">Areas of reporting</span>}
-          description="These labels are editable placeholders. They will be replaced with verified beats once confirmed by the journalist."
-          as="h2"
-        />
+    <section aria-labelledby="areas-heading" className="py-16 sm:py-24 lg:py-32 bg-paper-deep/30">
+      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
+        <ChapterMark number="06" label={chapterLabel} locale={locale} className="mb-8 lg:mb-12" />
+        <h2
+          id="areas-heading"
+          className="section-headline text-ink mb-12 lg:mb-20"
+          style={{ fontSize: "clamp(2rem, 4.5vw, 4rem)" }}
+        >
+          {sectionTitle}
+        </h2>
 
-        <ul className="mt-10 flex flex-wrap gap-x-3 gap-y-3">
-          {reportingAreas.map((area) => (
-            <li
+        {/* Numbered list — not chips */}
+        <div className="border-t border-rule">
+          {reportingAreas.map((area, idx) => (
+            <div
               key={area.id}
-              className="inline-flex items-center gap-2 border border-rule bg-paper px-4 py-2 text-sm text-ink-soft"
+              className="grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-1 py-5 sm:py-6 border-b border-rule-soft group hover:bg-paper/50 transition-colors"
             >
-              <span
-                aria-hidden="true"
-                className="inline-block h-1.5 w-1.5 bg-newsroom"
-              />
-              <span>{area.label}</span>
-            </li>
+              <div className="col-span-2 lg:col-span-1">
+                <span className="font-serif font-bold text-newsroom tabular-nums text-xl sm:text-2xl">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <div className="col-span-10 lg:col-span-10">
+                <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl text-ink font-semibold leading-tight group-hover:text-newsroom transition-colors">
+                  {area.label[locale]}
+                </h3>
+              </div>
+              <div className="col-span-12 lg:col-span-1 lg:text-right">
+                {area.isPlaceholder && (
+                  <span className="inline-block border border-newsroom/40 text-newsroom text-[0.625rem] uppercase tracking-[0.14em] px-1.5 py-0.5">
+                    {demoLabel}
+                  </span>
+                )}
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
 
-        <p className="mt-6 text-xs text-ink-muted italic max-w-2xl">
-          Note: The CV does not establish specific reporting beats. The labels
-          above are placeholders demonstrating the data architecture. Replace
-          with verified specialties before launch.
+        <p className="mt-8 text-xs text-ink-muted italic max-w-2xl leading-relaxed">
+          {disclaimer}
         </p>
 
+        {/* Digital skills */}
         <div className="mt-12 pt-8 border-t border-rule">
-          <p className="editorial-eyebrow mb-4">Digital Skills</p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+          <p className="editorial-eyebrow mb-4">{skillsLabel}</p>
+          <ul className="flex flex-wrap gap-x-8 gap-y-3">
             {digitalSkills.map((skill) => (
-              <li key={skill} className="text-sm text-ink-soft">
-                {skill}
+              <li key={skill.en} className="text-base text-ink-soft">
+                {locale === "en" ? skill.en : skill.bn}
               </li>
             ))}
           </ul>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
