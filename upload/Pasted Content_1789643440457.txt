@@ -1,0 +1,2354 @@
+# MASTER PROJECT PROMPT
+# Premium Journalist Portfolio Website — Abdullah Mozomdar
+
+You are acting as a senior product designer, UX/UI designer, frontend architect,
+SEO engineer, performance engineer, accessibility specialist, and full-stack
+web developer.
+
+Your task is to DESIGN AND BUILD a complete, production-quality personal
+portfolio website for a professional Bangladeshi journalist.
+
+This must NOT look like:
+- a generic personal portfolio template
+- a developer portfolio
+- a SaaS landing page
+- a CV pasted onto a website
+- a collection of generic cards
+- an AI-generated template
+
+It should feel like a premium independent journalist website / digital
+publication with the visual confidence of a serious international newsroom.
+
+The final product must be:
+
+- Extremely fast
+- Mobile-first
+- SEO-first
+- Accessible
+- Elegant
+- Editorial
+- Credible
+- Easy to maintain
+- Easy to expand
+- CMS/database-ready
+- Optimized for Google Search
+- Optimized for social sharing
+- Optimized for Core Web Vitals
+- Suitable for both Bangla and English content
+
+
+==================================================
+1. PROJECT IDENTITY
+==================================================
+
+Website owner:
+
+Name:
+Abdullah Mozomdar
+
+Primary professional title:
+Journalist & Senior Reporter
+
+Location for general professional context:
+Dhaka, Bangladesh
+
+Public email:
+amozomdar@gmail.com
+
+
+CONFIRMED PROFESSIONAL EXPERIENCE
+
+Current:
+Senior Reporter
+Daily Banijjo Pratidin
+2025 – Present
+
+Previous:
+
+Reporter
+Dhaka Times
+2024 – 2025
+
+Reporter
+Daily Banglar Nabokantha
+2019 – 2024
+
+
+PROFESSIONAL AFFILIATIONS
+
+Executive Member
+Dhaka Union of Journalists
+
+Permanent Member
+National Press Club
+
+
+EDUCATION
+
+Master of Arts (M.A.) in Bangla
+Jagannath University, Dhaka
+2009
+
+Bachelor of Arts (B.A.) in Bangla
+Jagannath University, Dhaka
+2008
+
+
+LANGUAGES
+
+Bangla
+English
+
+
+COMPUTER / DIGITAL SKILLS FROM CV
+
+MS Office
+Internet browsing/research
+Email
+
+
+==================================================
+2. CRITICAL CONTENT ACCURACY RULE
+==================================================
+
+Never invent professional facts.
+
+DO NOT invent:
+
+- awards
+- recognitions
+- article titles
+- investigations
+- publications
+- employers
+- reporting beats
+- years of experience
+- article counts
+- audience numbers
+- social followers
+- interviews
+- exclusive reports
+- awards
+- metrics
+- quotes
+- testimonials
+- achievements
+- political affiliations
+- professional certifications
+
+If actual information has not been provided, use clearly marked DEMO CONTENT.
+
+For example:
+
+"Sample Report"
+"Demo Article"
+"Portfolio item placeholder"
+
+Never make a demo item appear to be a real published story.
+
+
+==================================================
+3. PRIVACY RULES
+==================================================
+
+The original CV contains personal information that should NOT appear publicly.
+
+DO NOT display:
+
+- home address
+- permanent address
+- parents' names
+- date of birth
+- marital status
+- religion
+- blood group
+- unnecessary phone numbers
+- other private personal identifiers
+
+The website should focus exclusively on professional identity.
+
+
+==================================================
+4. PRODUCT GOAL
+==================================================
+
+The website should answer these questions within approximately 10 seconds:
+
+Who is Abdullah Mozomdar?
+
+What does he do?
+
+Where does he currently work?
+
+Where has he worked before?
+
+What journalism has he produced?
+
+What are his professional credentials?
+
+How can someone contact him?
+
+The site should appeal to:
+
+- newsroom editors
+- publishers
+- journalists
+- media organizations
+- event organizers
+- collaborators
+- researchers
+- potential employers
+- professional contacts
+- readers
+
+
+==================================================
+5. DESIGN PHILOSOPHY
+==================================================
+
+Create a premium EDITORIAL / NEWSROOM aesthetic.
+
+Visual inspiration may come conceptually from:
+
+- Reuters
+- Bloomberg
+- The New York Times
+- The Guardian
+- Rest of World
+- ProPublica
+- international magazine journalism
+
+Do NOT clone any of these websites.
+
+Use their editorial discipline as inspiration only.
+
+
+==================================================
+6. VISUAL LANGUAGE
+==================================================
+
+The visual system should feel:
+
+Authoritative
+Editorial
+Minimal
+Contemporary
+Human
+Professional
+Journalistic
+
+Suggested palette:
+
+Background:
+warm off-white / paper-like white
+
+Primary text:
+near black / charcoal
+
+Secondary text:
+neutral gray
+
+Accent:
+deep newsroom red / burgundy
+
+Example conceptual palette:
+
+Background: #F7F6F2
+Primary: #111111
+Secondary: #5F5F5F
+Accent: #A51C30
+Border: #DAD8D2
+
+These exact colors are suggestions, not requirements.
+
+Avoid:
+
+- neon
+- excessive gradients
+- excessive shadows
+- glassmorphism everywhere
+- oversized rounded cards
+- excessive border radius
+- colorful startup aesthetics
+- generic AI-looking sections
+
+
+==================================================
+7. TYPOGRAPHY
+==================================================
+
+Typography is one of the most important design elements.
+
+Use:
+
+A sophisticated editorial serif font for:
+- hero headlines
+- article titles
+- major section headings
+
+A clean sans-serif for:
+- navigation
+- metadata
+- body UI
+- labels
+- buttons
+
+The font system MUST properly support Bangla if Bangla content is enabled.
+
+Optimize font loading.
+
+Prefer:
+- variable fonts
+- local/self-hosted fonts where appropriate
+- framework font optimization
+- font subsetting
+
+Avoid loading unnecessary weights.
+
+Maintain excellent readability.
+
+Body line-height:
+approximately 1.6–1.8.
+
+Article reading width:
+roughly 680–760px on desktop.
+
+Do not stretch long-form journalism across the entire screen.
+
+
+==================================================
+8. HOMEPAGE
+==================================================
+
+Build a sophisticated homepage with the following flow.
+
+
+-------------------------------
+8.1 HEADER
+-------------------------------
+
+Create a compact sticky header.
+
+Left:
+
+ABDULLAH MOZOMDAR
+
+or a tasteful wordmark:
+
+AM.
+
+Navigation:
+
+Home
+About
+Experience
+Work
+Articles
+Gallery
+Contact
+
+Optional:
+
+EN / বাংলা
+
+Optional dark/light toggle.
+
+Mobile:
+use a clean accessible menu.
+
+Header should become slightly more compact while scrolling.
+
+Do not create a giant navigation bar.
+
+
+-------------------------------
+8.2 HERO
+-------------------------------
+
+The hero must create immediate impact.
+
+Possible eyebrow:
+
+JOURNALIST · DHAKA, BANGLADESH
+
+Headline concept:
+
+Reporting stories
+that matter.
+
+Then:
+
+Abdullah Mozomdar
+
+Senior Reporter & Journalist
+
+Suggested supporting copy:
+
+"Abdullah Mozomdar is a Bangladeshi journalist and Senior Reporter
+with professional reporting experience across national news organizations."
+
+Then CTA buttons:
+
+VIEW SELECTED WORK
+
+CONTACT
+
+Optional secondary text:
+
+Currently:
+Senior Reporter
+Daily Banijjo Pratidin
+
+Include a professional portrait area.
+
+If no real photograph is available:
+use an elegant placeholder.
+
+DO NOT generate a fake portrait of Abdullah.
+
+
+-------------------------------
+8.3 EDITORIAL TICKER / STATUS BAR
+-------------------------------
+
+Below hero, create a thin newsroom-inspired information strip.
+
+Example:
+
+SENIOR REPORTER
+Daily Banijjo Pratidin
+
+DUJ
+Executive Member
+
+NATIONAL PRESS CLUB
+Permanent Member
+
+Use restrained typography and thin separators.
+
+Do not make these look like advertising badges.
+
+
+-------------------------------
+8.4 FEATURED WORK
+-------------------------------
+
+Heading:
+
+Selected Work
+
+Subheading:
+
+A selection of reporting, stories and journalistic work.
+
+Layout:
+
+One large lead story.
+
+Two or three secondary stories.
+
+Editorial magazine grid.
+
+Lead story:
+large 16:9 or 3:2 image.
+
+Show:
+
+CATEGORY
+TITLE
+SHORT SUMMARY
+PUBLICATION
+DATE
+READ STORY →
+
+If actual journalism has not been supplied:
+
+Use obvious demo content.
+
+Example:
+
+DEMO REPORT
+
+Sample Report Title
+
+Replace this content with Abdullah's published reporting.
+
+
+-------------------------------
+8.5 LATEST STORIES
+-------------------------------
+
+Create a compact editorial list.
+
+Avoid repeating large cards.
+
+Structure:
+
+Date
+Category
+Headline
+Publication
+Arrow
+
+Example:
+
+12 SEP 2026
+BUSINESS
+Sample reporting headline
+Publication
+→
+
+
+-------------------------------
+8.6 EXPERIENCE
+-------------------------------
+
+Heading:
+
+Reporting Experience
+
+Build an elegant vertical timeline.
+
+2025 — PRESENT
+
+Senior Reporter
+Daily Banijjo Pratidin
+
+2024 — 2025
+
+Reporter
+Dhaka Times
+
+2019 — 2024
+
+Reporter
+Daily Banglar Nabokantha
+
+Make current position visually distinct but not flashy.
+
+
+-------------------------------
+8.7 ABOUT PREVIEW
+-------------------------------
+
+Create a two-column editorial section.
+
+Left:
+large heading.
+
+Right:
+professional biography.
+
+Suggested factual bio:
+
+"Abdullah Mozomdar is a Bangladeshi journalist and Senior Reporter
+with experience across national news organizations. He currently works
+at Daily Banijjo Pratidin and previously reported for Dhaka Times and
+Daily Banglar Nabokantha.
+
+He is an Executive Member of the Dhaka Union of Journalists and
+a Permanent Member of the National Press Club. His academic background
+is in Bangla at Jagannath University, Dhaka."
+
+CTA:
+
+MORE ABOUT ABDULLAH →
+
+
+-------------------------------
+8.8 PROFESSIONAL CREDENTIALS
+-------------------------------
+
+Heading:
+
+Professional Memberships
+
+Show:
+
+Dhaka Union of Journalists
+Executive Member
+
+National Press Club
+Permanent Member
+
+Use understated editorial presentation.
+
+
+-------------------------------
+8.9 EXPERTISE / REPORTING AREAS
+-------------------------------
+
+IMPORTANT:
+
+The CV does NOT establish specific reporting beats.
+
+Therefore build the UI/data structure for reporting areas but keep them
+editable and do not claim unverified specialties.
+
+Example demo labels:
+
+National Affairs
+Business
+City Reporting
+Public Interest
+Interviews
+Features
+Field Reporting
+
+Add an internal developer note:
+
+"Replace these placeholder reporting areas with verified beats."
+
+
+-------------------------------
+8.10 EDUCATION
+-------------------------------
+
+M.A. in Bangla
+Jagannath University
+2009
+
+B.A. in Bangla
+Jagannath University
+2008
+
+Present this simply.
+
+
+-------------------------------
+8.11 JOURNALISTIC PHILOSOPHY
+-------------------------------
+
+Create an editorial statement.
+
+Do NOT invent a quote and attribute it to Abdullah.
+
+Instead use a heading such as:
+
+Approach to Journalism
+
+Then neutral original copy describing principles such as:
+
+accuracy
+clarity
+public-interest reporting
+verification
+context
+
+Make clear that this is website copy, not a direct quote.
+
+
+-------------------------------
+8.12 CONTACT CTA
+-------------------------------
+
+Large editorial closing section.
+
+Headline:
+
+Have a story, collaboration
+or professional enquiry?
+
+Button:
+
+GET IN TOUCH
+
+Email:
+amozomdar@gmail.com
+
+
+==================================================
+9. ABOUT PAGE
+==================================================
+
+Route:
+
+/about
+
+Include:
+
+Professional introduction
+Career summary
+Professional memberships
+Education
+Languages
+Digital/computer skills
+
+Use a magazine-style layout.
+
+Optional sidebar:
+
+BASED IN
+Dhaka, Bangladesh
+
+CURRENTLY
+Senior Reporter
+
+LANGUAGES
+Bangla / English
+
+Do not repeat the full homepage.
+
+
+==================================================
+10. EXPERIENCE PAGE
+==================================================
+
+Route:
+
+/experience
+
+Build a richer career timeline.
+
+Each job should support:
+
+organization
+role
+start date
+end date
+location
+description
+responsibilities
+related stories
+
+Since responsibilities were not supplied in the CV,
+do not invent them.
+
+Use placeholder text or hide descriptions until supplied.
+
+
+==================================================
+11. WORK PAGE
+==================================================
+
+Route:
+
+/work
+
+This should be the central journalism portfolio.
+
+Top:
+
+SELECTED JOURNALISM
+
+Intro.
+
+Then filters.
+
+Possible filter architecture:
+
+All
+Reports
+Features
+Interviews
+Multimedia
+
+Do not populate these as factual categories unless verified.
+
+Each story card supports:
+
+image
+category
+headline
+summary
+publication
+date
+reading time
+external/internal link
+
+
+==================================================
+12. STORY DETAIL PAGE
+==================================================
+
+Route:
+
+/work/[slug]
+
+Layout:
+
+Breadcrumb
+
+Work / Story title
+
+Category
+
+Large headline
+
+Deck / summary
+
+Byline
+
+Publication
+
+Published date
+
+Hero image
+
+Image caption
+
+Story description/content
+
+Original publication link
+
+Related stories
+
+Previous / Next navigation
+
+Share controls
+
+
+==================================================
+13. ARTICLES PAGE
+==================================================
+
+Route:
+
+/articles
+
+Use a cleaner text-heavy layout.
+
+Support:
+
+search
+category filters
+year filter
+publication filter
+
+Do not make search/filtering dependent on a huge JS library.
+
+
+==================================================
+14. ARTICLE DETAIL
+==================================================
+
+Route:
+
+/articles/[slug]
+
+Optimize for reading.
+
+Include:
+
+breadcrumb
+category
+headline
+deck
+byline
+date
+reading time
+hero
+caption
+body
+tags
+original source
+share controls
+related articles
+
+Reading column:
+approximately 700px.
+
+Support:
+
+headings
+quotes
+lists
+images
+captions
+embeds
+links
+
+
+==================================================
+15. GALLERY
+==================================================
+
+Route:
+
+/gallery
+
+Create a premium photojournalism gallery.
+
+Use:
+
+responsive masonry-like grid or editorial image grid.
+
+Click:
+accessible lightbox.
+
+Each image supports:
+
+title
+caption
+location
+date
+credit
+alt text
+
+Lazy load all non-critical images.
+
+Do not load full-resolution originals in thumbnails.
+
+
+==================================================
+16. CONTACT
+==================================================
+
+Route:
+
+/contact
+
+Headline:
+
+Get in touch.
+
+Fields:
+
+Name
+Email
+Organization
+Subject
+Message
+
+Requirements:
+
+accessible labels
+client validation
+server validation architecture
+spam protection
+honeypot
+rate-limit readiness
+clear success/error state
+
+Fallback:
+
+amozomdar@gmail.com
+
+Never expose sensitive CV information.
+
+
+==================================================
+17. 404 PAGE
+==================================================
+
+Create a custom editorial 404.
+
+Example:
+
+404
+
+This story couldn't be found.
+
+Return to homepage
+Browse reporting
+
+
+==================================================
+18. DATA ARCHITECTURE
+==================================================
+
+Do NOT hardcode everything inside React components.
+
+Create structured content/data models.
+
+Example:
+
+Profile
+
+{
+  name,
+  slug,
+  headline,
+  shortBio,
+  longBio,
+  location,
+  email,
+  portrait,
+  languages,
+  currentPosition
+}
+
+
+Experience
+
+{
+  id,
+  organization,
+  role,
+  startDate,
+  endDate,
+  location,
+  description,
+  current
+}
+
+
+Story
+
+{
+  id,
+  title,
+  slug,
+  deck,
+  summary,
+  category,
+  publication,
+  publishedAt,
+  heroImage,
+  heroAlt,
+  caption,
+  body,
+  tags,
+  articleUrl,
+  videoUrl,
+  location,
+  featured
+}
+
+
+GalleryItem
+
+{
+  id,
+  image,
+  thumbnail,
+  title,
+  caption,
+  location,
+  date,
+  credit,
+  alt
+}
+
+
+SEOSettings
+
+{
+  title,
+  description,
+  canonical,
+  ogImage,
+  noIndex
+}
+
+
+==================================================
+19. FUTURE ADMIN CMS
+==================================================
+
+Prepare architecture for a future:
+
+/admin
+
+Admin should eventually be able to manage:
+
+Profile
+Homepage
+About
+Experience
+Work
+Articles
+Gallery
+Professional Memberships
+Education
+Social links
+Contact
+SEO
+Site settings
+
+Future content statuses:
+
+Draft
+Published
+Scheduled
+
+Do not necessarily build full authentication unless requested.
+
+But architecture must not make CMS integration difficult.
+
+
+==================================================
+20. TECHNOLOGY
+==================================================
+
+Preferred stack:
+
+Next.js
+TypeScript
+Tailwind CSS
+
+Use the latest stable production-compatible versions available to the
+development environment.
+
+Prefer:
+
+App Router
+Server Components
+Static Generation
+Server Rendering where necessary
+Incremental regeneration where useful
+
+Minimize client components.
+
+Do not add "use client" everywhere.
+
+Client components should only exist where interaction requires them.
+
+
+==================================================
+21. COMPONENT ARCHITECTURE
+==================================================
+
+Create reusable components.
+
+Suggested structure:
+
+components/
+  layout/
+    Header
+    Footer
+    MobileNav
+
+  home/
+    Hero
+    FeaturedWork
+    LatestStories
+    ExperiencePreview
+    AboutPreview
+    Credentials
+    ContactCTA
+
+  journalism/
+    StoryCard
+    LeadStory
+    StoryListItem
+    ArticleMeta
+    RelatedStories
+
+  gallery/
+    GalleryGrid
+    GalleryItem
+    Lightbox
+
+  ui/
+    Button
+    SectionHeading
+    Container
+    Divider
+    Tag
+    Breadcrumbs
+
+  seo/
+    StructuredData
+
+
+==================================================
+22. SEO — EXTREMELY IMPORTANT
+==================================================
+
+Treat SEO as core infrastructure.
+
+Implement:
+
+Unique <title>
+Unique meta description
+Canonical URL
+Open Graph
+Twitter/X cards
+
+Generate:
+
+sitemap.xml
+robots.txt
+
+Use dynamic metadata for:
+
+/work/[slug]
+/articles/[slug]
+
+Implement structured data.
+
+
+Homepage:
+
+Person schema
+
+Example conceptual structure:
+
+{
+ "@context": "https://schema.org",
+ "@type": "Person",
+ "name": "Abdullah Mozomdar",
+ "jobTitle": "Journalist and Senior Reporter",
+ "email": "mailto:amozomdar@gmail.com"
+}
+
+
+Also:
+
+WebSite schema
+
+
+Story pages:
+
+Article or NewsArticle schema
+
+Only include schema fields with real values.
+
+Never create fake structured-data information.
+
+
+Breadcrumb pages:
+
+BreadcrumbList schema.
+
+
+==================================================
+23. SEARCH ENGINE CONTENT QUALITY
+==================================================
+
+Do not keyword stuff.
+
+Write natural metadata.
+
+Example homepage title:
+
+Abdullah Mozomdar | Journalist & Senior Reporter
+
+Example description:
+
+"Portfolio of Bangladeshi journalist Abdullah Mozomdar, Senior Reporter
+at Daily Banijjo Pratidin, featuring professional experience, selected
+reporting and contact information."
+
+Keep descriptions natural.
+
+Use semantic URLs.
+
+GOOD:
+
+/work/story-name
+
+BAD:
+
+/work?id=238923
+
+
+==================================================
+24. SOCIAL SHARING
+==================================================
+
+Every story should have an attractive OG image.
+
+Create reusable OG-image architecture.
+
+OG image concept:
+
+publication/category
+headline
+Abdullah Mozomdar
+website branding
+
+Use readable typography.
+
+Support:
+
+Facebook
+LinkedIn
+X
+WhatsApp preview
+
+
+==================================================
+25. CORE WEB VITALS
+==================================================
+
+Performance is mandatory.
+
+Target excellent:
+
+LCP
+CLS
+INP
+
+Aim for 90+ Lighthouse scores where realistic.
+
+Prefer 95+ for:
+
+Accessibility
+Best Practices
+SEO
+
+Never manipulate audits merely to achieve a number.
+
+Optimize the actual experience.
+
+
+==================================================
+26. IMAGE PERFORMANCE
+==================================================
+
+Use optimized framework image handling.
+
+Support:
+
+AVIF
+WebP
+
+Always specify dimensions or aspect ratio.
+
+Prevent CLS.
+
+Use responsive srcset/sizes.
+
+Do not preload every image.
+
+Only prioritize:
+
+hero/LCP image
+
+Lazy-load:
+
+gallery
+article images
+below-fold thumbnails
+
+Create lightweight blur/placeholder behavior where useful.
+
+
+==================================================
+27. JAVASCRIPT PERFORMANCE
+==================================================
+
+Keep JavaScript minimal.
+
+Avoid unnecessary:
+
+animation frameworks
+carousel libraries
+date libraries
+icon libraries
+state-management libraries
+
+Use CSS where possible.
+
+Tree-shake imports.
+
+Dynamic import heavy interactive components.
+
+Do not hydrate static content unnecessarily.
+
+
+==================================================
+28. FONT PERFORMANCE
+==================================================
+
+Prevent font loading from hurting LCP.
+
+Use:
+
+optimized loading
+font-display strategy
+subsets
+limited weights
+
+Do not load 8 font weights.
+
+Recommended conceptual setup:
+
+Editorial Serif:
+400
+600/700
+
+Sans:
+400
+500
+600
+
+
+==================================================
+29. ACCESSIBILITY
+==================================================
+
+Follow WCAG 2.2 AA principles.
+
+Implement:
+
+Skip to content
+Semantic HTML
+Keyboard navigation
+Visible focus states
+Correct button/link semantics
+Form labels
+Accessible validation
+ARIA only when needed
+Alt text
+Reduced motion
+Contrast compliance
+
+Do not use clickable <div> elements when a button/link is appropriate.
+
+
+==================================================
+30. RESPONSIVE DESIGN
+==================================================
+
+Design mobile-first.
+
+Test widths around:
+
+320
+360
+375
+390
+430
+768
+1024
+1280
+1440
+1920
+
+No horizontal overflow.
+
+Article headlines must scale intelligently.
+
+Use CSS clamp() where appropriate.
+
+Example concept:
+
+font-size: clamp(2.5rem, 7vw, 7rem);
+
+
+==================================================
+31. MOBILE NAVIGATION
+==================================================
+
+Use a clean fullscreen or compact drawer.
+
+Include:
+
+Home
+About
+Experience
+Work
+Articles
+Gallery
+Contact
+
+Large touch targets.
+
+Escape closes menu.
+
+Click outside closes menu.
+
+Lock page scrolling while open.
+
+Correct focus management.
+
+
+==================================================
+32. MOTION
+==================================================
+
+Use subtle editorial motion.
+
+Examples:
+
+headline reveal
+image scale on hover
+underline animation
+section fade
+navigation transitions
+
+Motion should normally be:
+
+150–400ms
+
+Do not animate every object.
+
+Respect:
+
+prefers-reduced-motion
+
+
+==================================================
+33. MICROINTERACTIONS
+==================================================
+
+Examples:
+
+Story image gently scales on hover.
+
+Story headline underline animates.
+
+Navigation current-page indicator.
+
+Arrow moves slightly on CTA hover.
+
+Buttons have clear pressed/focus states.
+
+Keep everything restrained.
+
+
+==================================================
+34. BILINGUAL READINESS
+==================================================
+
+Prepare architecture for:
+
+English
+বাংলা
+
+Potential routes:
+
+/en
+/bn
+
+OR use another SEO-safe localization architecture.
+
+Do not implement a fake language switcher that does nothing.
+
+Bangla typography must render properly.
+
+Set:
+
+<html lang="en">
+
+or:
+
+<html lang="bn">
+
+depending on locale.
+
+Use correct localized metadata.
+
+
+==================================================
+35. BANGLA SEO
+==================================================
+
+Architecture should support Bangla:
+
+titles
+descriptions
+article body
+slugs where technically appropriate
+structured data
+OG images
+
+Avoid forcing English typography rules onto Bangla content.
+
+
+==================================================
+36. CONTENT SEARCH
+==================================================
+
+If enough articles exist later, implement lightweight search.
+
+Search:
+
+title
+summary
+tags
+publication
+
+Prefer static/client-side indexed search for smaller datasets.
+
+Do not add external search infrastructure prematurely.
+
+
+==================================================
+37. FILTERING
+==================================================
+
+Work filters should support:
+
+category
+year
+publication
+
+Use query parameters where useful.
+
+Example:
+
+/work?category=features&year=2026
+
+This allows shareable filtered views.
+
+
+==================================================
+38. ARTICLE READING EXPERIENCE
+==================================================
+
+Create excellent long-form reading UX.
+
+Body:
+
+comfortable font
+high line height
+controlled width
+strong heading spacing
+clear captions
+
+Support:
+
+pull quotes
+inline images
+video
+lists
+links
+subheadings
+
+Optional:
+
+reading progress indicator
+
+Only add it if lightweight.
+
+
+==================================================
+39. SHARE BUTTONS
+==================================================
+
+Support lightweight sharing.
+
+Copy Link
+Facebook
+X
+LinkedIn
+WhatsApp
+
+Do not load huge third-party SDKs.
+
+Use standard share URLs or Web Share API where available.
+
+
+==================================================
+40. PRINT SUPPORT
+==================================================
+
+Add basic print styles for articles.
+
+When printing:
+
+hide navigation
+hide CTA
+hide sharing controls
+use readable black text
+preserve article content
+
+
+==================================================
+41. SECURITY
+==================================================
+
+Follow secure web practices.
+
+Never put secrets into client-side source.
+
+Environment variables for server credentials.
+
+Sanitize user-generated input.
+
+Validate contact form server-side.
+
+Prepare:
+
+rate limiting
+spam prevention
+honeypot
+
+Use security headers where appropriate.
+
+
+==================================================
+42. ERROR HANDLING
+==================================================
+
+Provide graceful states for:
+
+missing images
+empty story collections
+failed forms
+invalid routes
+missing article
+network errors
+
+Never leave broken layouts.
+
+
+==================================================
+43. EMPTY STATES
+==================================================
+
+Since real stories may not initially exist:
+
+Do not invent them.
+
+Instead show professional empty state:
+
+"Selected reporting will be added soon."
+
+Or clearly labeled sample/demo content.
+
+
+==================================================
+44. ANALYTICS READINESS
+==================================================
+
+Prepare for privacy-friendly analytics.
+
+Potential future support:
+
+Google Analytics
+Plausible
+Umami
+
+Do not install unnecessary trackers by default.
+
+If analytics is added later:
+load efficiently and respect privacy requirements.
+
+
+==================================================
+45. ICONS
+==================================================
+
+Use a lightweight icon system.
+
+Icons may include:
+
+arrow
+email
+external link
+menu
+close
+search
+share
+LinkedIn/Facebook/X if social profiles are later verified
+
+Avoid decorative icon overload.
+
+
+==================================================
+46. FOOTER
+==================================================
+
+Create an elegant editorial footer.
+
+Example:
+
+ABDULLAH MOZOMDAR
+Journalist & Senior Reporter
+
+Navigation
+
+About
+Work
+Articles
+Gallery
+Contact
+
+Contact
+
+amozomdar@gmail.com
+
+Then:
+
+© [CURRENT YEAR] Abdullah Mozomdar
+
+Do not hardcode the copyright year if it can be generated dynamically.
+
+
+==================================================
+47. DESIGN DETAILS THAT CREATE A PREMIUM FEEL
+==================================================
+
+Use:
+
+thin editorial rules
+small uppercase metadata
+large serif headlines
+asymmetric editorial grids
+intentional whitespace
+controlled image crops
+baseline alignment
+strong typographic rhythm
+subtle hover motion
+precise spacing
+
+Avoid putting every section inside a card.
+
+Use whitespace and typography to separate content.
+
+
+==================================================
+48. HOME HERO DESKTOP CONCEPT
+==================================================
+
+Possible layout:
+
+------------------------------------------------------------
+
+JOURNALIST · DHAKA, BANGLADESH
+
+REPORTING
+STORIES THAT
+MATTER.
+
+Abdullah Mozomdar
+Senior Reporter & Journalist
+
+[VIEW SELECTED WORK]    [CONTACT]
+
+                               [PORTRAIT]
+
+------------------------------------------------------------
+
+
+==================================================
+49. HOME HERO MOBILE CONCEPT
+==================================================
+
+JOURNALIST
+DHAKA, BANGLADESH
+
+Reporting stories
+that matter.
+
+Abdullah Mozomdar
+
+Senior Reporter
+Daily Banijjo Pratidin
+
+[View Work]
+
+[Portrait]
+
+Keep mobile hero concise.
+
+
+==================================================
+50. STORY CARD DESIGN
+==================================================
+
+Do not create generic rounded cards.
+
+Use editorial composition:
+
+[IMAGE]
+
+CATEGORY · DATE
+
+Headline Goes Here
+
+Short description.
+
+PUBLICATION                      →
+
+
+==================================================
+51. FEATURED STORY DESIGN
+==================================================
+
+Desktop:
+
+Large image approximately 60%.
+
+Content approximately 40%.
+
+Or:
+
+Large full-width editorial image with title below.
+
+Do not cover every image with text.
+
+Maintain readability.
+
+
+==================================================
+52. CMS READINESS
+==================================================
+
+Keep content separate from components.
+
+For the initial version use:
+
+/data
+/content
+or another clean content layer.
+
+Later this can move to:
+
+Supabase
+PostgreSQL
+Sanity
+Strapi
+Contentful
+Directus
+
+without rewriting the frontend.
+
+
+==================================================
+53. FUTURE DATABASE CONCEPT
+==================================================
+
+Potential tables:
+
+profiles
+experiences
+education
+memberships
+stories
+categories
+tags
+story_tags
+gallery
+social_links
+site_settings
+seo_settings
+
+Design interfaces/types now so migration is straightforward.
+
+
+==================================================
+54. ADMIN FUTURE FEATURES
+==================================================
+
+Future admin dashboard may include:
+
+Dashboard
+Stories
+Articles
+Gallery
+Experience
+Education
+Memberships
+Profile
+SEO
+Media
+Settings
+
+Story editor:
+
+Title
+Slug
+Summary
+Content
+Publication
+Category
+Tags
+Hero
+Caption
+Alt
+Date
+External URL
+Featured
+Status
+
+Statuses:
+
+draft
+published
+scheduled
+
+
+==================================================
+55. MEDIA LIBRARY READINESS
+==================================================
+
+Future media should support:
+
+upload
+alt text
+caption
+credit
+dimensions
+file size
+image optimization
+
+Never allow image upload without an alt-text field in admin UX,
+although decorative images may explicitly use empty alt text.
+
+
+==================================================
+56. SEO ADMIN READINESS
+==================================================
+
+Each content item should eventually allow:
+
+SEO title
+SEO description
+canonical URL
+OG image
+index/noindex
+
+Provide sensible automatic defaults.
+
+
+==================================================
+57. ARTICLE URL ARCHITECTURE
+==================================================
+
+Prefer:
+
+/articles/story-slug
+
+or:
+
+/work/story-slug
+
+Do not unnecessarily include dates unless editorial requirements demand them.
+
+
+==================================================
+58. BREADCRUMBS
+==================================================
+
+Example:
+
+Home
+/
+Work
+/
+Story Title
+
+Add BreadcrumbList structured data.
+
+
+==================================================
+59. RELATED CONTENT
+==================================================
+
+At the end of story pages:
+
+Related Reporting
+
+Select related content using:
+
+category
+tags
+publication
+
+If insufficient content exists:
+hide the section.
+
+Never show empty cards.
+
+
+==================================================
+60. CONTACT CONVERSION
+==================================================
+
+Contact should be easy but professional.
+
+Possible calls to action:
+
+Professional enquiry
+Story tip
+Media collaboration
+Speaking / event enquiry
+
+However, do not imply Abdullah accepts specific categories unless confirmed.
+
+Keep generic labels by default.
+
+
+==================================================
+61. UX DETAILS
+==================================================
+
+Add:
+
+active navigation state
+smooth but restrained scrolling
+keyboard accessibility
+copy-link confirmation
+form loading state
+form success state
+image fallback
+404 state
+empty search state
+filter reset
+
+
+==================================================
+62. DO NOT DO THESE
+==================================================
+
+Do NOT:
+
+invent articles
+invent awards
+invent journalism metrics
+invent social accounts
+invent quotes
+invent clients
+invent achievements
+invent reporting specialties
+
+Do NOT expose private CV information.
+
+Do NOT use lorem ipsum on the final visible version.
+
+Do NOT make everything rounded.
+
+Do NOT use excessive gradients.
+
+Do NOT use huge JS libraries without justification.
+
+Do NOT create fake testimonials.
+
+Do NOT create fake logos for news organizations.
+
+Do NOT generate a fake photo of Abdullah.
+
+Do NOT copy another news website.
+
+Do NOT sacrifice usability for animation.
+
+
+==================================================
+63. QUALITY ASSURANCE
+==================================================
+
+Before considering the project complete, test:
+
+Navigation
+Mobile menu
+Responsive layouts
+Forms
+404
+Story routes
+Article routes
+Filtering
+Search if implemented
+Keyboard navigation
+Focus states
+Images
+Metadata
+Structured data
+Sitemap
+Robots
+Canonical URLs
+OG metadata
+Mobile typography
+Desktop typography
+No horizontal overflow
+No broken links
+
+
+==================================================
+64. PERFORMANCE AUDIT
+==================================================
+
+Check for:
+
+unused JS
+unused CSS
+large images
+unoptimized images
+render blocking
+font problems
+layout shifts
+hydration overhead
+unnecessary client components
+third-party scripts
+
+Fix performance issues rather than merely documenting them.
+
+
+==================================================
+65. SEO AUDIT
+==================================================
+
+Verify:
+
+one H1 per page
+logical H2/H3 hierarchy
+unique title
+unique description
+canonical
+OG
+Twitter/X metadata
+structured data
+sitemap
+robots
+alt text
+semantic links
+internal linking
+indexability
+
+
+==================================================
+66. ACCESSIBILITY AUDIT
+==================================================
+
+Verify:
+
+keyboard only use
+screen-reader semantics
+focus visibility
+contrast
+form labels
+menu behavior
+modal/lightbox focus trapping
+escape behavior
+alt text
+reduced motion
+
+
+==================================================
+67. FINAL VISUAL POLISH
+==================================================
+
+After implementation, perform another design pass.
+
+Look specifically for:
+
+generic AI aesthetics
+inconsistent spacing
+weak hierarchy
+too many borders
+too many cards
+too many rounded corners
+poor image ratios
+oversized mobile typography
+weak CTA hierarchy
+repeated layouts
+
+Refine them.
+
+The finished website should feel custom-designed.
+
+
+==================================================
+68. DELIVERABLE
+==================================================
+
+Deliver a complete functional website, not just a mockup.
+
+It should include:
+
+Homepage
+About
+Experience
+Work
+Story detail
+Articles
+Article detail
+Gallery
+Contact
+404
+Responsive navigation
+SEO infrastructure
+Structured data
+Sitemap
+Robots
+Reusable content architecture
+Performance optimization
+Accessibility implementation
+CMS-ready data architecture
+
+
+==================================================
+69. DEVELOPMENT PROCESS
+==================================================
+
+Work in this order:
+
+PHASE 1
+Analyze requirements and establish information architecture.
+
+PHASE 2
+Create design tokens and typography system.
+
+PHASE 3
+Create shared layout/components.
+
+PHASE 4
+Build homepage.
+
+PHASE 5
+Build internal pages.
+
+PHASE 6
+Build story/article architecture.
+
+PHASE 7
+Implement SEO.
+
+PHASE 8
+Optimize performance.
+
+PHASE 9
+Accessibility audit.
+
+PHASE 10
+Responsive QA.
+
+PHASE 11
+Final editorial-design polish.
+
+Do not stop after generating a homepage.
+
+
+==================================================
+70. FINAL SUCCESS CRITERIA
+==================================================
+
+The result succeeds only if:
+
+1. It looks like a professional journalist's digital publication.
+
+2. It is immediately understandable.
+
+3. It does not expose private information.
+
+4. It contains no fabricated professional claims.
+
+5. It performs extremely well on mobile.
+
+6. It is technically SEO-ready.
+
+7. It has strong Core Web Vitals architecture.
+
+8. It is accessible.
+
+9. It is easy to update.
+
+10. It can later become a full journalism CMS without rebuilding the site.
+
+11. The visual identity feels distinctive and premium.
+
+12. The website remains content-first.
+
+13. Journalism — not visual effects — remains the central focus.
+
+
+==================================================
+FINAL INSTRUCTION
+==================================================
+
+Now build the complete first production-quality version.
+
+Do not ask unnecessary questions.
+
+When information is unavailable, create an editable placeholder rather than
+inventing a fact.
+
+Prioritize, in this order:
+
+1. Accuracy
+2. Content credibility
+3. Performance
+4. SEO
+5. Accessibility
+6. Mobile UX
+7. Editorial visual quality
+8. Maintainability
+9. Animation
+
+Make sensible professional decisions independently while strictly preserving
+all factual and privacy constraints above.
