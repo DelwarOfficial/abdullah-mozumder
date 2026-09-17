@@ -172,13 +172,19 @@
   }
 
   html[lang="bn"] body {
-    line-height: 1.75;
+    line-height: 1.8;
   }
 
   /* Bangla needs more breathing room — no tight letter-spacing */
   html[lang="bn"] .editorial-eyebrow,
   html[lang="bn"] .editorial-meta {
     letter-spacing: 0.06em;
+    font-size: 0.8125rem;
+  }
+
+  /* Bangla navigation slightly larger */
+  html[lang="bn"] nav a {
+    font-size: 0.9375rem;
   }
 
   ::selection {
@@ -219,25 +225,19 @@
     font-family: var(--font-sans), system-ui, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: 600;
     color: var(--ink-muted);
     display: inline-flex;
     align-items: baseline;
     gap: 0.5em;
   }
-  .chapter-mark::before {
-    content: attr(data-chapter);
-    color: var(--newsroom);
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-  }
 
   .editorial-eyebrow {
     font-family: var(--font-sans), system-ui, sans-serif;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--ink-muted);
   }
@@ -246,9 +246,45 @@
     font-family: var(--font-sans), system-ui, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: var(--ink-muted);
+  }
+
+  /* Readable body text utility — 16-18px range */
+  .body-readable {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  @media (min-width: 768px) {
+    .body-readable {
+      font-size: 1.125rem;
+      line-height: 1.75;
+    }
+  }
+
+  /* Small readable body — 14-16px */
+  .body-small {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  @media (min-width: 768px) {
+    .body-small {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+  }
+
+  /* Bangla-specific readable body — slightly larger */
+  html[lang="bn"] .body-readable {
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+  html[lang="bn"] .body-small {
+    font-size: 1rem;
+    line-height: 1.75;
   }
 
   .editorial-rule {

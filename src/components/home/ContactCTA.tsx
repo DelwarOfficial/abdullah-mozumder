@@ -20,17 +20,17 @@ export function ContactCTA({ locale }: ContactCTAProps) {
     : "সম্পাদকীয় অনুসন্ধান, খবরের ইঙ্গিত, গণমাধ্যম সহযোগিতা, আলোচনা বা যেকোনো পেশাগত যোগাযোগের জন্য।";
 
   return (
-    <section aria-labelledby="contact-heading" className="py-20 sm:py-32 lg:py-40">
+    <section aria-labelledby="contact-heading" className="py-24 sm:py-32 lg:py-48">
       <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
-        <ChapterMark number="09" label={chapterLabel} locale={locale} className="mb-8 lg:mb-12" />
+        <ChapterMark number="09" label={chapterLabel} locale={locale} className="mb-12 lg:mb-20" />
 
-        <div className="grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-12">
-          {/* Heading */}
-          <div className="col-span-12 lg:col-span-8">
+        <div className="grid grid-cols-12 gap-x-4 lg:gap-x-12 gap-y-16">
+          {/* Heading — deliberate final editorial statement */}
+          <div className="col-span-12 lg:col-span-7">
             <h2
               id="contact-heading"
               className="chapter-title text-ink"
-              style={{ fontSize: "clamp(2.5rem, 7vw, 7rem)" }}
+              style={{ fontSize: "clamp(2.75rem, 8vw, 8rem)" }}
             >
               {heading.map((line, i) => (
                 <span key={i} className="block">
@@ -45,22 +45,26 @@ export function ContactCTA({ locale }: ContactCTAProps) {
           </div>
 
           {/* CTA column */}
-          <div className="col-span-12 lg:col-span-4 lg:pt-8">
-            <p className="text-base sm:text-lg text-ink-soft leading-relaxed mb-8 max-w-sm">
+          <div className="col-span-12 lg:col-span-5 lg:pt-8">
+            <p
+              className="text-ink-soft leading-[1.75] mb-10 max-w-md"
+              style={{ fontSize: "clamp(1.0625rem, 1.3vw, 1.25rem)" }}
+            >
               {desc}
             </p>
-            <div className="space-y-4">
+            <div className="space-y-6">
               <Link
                 href={localeHref("/contact", locale)}
-                className="group inline-flex items-center gap-2 px-7 py-4 bg-ink text-paper text-sm font-semibold uppercase tracking-[0.14em] hover:bg-newsroom transition-colors duration-300"
+                className="group inline-flex items-center gap-2 px-8 py-4 bg-ink text-paper text-sm font-semibold uppercase tracking-[0.14em] hover:bg-newsroom transition-colors duration-300"
               >
                 {ctaLabel}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
               </Link>
-              <div className="pt-4 border-t border-rule">
+              <div className="pt-6 border-t border-rule">
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="inline-flex items-center gap-2 text-sm text-ink hover:text-newsroom transition-colors link-underline"
+                  className="inline-flex items-center gap-2 text-ink hover:text-newsroom transition-colors link-underline"
+                  style={{ fontSize: "clamp(1rem, 1.2vw, 1.125rem)" }}
                 >
                   <Mail className="h-4 w-4" aria-hidden="true" />
                   {siteConfig.email}

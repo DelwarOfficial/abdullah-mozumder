@@ -84,11 +84,12 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
                   href={href}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "relative text-sm font-medium tracking-wide transition-colors hover:opacity-100",
+                    "relative font-medium tracking-wide transition-colors hover:opacity-100",
                     isHome && atTop
                       ? isActive ? "text-paper" : "text-paper/70 hover:text-paper"
                       : isActive ? "text-ink" : "text-ink-muted hover:text-ink",
                   )}
+                  style={{ fontSize: "0.9375rem" }}
                 >
                   {item.label[locale]}
                   <span

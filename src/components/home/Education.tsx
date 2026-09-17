@@ -40,22 +40,28 @@ export function Education({ locale }: EducationProps) {
                 {/* Degree */}
                 <div className="col-span-12 lg:col-span-6">
                   <h3
-                    className="font-serif font-bold text-ink leading-tight tracking-[-0.015em]"
+                    className="font-serif font-bold text-ink leading-[1.1] tracking-[-0.015em]"
                     style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
                   >
                     {edu.degree[locale]}
                   </h3>
-                  <p className="mt-2 font-serif text-lg sm:text-xl text-ink-soft italic">
+                  <p
+                    className="mt-3 font-serif text-ink-soft italic"
+                    style={{ fontSize: "clamp(1.0625rem, 1.4vw, 1.375rem)" }}
+                  >
                     {locale === "en" ? "in" : "বিষয়ে"} {edu.field[locale]}
                   </p>
                 </div>
 
                 {/* Institution */}
                 <div className="col-span-12 lg:col-span-3 lg:text-right">
-                  <p className="text-base text-ink font-medium">
+                  <p
+                    className="font-serif text-ink font-medium"
+                    style={{ fontSize: "clamp(1rem, 1.2vw, 1.1875rem)" }}
+                  >
                     {edu.institution[locale]}
                   </p>
-                  <p className="text-sm text-ink-muted mt-1">{univLabel}</p>
+                  <p className="editorial-meta mt-2">{univLabel}</p>
                 </div>
               </div>
             </div>

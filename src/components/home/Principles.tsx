@@ -60,20 +60,26 @@ export function Principles({ locale }: PrinciplesProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 border-t border-paper/15 pt-12">
           {principles.map((p, idx) => (
             <div key={idx} className="border-t border-paper/20 pt-4">
-              <span className="font-mono text-newsroom text-sm font-bold mb-2 block">
+              <span className="font-mono text-newsroom text-sm font-bold mb-3 block">
                 0{idx + 1}
               </span>
-              <h3 className="font-serif text-xl sm:text-2xl font-semibold text-paper mb-2">
+              <h3 className="font-serif text-xl sm:text-2xl font-semibold text-paper mb-3">
                 {p.word}
               </h3>
-              <p className="text-sm text-paper/70 leading-relaxed">
+              <p
+                className="text-paper/70 leading-[1.65]"
+                style={{ fontSize: "clamp(0.9375rem, 1vw, 1.0625rem)" }}
+              >
                 {p.desc}
               </p>
             </div>
           ))}
         </div>
 
-        <p className="mt-12 text-xs text-paper/40 italic max-w-xl">
+        <p
+          className="mt-12 text-paper/40 italic max-w-xl"
+          style={{ fontSize: "clamp(0.8125rem, 0.9vw, 0.9375rem)" }}
+        >
           {locale === "en"
             ? "Editorial copy describing the website's journalism principles. Not a direct quote attributed to the journalist."
             : "ওয়েবসাইটের সাংবাদিকতার নীতি বর্ণনাকারী সম্পাদকীয় লেখা। এটি সাংবাদিকের সরাসরি উক্তি নয়।"}

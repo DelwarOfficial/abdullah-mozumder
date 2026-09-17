@@ -21,9 +21,9 @@ export function ProfileSpread({ locale }: ProfileSpreadProps) {
       <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
         <ChapterMark number="04" label={chapterLabel} locale={locale} className="mb-12 lg:mb-20" />
 
-        <div className="grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-12">
+        <div className="grid grid-cols-12 gap-x-4 lg:gap-x-12 gap-y-12">
           {/* Left — heading */}
-          <div className="col-span-12 lg:col-span-5 xl:col-span-4">
+          <div className="col-span-12 lg:col-span-5">
             <h2
               id="profile-heading"
               className="chapter-title text-ink"
@@ -41,54 +41,59 @@ export function ProfileSpread({ locale }: ProfileSpreadProps) {
             </h2>
           </div>
 
-          {/* Center — bio with drop cap */}
-          <div className="col-span-12 lg:col-span-5 xl:col-span-6">
-            <div className="max-w-xl">
-              <p className="font-serif text-lg sm:text-xl text-ink leading-[1.7] first-letter:font-bold first-letter:text-[4rem] first-letter:font-serif first-letter:mr-3 first-letter:float-left first-letter:leading-[0.85] first-letter:mt-1 first-letter:text-newsroom">
+          {/* Center — bio with drop cap, comfortable reading width */}
+          <div className="col-span-12 lg:col-span-5 lg:col-start-7">
+            <div className="max-w-[52ch]">
+              <p
+                className="font-serif text-ink leading-[1.8] first-letter:font-bold first-letter:text-[5rem] first-letter:font-serif first-letter:mr-3 first-letter:float-left first-letter:leading-[0.85] first-letter:mt-1 first-letter:text-newsroom"
+                style={{ fontSize: "clamp(1.125rem, 1.4vw, 1.375rem)" }}
+              >
                 {profile.longBio[locale]}
               </p>
+              <div className="mt-10 pt-6 border-t border-rule-soft">
+                <Link
+                  href={localeHref("/about", locale)}
+                  className="group inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink hover:text-newsroom transition-colors"
+                >
+                  {ctaLabel}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
           </div>
 
-          {/* Right — sidebar */}
-          <div className="col-span-12 lg:col-span-2 xl:col-span-2">
-            <dl className="space-y-6 lg:border-l lg:border-rule lg:pl-6">
+          {/* Bottom — sidebar moved to full-width row below */}
+          <div className="col-span-12 mt-4">
+            <dl className="grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-rule pt-8">
               <div>
-                <dt className="editorial-eyebrow">
+                <dt className="editorial-eyebrow mb-2">
                   {locale === "en" ? "Current" : "বর্তমান"}
                 </dt>
-                <dd className="mt-1 text-sm text-ink-soft font-medium">
+                <dd className="body-readable font-medium text-ink">
                   {profile.currentPosition.role[locale]}
+                </dd>
+                <dd className="body-small mt-1">
+                  {profile.currentPosition.organization[locale]}
                 </dd>
               </div>
               <div>
-                <dt className="editorial-eyebrow">
+                <dt className="editorial-eyebrow mb-2">
                   {locale === "en" ? "Based" : "অবস্থান"}
                 </dt>
-                <dd className="mt-1 text-sm text-ink-soft font-medium">
+                <dd className="body-readable font-medium text-ink">
                   {profile.location[locale]}
                 </dd>
               </div>
               <div>
-                <dt className="editorial-eyebrow">
+                <dt className="editorial-eyebrow mb-2">
                   {locale === "en" ? "Languages" : "ভাষা"}
                 </dt>
-                <dd className="mt-1 text-sm text-ink-soft font-medium">
+                <dd className="body-readable font-medium text-ink">
                   {profile.languages[locale].join(" / ")}
                 </dd>
               </div>
             </dl>
           </div>
-        </div>
-
-        <div className="mt-12 pt-8 border-t border-rule">
-          <Link
-            href={localeHref("/about", locale)}
-            className="group inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink hover:text-newsroom transition-colors"
-          >
-            {ctaLabel}
-            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
-          </Link>
         </div>
       </div>
     </section>

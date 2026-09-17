@@ -73,7 +73,10 @@ export function Hero({ locale }: HeroProps) {
                   {profile.name[locale]}
                 </span>
                 <span className="h-3 w-px bg-paper/30" aria-hidden="true" />
-                <span className="text-sm sm:text-base text-paper/70 font-medium">
+                <span
+                  className="text-paper/70 font-medium"
+                  style={{ fontSize: "clamp(0.9375rem, 1.1vw, 1.125rem)" }}
+                >
                   {profile.title[locale]}
                 </span>
               </div>
@@ -91,13 +94,19 @@ export function Hero({ locale }: HeroProps) {
           <div className="grid grid-cols-12 gap-4 items-end">
             {/* Current position */}
             <div className="col-span-12 sm:col-span-6 lg:col-span-4">
-              <p className="editorial-eyebrow text-paper/50 mb-1">
+              <p className="editorial-eyebrow text-paper/50 mb-2">
                 {locale === "en" ? "01 / Current" : "০১ / বর্তমান"}
               </p>
-              <p className="font-serif text-lg sm:text-xl font-semibold text-paper leading-tight">
+              <p
+                className="font-serif font-semibold text-paper leading-tight"
+                style={{ fontSize: "clamp(1.0625rem, 1.4vw, 1.375rem)" }}
+              >
                 {profile.currentPosition.role[locale]}
               </p>
-              <p className="text-sm text-paper/60 mt-0.5">
+              <p
+                className="text-paper/60 mt-1"
+                style={{ fontSize: "clamp(0.9375rem, 1.1vw, 1.0625rem)" }}
+              >
                 {profile.currentPosition.organization[locale]}
               </p>
             </div>

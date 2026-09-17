@@ -7,7 +7,6 @@ import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { stories } from "@/content/stories";
 import { localeHref } from "@/i18n/config";
-import { cn } from "@/lib/utils";
 import type { Locale } from "@/content/types";
 
 interface NewsDeskProps {
@@ -42,7 +41,7 @@ export function NewsDesk({ locale }: NewsDeskProps) {
     <section aria-labelledby="news-desk-heading" className="py-16 sm:py-24 lg:py-32 bg-paper-deep/30">
       <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-12 gap-4 mb-12 lg:mb-16">
-          <div className="col-span-12 lg:col-span-8">
+          <div className="col-span-12 lg:col-span-10">
             <ChapterMark number="02" label={chapterLabel} locale={locale} />
             <h2
               id="news-desk-heading"
@@ -52,7 +51,7 @@ export function NewsDesk({ locale }: NewsDeskProps) {
               {sectionTitle}
             </h2>
           </div>
-          <div className="col-span-12 lg:col-span-4 flex lg:items-end lg:justify-end">
+          <div className="col-span-12 lg:col-span-2 flex lg:items-end lg:justify-end">
             <Link
               href={localeHref("/articles", locale)}
               className="group inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink hover:text-newsroom transition-colors"
@@ -63,40 +62,36 @@ export function NewsDesk({ locale }: NewsDeskProps) {
           </div>
         </div>
 
-        {/* News desk list */}
+        {/* News desk list — headline dominates each row */}
         <div ref={containerRef} className="relative">
           <ol className="divide-y divide-rule border-t border-rule">
             {items.map((story, idx) => (
               <li key={story.id}>
                 <Link
                   href={localeHref(`/articles/${story.slug}`, locale)}
-                  className="group grid grid-cols-12 gap-4 py-6 sm:py-8 hover:bg-paper/50 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+                  className="group grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-2 py-8 sm:py-10 lg:py-12 hover:bg-paper/50 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
                 >
-                  {/* Date */}
-                  <div className="col-span-12 sm:col-span-3 lg:col-span-2">
-                    <span className="font-serif text-base sm:text-lg text-ink font-semibold tabular-nums">
+                  {/* Date + Category — left, small metadata */}
+                  <div className="col-span-12 lg:col-span-3 flex flex-col gap-1.5">
+                    <span className="editorial-meta text-ink">
                       {story.publishedLabel[locale]}
                     </span>
-                  </div>
-
-                  {/* Category */}
-                  <div className="col-span-12 sm:col-span-3 lg:col-span-2">
                     <span className="editorial-eyebrow text-newsroom">
                       {story.category[locale]}
                     </span>
                   </div>
 
-                  {/* Headline + publication */}
-                  <div className="col-span-12 sm:col-span-6 lg:col-span-7">
+                  {/* Headline — dominates the row */}
+                  <div className="col-span-12 lg:col-span-8">
                     <h3
-                      className="font-serif text-ink leading-tight tracking-[-0.01em] group-hover:text-newsroom transition-colors"
-                      style={{ fontSize: "clamp(1.25rem, 2.5vw, 2rem)" }}
+                      className="font-serif text-ink leading-[1.1] tracking-[-0.015em] group-hover:text-newsroom transition-colors"
+                      style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
                     >
                       {story.title[locale]}
                     </h3>
-                    <p className="text-xs text-ink-muted mt-2">
+                    <p className="body-small mt-3 text-ink-muted">
                       {story.publication[locale]}
                       {story.readingTime && (
                         <>
@@ -128,7 +123,7 @@ export function NewsDesk({ locale }: NewsDeskProps) {
                 top: mousePos.y - 80,
               }}
             >
-              <div className="w-64 aspect-[4/3] border border-rule shadow-2xl overflow-hidden">
+              <div className="w-72 aspect-[4/3] border border-rule shadow-2xl overflow-hidden">
                 <StoryImagePlaceholder
                   ratio="4/3"
                   alt={items[hoveredIdx].heroAlt[locale]}

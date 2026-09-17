@@ -42,21 +42,24 @@ export function Credentials({ locale }: CredentialsProps) {
               {/* Organization */}
               <div className="col-span-10 lg:col-span-7">
                 <h3
-                  className="font-serif font-bold text-ink leading-tight tracking-[-0.015em]"
-                  style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
+                  className="font-serif font-bold text-ink leading-[1.1] tracking-[-0.018em]"
+                  style={{ fontSize: "clamp(1.625rem, 3.5vw, 2.75rem)" }}
                 >
                   {m.organization[locale]}
                 </h3>
                 {m.shortName && (
-                  <span className="editorial-eyebrow text-ink-muted mt-2 block">
+                  <span className="editorial-eyebrow text-ink-muted mt-3 block">
                     {m.shortName}
                   </span>
                 )}
               </div>
 
               {/* Role */}
-              <div className="col-span-12 lg:col-span-4 lg:text-right">
-                <p className="text-base sm:text-lg text-ink-soft font-medium">
+              <div className="col-span-12 lg:col-span-4 lg:text-right lg:self-center">
+                <p
+                  className="font-serif text-ink-soft font-medium"
+                  style={{ fontSize: "clamp(1.0625rem, 1.4vw, 1.375rem)" }}
+                >
                   {m.role[locale]}
                 </p>
               </div>

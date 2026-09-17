@@ -77,22 +77,25 @@ export function Career({ locale }: CareerProps) {
               </div>
 
               {/* Role + org */}
-              <div className="col-span-12 lg:col-span-6 lg:col-start-6">
+              <div className="col-span-12 lg:col-span-7 lg:col-start-6">
                 {exp.current && (
-                  <span className="inline-block bg-newsroom text-paper text-[0.625rem] uppercase tracking-[0.14em] px-2 py-0.5 font-semibold mb-3">
+                  <span className="inline-block bg-newsroom text-paper text-[0.6875rem] uppercase tracking-[0.14em] px-2 py-1 font-semibold mb-4">
                     {locale === "en" ? "Current" : "বর্তমান"}
                   </span>
                 )}
                 <h3
-                  className="font-serif font-bold text-ink leading-tight tracking-[-0.015em]"
+                  className="font-serif font-bold text-ink leading-[1.1] tracking-[-0.015em]"
                   style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
                 >
                   {exp.role[locale]}
                 </h3>
-                <p className="mt-2 text-base sm:text-lg text-ink-soft font-medium">
+                <p
+                  className="font-serif text-ink-soft font-medium mt-3"
+                  style={{ fontSize: "clamp(1.0625rem, 1.4vw, 1.375rem)" }}
+                >
                   {exp.organization[locale]}
                 </p>
-                <p className="mt-1 text-sm text-ink-muted">{exp.location[locale]}</p>
+                <p className="body-small mt-2 text-ink-muted">{exp.location[locale]}</p>
               </div>
             </div>
           ))}

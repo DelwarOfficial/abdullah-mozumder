@@ -1,0 +1,2684 @@
+Do not redesign or add new features in this pass.
+
+Perform a strict production QA of the implementation you just completed.
+
+Do not praise or describe the design. Find problems and FIX them.
+
+Test visually and functionally at:
+- 1440×900
+- 1280×800
+- 1024×768
+- 768×1024
+- 430×932
+- 390×844
+- 360×800
+- 320×568
+
+Test BOTH:
+- /en
+- /bn
+
+Also inspect:
+- /en/work and /bn/work
+- one story detail page in both languages
+- /en/articles and /bn/articles
+- one article detail page
+- /en/gallery and /bn/gallery
+- /en/contact and /bn/contact
+- 404 page
+
+VISUAL QA
+
+Look specifically for:
+- clipped hero text
+- awkward Bangla line breaks
+- Bangla glyph/font problems
+- oversized headlines overflowing
+- horizontal scrolling
+- portrait overlapping text incorrectly
+- inconsistent gutters
+- sections becoming too tall
+- tiny metadata
+- excessive empty space
+- inconsistent section numbering
+- weak contrast
+- broken dark/light transitions
+- hover effects causing layout shift
+- footer problems
+- mobile menu problems
+- language switcher alignment
+- English styling accidentally applied to Bangla typography
+
+FUNCTIONAL QA
+
+Verify:
+- EN → বাংলা preserves current equivalent path
+- বাংলা → EN preserves current equivalent path
+- filters work in both locales
+- contact form works
+- gallery lightbox works with keyboard
+- Escape closes dialogs/lightbox/menu
+- story links work
+- breadcrumbs work
+- 404 works
+- no broken internal links
+
+SEO QA
+
+Verify actual rendered output for:
+- unique English metadata
+- unique Bangla metadata
+- self-referencing canonical
+- en/bn hreflang pairs
+- x-default if implemented
+- correct html lang
+- localized Open Graph metadata
+- localized JSON-LD
+- sitemap containing both locales
+- robots.txt
+- no accidental noindex
+- no duplicate canonical problems
+
+IMPORTANT:
+Do not claim SEO is correct just because code exists.
+Inspect the rendered HTML/output.
+
+PERFORMANCE QA
+
+Run a production build.
+
+Check for:
+- build errors
+- hydration warnings
+- console errors
+- oversized JS
+- unnecessary client components
+- unoptimized images
+- font-loading problems
+- layout shifts
+- duplicate font downloads
+
+Do not optimize by removing important design.
+
+ACCESSIBILITY QA
+
+Verify:
+- keyboard navigation
+- focus visibility
+- skip link
+- menu focus management
+- lightbox focus management
+- form labels/errors
+- reduced motion
+- meaningful alt handling
+- heading hierarchy
+- color contrast
+
+CONTENT QA
+
+Search the entire codebase for fabricated or placeholder claims.
+
+Specifically identify:
+- Sample Report
+- Demo
+- placeholder reporting beats
+- fake publication data
+- fake dates
+- invented quotes
+- invented achievements
+
+Do NOT silently turn placeholders into real claims.
+
+Keep demo content explicitly labeled until real content is supplied.
+
+BANGLA FACTUAL QA
+
+Do not treat an AI-created Bangla transliteration as verified.
+
+Keep the Bangla spelling of Abdullah Mozomdar editable/unverified until
+confirmed by the journalist.
+
+FINAL TASK
+
+Fix every concrete issue you find.
+
+Then provide ONLY:
+
+1. Issues found and fixed
+2. Issues that still require real content/user confirmation
+3. Production readiness blockers, if any
+
+Do not give subjective praise such as:
+"excellent"
+"premium"
+"highly successful"
+"beautiful"
+
+I need an engineering/design QA report, not self-evaluation.
+
+এর পরে সবচেয়ে গুরুত্বপূর্ণ কাজ হবে demo content বাদ দিয়ে আসল journalism বসানো। কারণ real portrait + real story photos + আসল headline না এলে খুব ভালো design-ও শেষ পর্যন্ত prototype-এর মতো লাগবে।
+
+আর বাংলা নামটা অবশ্যই Abdullah-এর কাছ থেকে confirm করা উচিত। CV শুধু English spelling “Abdullah Mozomdar” নিশ্চিত করছে।
+
+নতুন version-এর full-page English ও Bangla screenshot দিলে আমি এবার agent-এর বক্তব্যের ওপর নির্ভর না করে visual design-টা সরাসরি audit করে দিতে পারি।
+
+current
+
+এবার আগেরটার তুলনায় স্পষ্ট improvement হয়েছে। এখন অন্তত site-টার নিজস্ব editorial identity আছে। বিশেষ করে dark hero → light reporting → dark “Report. Verify. Explain.” → light career/profile → dark principles → contact → dark footer—এই rhythm কাজ করছে।
+
+তবে screenshot দেখে আমি এটাকে এখনো final বলব না। কয়েকটি জায়গায় design অনেক ভালো, আবার কয়েকটি জায়গায় agent “editorial” করতে গিয়ে অতিরিক্ত ছোট text ও অতিরিক্ত whitespace ব্যবহার করেছে।
+
+যেগুলো এখন ভালো কাজ করছে
+
+Hero: আগের চেয়ে অনেক বেশি character এসেছে। Black cover, বিশাল background AM, red italic accent—ভালো direction। তবে portrait না থাকায় ডান পাশ এখনো unfinished লাগে। Real portrait এলে hero অনেকটাই complete হবে।
+
+“Report. Verify. Explain.”: পুরো homepage-এর সবচেয়ে শক্তিশালী visual breakগুলোর একটি। এটা site-কে CV feel থেকে বের করেছে।
+
+Reporting Experience: আগের tiny timeline-এর তুলনায় 2025 — Now, 2024 — 2025, 2019 — 2024 অনেক বেশি editorial ও scan-friendly।
+
+Professional Memberships ও Education: card বাদ দেওয়াটা ঠিক হয়েছে। এখন typography ও horizontal rules দিয়েই hierarchy তৈরি হচ্ছে।
+
+Footer: আগেরটার চেয়ে অনেক বেশি branded। “Abdullah Mozomdar” back-cover treatment কাজ করছে।
+
+এখন যে সমস্যাগুলো ঠিক করা দরকার
+
+সবচেয়ে বড় সমস্যা Selected Journalism। Lead story-র image ও text দুটোই তুলনামূলক ছোট, অথচ চারপাশে অনেক blank space। এটাকে homepage-এর সবচেয়ে গুরুত্বপূর্ণ content area মনে হচ্ছে না। Lead story-কে আরও বড় করতে হবে—প্রায় 60–65% visual weight image-এ, headline-ও অন্তত 2–3 গুণ বেশি prominent।
+
+Latest Reporting-ও এখনও দুর্বল। এটা table/list-এর মতো লাগছে। Headline এত ছোট যে “latest journalism” না হয়ে archive index মনে হচ্ছে। Date/category ছোট থাকতে পারে, কিন্তু story headline বড় করতে হবে।
+
+আরেকটা বড় সমস্যা micro-text। Navigation, metadata, profile information, footer links, story descriptions—অনেক জায়গায় screenshot scale-এ অস্বাভাবিক ছোট। Editorial design মানে সব metadata microscopic করা নয়। বাস্তবে 1440px desktop-এ body copy সাধারণত অন্তত আরামদায়ক 15–18px range-এ থাকা উচিত; metadata-ও এমন হতে হবে যেন zoom ছাড়াই পড়া যায়।
+
+About/Profile section সুন্দর concept, কিন্তু biography block খুব dense ও ছোট। বাম পাশে headline ভালো, ডান পাশের biography-কে বেশি breathing room ও বড় type দিতে হবে।
+
+Areas of Reporting section-এ আবার একই সমস্যা—খুব বেশি horizontal empty space, content comparatively tiny। আর এগুলো যেহেতু এখনো verified reporting beats নয়, final public launch-এর আগে confirm না হলে section-টা hide করাই ভালো।
+
+Contact section-এর “Have a story? Let’s talk.” ভালো, কিন্তু sectionটা আরও dramatic হতে পারে। Footer-এর আগে এটা এখন একটু compressed।
+
+সবশেষে hero portrait এখন সবচেয়ে বড় missing asset। বর্তমান AM placeholder intelligent solution, কিন্তু real journalist portrait ছাড়া personal newsroom-এর identity পুরোপুরি তৈরি হচ্ছে না।
+
+আমি এখন agent-কে আর massive redesign করতে বলব না। এই targeted refinement prompt দিন:
+
+The new visual direction is substantially better.
+
+DO NOT redesign the website again.
+
+This pass is specifically for VISUAL HIERARCHY, READABILITY,
+SPACING and CONTENT EMPHASIS.
+
+Preserve the current:
+- dark editorial hero
+- AM visual identity
+- section numbering
+- dark/light chapter rhythm
+- Report / Verify / Explain section
+- career chronology concept
+- typography-led memberships
+- education layout
+- dark principles section
+- back-cover footer
+- bilingual architecture
+- SEO/accessibility/functionality
+
+Now refine the current design based on the following issues.
+
+
+1. FIX MICROSCOPIC TYPOGRAPHY
+
+Too much supporting text is currently visually tiny.
+
+Audit the entire homepage at actual 1440px desktop size.
+
+Increase readability for:
+- story summaries
+- biography
+- publication names
+- experience organization names
+- footer links
+- navigation
+- contact copy
+- supporting descriptions
+
+Do not make metadata huge.
+
+But no important readable content should require zooming.
+
+Target conceptual ranges:
+
+Body:
+16–18px desktop
+
+Small body:
+14–16px
+
+Metadata:
+11–13px minimum where appropriate
+
+Navigation:
+12–14px
+
+Do not blindly apply these values everywhere.
+Use visual judgment.
+
+Bangla may require slightly larger sizing and more line-height.
+
+
+2. MAKE SELECTED JOURNALISM MUCH STRONGER
+
+This is currently under-emphasized.
+
+It should be one of the most visually important homepage sections.
+
+Increase the lead-story visual weight significantly.
+
+Desktop concept:
+
+IMAGE: approximately 55–65% width
+CONTENT: approximately 35–45%
+
+Make the lead image significantly larger.
+
+Increase lead headline substantially.
+
+The hierarchy should clearly be:
+
+Lead story
+↓
+Secondary story
+↓
+Additional stories
+
+Right now all stories feel too similar in importance.
+
+Do not create generic cards.
+
+
+3. REDESIGN ONLY THE INTERNAL COMPOSITION OF SELECTED WORK
+
+Keep the section itself.
+
+Use stronger asymmetry.
+
+Example:
+
+01 / SELECTED
+
+SELECTED
+JOURNALISM
+
+[ VERY LARGE LEAD IMAGE      ][ CATEGORY / DATE      ]
+[                            ][ LARGE HEADLINE       ]
+[                            ][ Deck                 ]
+[                            ][ READ REPORT ↗        ]
+
+Then secondary journalism below using mixed sizes.
+
+One secondary story may be image-left/text-right.
+
+Another may be text-led.
+
+Another may be smaller.
+
+Avoid three identical blocks.
+
+
+4. STRENGTHEN LATEST REPORTING
+
+The current list is too visually small.
+
+Keep the news-desk concept.
+
+Increase story headline size significantly.
+
+Date and category remain small.
+
+Example:
+
+17 SEP 2026     BUSINESS
+
+                STORY HEADLINE LARGE ENOUGH
+                TO COMMAND ATTENTION
+
+                Publication                         ↗
+
+-------------------------------------------------------
+
+The headline, not metadata, should dominate each row.
+
+Increase row height slightly.
+
+Preserve hover thumbnail behavior on desktop.
+
+
+5. IMPROVE PROFILE READABILITY
+
+Keep the current magazine spread.
+
+The left headline works well.
+
+But increase biography size and line-height.
+
+Limit biography line length.
+
+Do not compress the full biography into a tiny column.
+
+Aim for comfortable editorial reading.
+
+The biography should visually feel important.
+
+
+6. REDUCE UNPRODUCTIVE EMPTY SPACE
+
+The current site intentionally uses whitespace, which is good.
+
+But distinguish:
+
+intentional editorial whitespace
+
+from
+
+unused empty space.
+
+Audit particularly:
+
+Selected Journalism
+Latest Reporting
+Profile
+Reporting Areas
+Education
+
+If a large empty region does not improve composition,
+use the space to strengthen typography or imagery.
+
+
+7. REPORTING AREAS
+
+Keep the numbered-list concept.
+
+However:
+
+these reporting beats are currently unverified/demo content.
+
+If the UI supports a content verification flag,
+do not publicly display this section when the data remains unverified.
+
+Otherwise keep an obvious internal/demo state.
+
+Never accidentally publish placeholder beats as factual specialties.
+
+Visually:
+
+make the list more substantial.
+
+Increase labels slightly.
+
+Reduce unnecessary empty right-side space.
+
+
+8. EXPERIENCE
+
+The career section is working.
+
+Do not redesign it.
+
+Only improve:
+
+role readability
+organization readability
+alignment
+
+Keep oversized dates.
+
+Keep 2025 — NOW dominant.
+
+
+9. PROFESSIONAL MEMBERSHIPS
+
+Current direction is good.
+
+Do not turn them back into cards.
+
+Slightly increase organization-name prominence.
+
+Maintain thin editorial rules.
+
+
+10. EDUCATION
+
+Current concept works.
+
+Improve alignment between:
+
+year
+degree
+institution
+
+Increase institution readability.
+
+Keep large red years.
+
+
+11. DARK PRINCIPLES SECTION
+
+Keep:
+
+Accuracy.
+Clarity.
+Public Interest.
+
+This section works visually.
+
+Increase supporting principle descriptions only if they are too small
+at actual desktop viewing size.
+
+Do not overcrowd the section.
+
+
+12. CONTACT
+
+Give the closing CTA slightly more presence.
+
+Increase vertical spacing.
+
+Make:
+
+HAVE A STORY?
+LET'S TALK.
+
+feel like a deliberate final editorial statement before the footer.
+
+Do not create a card.
+
+Keep email/contact information clearly readable.
+
+
+13. FOOTER
+
+Keep the dark back-cover concept.
+
+Increase secondary navigation/contact readability.
+
+The large Abdullah Mozomdar typography is good.
+
+Do not make the footer generic.
+
+
+14. HERO
+
+Do NOT redesign the hero.
+
+Current dark-cover direction works.
+
+Only:
+
+improve small supporting-text readability
+check navigation readability
+check alignment
+ensure placeholder frame feels intentional
+
+Do not invent a portrait.
+
+When a real portrait is later provided,
+the existing frame should support it.
+
+
+15. DESKTOP WIDTH
+
+Continue using the wider editorial canvas.
+
+But make better use of it.
+
+Do not solve unused width by stretching paragraphs.
+
+Use:
+
+larger images
+stronger headlines
+asymmetric placement
+intentional margins
+
+
+16. BANGLA
+
+Apply all readability improvements separately to Bangla.
+
+Do not simply inherit English font metrics.
+
+Check:
+
+Bangla headline line-height
+Bangla body size
+Bangla metadata
+Bangla navigation
+Bangla footer
+Bangla story titles
+
+Ensure no awkward glyph clipping.
+
+
+17. MOBILE
+
+After desktop refinement, inspect:
+
+430px
+390px
+360px
+320px
+
+Do not shrink typography excessively just to fit.
+
+Allow natural line wrapping.
+
+Ensure:
+- no horizontal overflow
+- readable story summaries
+- usable navigation
+- comfortable touch targets
+- clean Bangla wrapping
+
+
+18. REAL-SIZE SCREENSHOT QA
+
+This is critical.
+
+Inspect at 100% browser zoom.
+
+Capture:
+
+1440px homepage
+390px homepage
+
+for BOTH English and Bangla.
+
+Do not judge readability from a scaled full-page screenshot alone.
+
+Also inspect individual viewport screenshots for:
+
+Hero
+Selected Journalism
+Latest Reporting
+Profile
+Career
+Contact/Footer
+
+
+19. DO NOT ADD FEATURES
+
+No new:
+- APIs
+- routes
+- animations
+- CMS
+- database
+- filters
+- libraries
+
+This pass is purely refinement.
+
+
+20. FINAL RULE
+
+The current identity is good.
+
+Do not replace it.
+
+Make it:
+
+MORE READABLE
+MORE CONFIDENT
+MORE CONTENT-FOCUSED
+MORE VISUALLY HIERARCHICAL
+
+without making it louder or more decorative.
+
+Implement the fixes directly.
+
+Do not respond with recommendations only.
+
+এ পর্যায়ে আমি আর background, palette বা overall art direction বদলাতাম না। বর্তমান black + warm paper + red system Abdullah-এর জন্য যথেষ্ট distinctive হয়েছে। এখন আসল improvement আসবে real portrait, real journalism images, real headlines এবং type hierarchy ঠিক করা থেকে।
+
+আর screenshot দেখে একটি জিনিস বিশেষভাবে বলব: “Report. Verify. Explain.” ও “Accuracy. Clarity. Public Interest.”—দুটো dark statement কাছাকাছি conceptual territory-তে আছে। Real content বসানোর পর যদি page দীর্ঘ হয়, একটি রাখা ও অন্যটিকে আরও content-driven section করা ভালো হতে পারে। এখন demo অবস্থায় দুটোই রাখা যায়।
+
+Today 7:24 PM
+write a pro prompt fix all error and button style etc.
+
+Yes. At this stage I would give the coding agent a production hardening prompt, not another redesign prompt. The visual direction is established; now the agent should systematically find and fix UI bugs, button inconsistencies, responsive issues, bilingual problems, accessibility, SEO, console/build errors, and interaction defects without destabilizing the design.
+
+Use this as the next master prompt:
+
+# PRODUCTION HARDENING & UI/UX POLISH MASTER PROMPT
+# Abdullah Mozomdar — Journalist Portfolio
+# Fix All Errors, UI Inconsistencies, Buttons, Responsive Issues & Production Problems
+
+You are now acting as a:
+
+- Senior Frontend Engineer
+- Senior UI/UX Designer
+- Design Systems Engineer
+- Next.js Engineer
+- Accessibility Engineer
+- Technical SEO Engineer
+- Performance Engineer
+- QA Engineer
+
+The website has already been designed and localized.
+
+DO NOT redesign it from scratch.
+
+The existing visual identity should remain:
+
+- premium editorial / personal newsroom
+- black / warm paper / newsroom red palette
+- oversized editorial typography
+- English + Bangla
+- section numbering
+- asymmetric editorial layouts
+- dark/light visual chapters
+- magazine/newsroom character
+
+Your task now is to perform a COMPLETE PRODUCTION HARDENING PASS.
+
+Find and FIX all actual problems across:
+
+1. Build/runtime
+2. UI
+3. Buttons
+4. Links
+5. Typography
+6. Spacing
+7. Responsive behavior
+8. English localization
+9. Bangla localization
+10. Navigation
+11. Forms
+12. Images
+13. Accessibility
+14. SEO
+15. Performance
+16. Browser behavior
+17. Interaction states
+18. Content overflow
+19. Error handling
+20. Visual consistency
+
+Do not just audit.
+
+IMPLEMENT THE FIXES.
+
+
+==================================================
+1. FIRST RULE — PRESERVE THE CURRENT DESIGN
+==================================================
+
+Do NOT:
+
+- rebuild the website
+- change the overall visual identity
+- replace the color system
+- remove the editorial typography
+- remove section numbering
+- remove bilingual architecture
+- remove existing working SEO
+- remove structured data
+- remove accessibility features
+- replace working components unnecessarily
+
+This is a POLISH + BUG-FIX + DESIGN-SYSTEM pass.
+
+The site should look like the same brand after this work,
+but significantly more refined and production-ready.
+
+
+==================================================
+2. START WITH A COMPLETE CODEBASE AUDIT
+==================================================
+
+Before modifying random files, inspect:
+
+- package.json
+- next.config.*
+- tsconfig.json
+- eslint config
+- app directory
+- components
+- content/data layer
+- locale architecture
+- API routes
+- CSS/global styles
+- Tailwind configuration if present
+- image configuration
+- metadata
+- sitemap
+- robots
+- structured data
+- middleware if present
+
+Find:
+
+- TypeScript errors
+- ESLint errors
+- build warnings
+- runtime warnings
+- hydration issues
+- invalid HTML
+- dead code
+- duplicated components
+- unused imports
+- broken links
+- inconsistent props
+- unsafe types
+- unnecessary client components
+
+Fix them properly.
+
+
+==================================================
+3. RUN A REAL PRODUCTION BUILD
+==================================================
+
+Run:
+
+npm run lint
+
+and/or the project's actual lint command.
+
+Then run:
+
+npm run build
+
+Do not consider the task complete until the production build succeeds.
+
+Fix:
+
+- TypeScript errors
+- ESLint errors
+- Next.js warnings where actionable
+- hydration errors
+- route errors
+- missing keys
+- metadata problems
+- server/client boundary problems
+- invalid imports
+
+Do NOT hide errors using:
+
+any
+
+// @ts-ignore
+
+eslint-disable
+
+unless there is a genuine, documented technical reason.
+
+Fix root causes.
+
+
+==================================================
+4. CREATE A CONSISTENT BUTTON DESIGN SYSTEM
+==================================================
+
+The website currently needs stronger button consistency.
+
+Audit EVERY:
+
+- button
+- CTA
+- text link
+- icon button
+- form submit
+- language switcher
+- mobile menu trigger
+- share control
+- gallery control
+- filter button
+
+Create or refine ONE reusable Button component/system.
+
+Do not manually style buttons differently on every page.
+
+
+==================================================
+5. BUTTON VARIANTS
+==================================================
+
+Support clear reusable variants.
+
+Required:
+
+PRIMARY
+
+Example:
+dark/ink background
+paper/white text
+
+Use for:
+primary CTA
+contact
+form submit
+
+
+SECONDARY / OUTLINE
+
+transparent background
+1px editorial border
+ink text
+
+Use for:
+secondary actions
+
+
+EDITORIAL LINK
+
+No box by default.
+
+Text + arrow.
+
+Example:
+
+VIEW REPORTING ↗
+
+Use for:
+story links
+section links
+navigation-like CTAs
+
+
+DARK-SURFACE BUTTON
+
+For buttons appearing on black/dark backgrounds.
+
+Use:
+paper foreground
+appropriate border
+strong hover state
+
+
+GHOST
+
+Only for lightweight utility actions.
+
+
+ICON BUTTON
+
+For:
+menu
+close
+gallery
+share
+navigation controls
+
+Use consistent dimensions.
+
+
+==================================================
+6. BUTTON SIZE SYSTEM
+==================================================
+
+Create consistent sizes.
+
+Conceptually:
+
+SMALL
+height: approximately 36–40px
+
+DEFAULT
+height: approximately 44–48px
+
+LARGE
+height: approximately 50–56px
+
+Do not blindly copy these numbers if the existing typography requires
+slight adjustments.
+
+All important touch targets should generally be at least approximately
+44×44px.
+
+
+==================================================
+7. BUTTON VISUAL STYLE
+==================================================
+
+Buttons must fit the editorial design.
+
+Avoid:
+
+- excessive rounded pills
+- huge border radius
+- glossy gradients
+- glass effects
+- generic SaaS buttons
+- large drop shadows
+
+Prefer:
+
+- square or very subtle radius
+- thin editorial borders
+- strong typography
+- restrained transitions
+- arrow treatment
+- clear contrast
+
+Possible style:
+
+[ VIEW SELECTED WORK  ↗ ]
+
+not:
+
+( View Selected Work )
+
+
+==================================================
+8. BUTTON TYPOGRAPHY
+==================================================
+
+Use the UI sans/mono font.
+
+Buttons should have:
+
+- clear weight
+- controlled letter spacing
+- readable size
+
+English uppercase may be used selectively.
+
+DO NOT apply English uppercase/letter-spacing behavior blindly to Bangla.
+
+Bangla buttons must have natural typography.
+
+
+==================================================
+9. BUTTON STATES — MANDATORY
+==================================================
+
+Every interactive button must have:
+
+DEFAULT
+HOVER
+FOCUS-VISIBLE
+ACTIVE
+DISABLED
+LOADING
+
+states where relevant.
+
+No button should visually remain identical on hover/focus.
+
+
+==================================================
+10. BUTTON HOVER
+==================================================
+
+Keep hover refined.
+
+Examples:
+
+Primary:
+ink → newsroom red
+
+or:
+
+ink background → paper background
+ink/paper text inversion
+
+Outline:
+background fills
+text inverts
+
+Editorial link:
+arrow translates approximately 2–4px diagonally
+
+Transition:
+
+approximately 180–250ms.
+
+Do not create bouncy animation.
+
+
+==================================================
+11. KEYBOARD FOCUS
+==================================================
+
+Every interactive control must have an obvious:
+
+:focus-visible
+
+state.
+
+Do not rely solely on color.
+
+Use an accessible outline/ring that fits the brand.
+
+Never use:
+
+outline: none
+
+without providing an accessible replacement.
+
+
+==================================================
+12. BUTTON DISABLED STATE
+==================================================
+
+Disabled controls must:
+
+- appear disabled
+- use cursor appropriately
+- prevent interaction
+- remain readable
+
+Do not make disabled text invisible.
+
+
+==================================================
+13. LOADING BUTTON
+==================================================
+
+Contact submit button should have a proper loading state.
+
+Example:
+
+SEND MESSAGE
+
+→
+
+SENDING...
+
+Prevent duplicate submissions while loading.
+
+Maintain button width if possible to prevent layout shift.
+
+
+==================================================
+14. BUTTON ICON ALIGNMENT
+==================================================
+
+Audit all:
+
+arrows
+external-link icons
+menu icons
+close icons
+share icons
+
+Ensure:
+
+- consistent icon size
+- baseline alignment
+- spacing
+- stroke width
+- no vertical misalignment
+
+Do not mix several unrelated icon styles.
+
+
+==================================================
+15. LINKS VS BUTTONS
+==================================================
+
+Use correct semantics.
+
+Navigation to another URL:
+
+<a> / Next Link
+
+Actions:
+
+<button>
+
+Do not use buttons for normal page navigation.
+
+Do not use clickable divs.
+
+
+==================================================
+16. EXTERNAL LINKS
+==================================================
+
+External article/source links should clearly communicate that they leave
+the site.
+
+Use a subtle:
+
+↗
+
+or accessible external-link icon.
+
+If target="_blank" is used, include appropriate security behavior.
+
+Do not open every internal link in a new tab.
+
+
+==================================================
+17. NAVIGATION QA
+==================================================
+
+Audit desktop header.
+
+Verify:
+
+- logo/wordmark clickable
+- active route indicator
+- correct EN/Bangla state
+- Contact CTA
+- hover states
+- focus states
+- no tiny click targets
+- no overlap
+- no layout jump on scroll
+- transparent → solid header transition works
+
+
+==================================================
+18. MOBILE NAVIGATION
+==================================================
+
+Test menu at:
+
+320
+360
+375
+390
+430
+
+Verify:
+
+- menu opens
+- menu closes
+- Escape closes it
+- clicking navigation closes it
+- clicking backdrop closes it if intended
+- focus moves into menu
+- focus is contained appropriately
+- focus returns to trigger after close
+- body scrolling is locked while open
+- no background interaction
+- language switcher works
+- Contact CTA works
+
+Make touch targets comfortable.
+
+
+==================================================
+19. LANGUAGE SWITCHER
+==================================================
+
+Test:
+
+EN → বাংলা
+বাংলা → EN
+
+on EVERY major route.
+
+It must preserve equivalent path.
+
+Example:
+
+/en/work
+→
+/bn/work
+
+/en/about
+→
+/bn/about
+
+/en/articles/example
+→
+/bn/articles/example
+
+Never unexpectedly return the visitor to homepage.
+
+
+==================================================
+20. LANGUAGE SWITCHER STYLE
+==================================================
+
+Make it visually obvious but restrained.
+
+Example:
+
+EN / বাংলা
+
+Active locale:
+stronger opacity/weight
+
+Inactive:
+slightly muted
+
+Do not style it like a huge CTA.
+
+Ensure Bangla glyphs align correctly.
+
+
+==================================================
+21. GLOBAL TYPOGRAPHY AUDIT
+==================================================
+
+Inspect typography at actual 100% browser zoom.
+
+The site currently uses an editorial scale.
+
+Preserve that.
+
+But fix:
+
+- microscopic body copy
+- unreadable metadata
+- excessive line length
+- bad line-height
+- awkward wrapping
+- orphaned headline words
+- clipped glyphs
+- inconsistent font weights
+
+
+==================================================
+22. ENGLISH TYPOGRAPHY
+==================================================
+
+Ensure:
+
+Display serif:
+major editorial headlines
+
+Sans:
+body/UI
+
+Mono/condensed:
+metadata where appropriate
+
+Do not overuse tiny uppercase text.
+
+Metadata can be subtle without becoming unreadable.
+
+
+==================================================
+23. BANGLA TYPOGRAPHY
+==================================================
+
+Audit Bangla independently.
+
+Do NOT assume English values work.
+
+Fix:
+
+- line-height
+- glyph clipping
+- button alignment
+- headline wrapping
+- navigation height
+- metadata readability
+- font fallback
+- punctuation spacing
+
+Do not apply aggressive English letter spacing to Bangla.
+
+
+==================================================
+24. BANGLA FONT LOADING
+==================================================
+
+Verify the Bangla font actually loads.
+
+Check:
+
+- network/font behavior
+- fallback flashes
+- font weights
+- unnecessary downloads
+
+Avoid loading unnecessary Bangla weights.
+
+Ensure font-display behavior is sensible.
+
+
+==================================================
+25. RESPONSIVE QA — MANDATORY
+==================================================
+
+Test at minimum:
+
+1920×1080
+1440×900
+1280×800
+1024×768
+768×1024
+430×932
+390×844
+375×812
+360×800
+320×568
+
+Do not only resize the browser quickly.
+
+Inspect actual sections.
+
+
+==================================================
+26. CHECK FOR HORIZONTAL OVERFLOW
+==================================================
+
+At every breakpoint:
+
+document width must not exceed viewport width unintentionally.
+
+Find causes such as:
+
+- 100vw + padding
+- absolute elements
+- oversized typography
+- translated elements
+- portrait frames
+- grids
+- negative margins
+- long URLs
+
+Fix root causes.
+
+Do NOT simply add:
+
+overflow-x: hidden
+
+to hide broken layouts unless the overflow is intentionally decorative
+and inaccessible content is not being clipped.
+
+
+==================================================
+27. HERO QA
+==================================================
+
+Preserve current hero.
+
+Fix only issues.
+
+Verify:
+
+- headline never clips
+- portrait placeholder doesn't overlap important text
+- giant AM background stays decorative
+- navigation remains readable
+- supporting text readable
+- CTA readable
+- scroll cue not broken
+- mobile layout intentional
+- Bangla hero has natural wrapping
+
+
+==================================================
+28. SELECTED JOURNALISM QA
+==================================================
+
+Verify:
+
+- lead image maintains aspect ratio
+- image never stretches
+- headline hierarchy is strong
+- summary readable
+- publication/date metadata aligned
+- story links clickable
+- arrows aligned
+- secondary stories responsive
+- demo content clearly identified
+
+No accidental empty giant spaces.
+
+
+==================================================
+29. LATEST REPORTING QA
+==================================================
+
+Verify each row:
+
+- date alignment
+- category alignment
+- headline readability
+- publication
+- arrow
+- hover preview
+- keyboard accessibility
+
+Hover thumbnail must not cause layout shift.
+
+Do not render hover preview on touch devices unnecessarily.
+
+
+==================================================
+30. DARK STATEMENT SECTION
+==================================================
+
+Verify:
+
+Report.
+Verify.
+Explain.
+
+has:
+
+- correct contrast
+- responsive scaling
+- no clipping
+- decorative AM does not hurt readability
+- supporting text readable
+
+Do not alter the core concept.
+
+
+==================================================
+31. EXPERIENCE QA
+==================================================
+
+Check:
+
+2025 — Now
+2024 — 2025
+2019 — 2024
+
+Verify:
+
+- years align
+- roles align
+- publication/employer names readable
+- current position visually clear
+- mobile stack works
+- Bangla version does not break
+
+
+==================================================
+32. PROFILE QA
+==================================================
+
+Check:
+
+- headline
+- biography
+- metadata
+- link
+
+Increase readability if necessary.
+
+Do not allow biography lines to become too long.
+
+
+==================================================
+33. MEMBERSHIP QA
+==================================================
+
+Keep typography-led rows.
+
+Verify:
+
+- numbering
+- organization name
+- role
+- alignment
+- separators
+- mobile behavior
+
+Do not reintroduce generic cards.
+
+
+==================================================
+34. REPORTING AREAS
+==================================================
+
+These remain potentially unverified content.
+
+Do not accidentally remove the verification safeguard.
+
+If unverified:
+
+either hide them in production
+
+OR
+
+display an explicit demo/placeholder state.
+
+Do not publish them as confirmed expertise without verified data.
+
+
+==================================================
+35. EDUCATION QA
+==================================================
+
+Verify:
+
+- 2009
+- M.A.
+- Jagannath University
+
+and
+
+- 2008
+- B.A.
+- Jagannath University
+
+are aligned and readable.
+
+Bangla numerals should display naturally in Bangla locale where designed.
+
+
+==================================================
+36. PRINCIPLES SECTION
+==================================================
+
+Preserve:
+
+Accuracy.
+Clarity.
+Public Interest.
+
+Audit:
+
+- contrast
+- font size
+- supporting copy
+- responsive behavior
+- spacing
+
+Do not present website copy as a direct quote.
+
+
+==================================================
+37. CONTACT CTA
+==================================================
+
+Audit:
+
+Have a story?
+Let's talk.
+
+and Bangla equivalent.
+
+Verify:
+
+- CTA button style
+- email link
+- spacing
+- hover
+- keyboard focus
+- mobile layout
+
+No tiny CTA.
+
+
+==================================================
+38. CONTACT FORM
+==================================================
+
+Audit every field.
+
+Required:
+
+Name
+Email
+Organization
+Subject
+Message
+
+Verify:
+
+- labels
+- placeholders
+- validation
+- required indicators
+- errors
+- focus
+- autofill
+- mobile keyboard behavior
+- textarea resize
+- submit
+- loading
+- success
+- server error
+
+Do not rely only on placeholders as labels.
+
+
+==================================================
+39. INPUT DESIGN SYSTEM
+==================================================
+
+Create consistent form styling.
+
+Inputs should fit the editorial identity.
+
+Prefer:
+
+- clean background
+- subtle border
+- square/subtle radius
+- strong focus state
+
+Avoid generic shadcn/SaaS form appearance if currently present.
+
+Input height:
+approximately 46–52px where appropriate.
+
+Textarea:
+comfortable minimum height.
+
+
+==================================================
+40. FORM ERROR STYLE
+==================================================
+
+Errors must be clear but not visually aggressive.
+
+Example:
+
+Email
+[invalid value]
+
+Please enter a valid email address.
+
+Use:
+
+aria-invalid
+aria-describedby
+
+where appropriate.
+
+
+==================================================
+41. FORM SUCCESS
+==================================================
+
+After successful submission:
+
+show a clear confirmation.
+
+Do not silently clear the form.
+
+Do not use browser alert().
+
+
+==================================================
+42. GALLERY QA
+==================================================
+
+Audit:
+
+- grid
+- aspect ratios
+- image loading
+- captions
+- alt text
+- lightbox
+- previous/next
+- close
+- keyboard
+- Escape
+- focus trap
+- mobile
+
+Prevent background scroll while lightbox is open.
+
+
+==================================================
+43. IMAGE ERROR HANDLING
+==================================================
+
+No broken image icon should appear.
+
+If an image fails:
+
+use a deliberate editorial fallback.
+
+Never invent a replacement photograph.
+
+
+==================================================
+44. IMAGE OPTIMIZATION
+==================================================
+
+Audit Next/Image usage.
+
+Verify:
+
+- width/height or fill setup
+- sizes attribute
+- priority only for LCP image
+- lazy loading below fold
+- no massive original loaded into tiny card
+- no stretched images
+- correct object-fit
+
+
+==================================================
+45. PORTRAIT
+==================================================
+
+Do NOT generate a fake portrait.
+
+Until a real portrait exists:
+
+keep the intentional AM / portrait placeholder.
+
+Make sure it:
+
+- has correct aspect ratio
+- looks deliberate
+- doesn't create CLS
+- works on mobile
+
+
+==================================================
+46. FOOTER QA
+==================================================
+
+Preserve back-cover style.
+
+Audit:
+
+- large name
+- email
+- navigation
+- memberships if shown
+- language switcher
+- copyright
+- mobile wrapping
+
+Fix tiny links.
+
+Ensure footer links have adequate touch targets.
+
+
+==================================================
+47. COLOR CONSISTENCY
+==================================================
+
+Centralize colors into design tokens.
+
+Example concepts:
+
+--ink
+--paper
+--surface
+--newsroom-red
+--muted
+--rule
+
+Do not scatter slightly different red/black/beige values throughout
+components.
+
+
+==================================================
+48. SPACING SYSTEM
+==================================================
+
+Audit inconsistent:
+
+margin
+padding
+gap
+
+Create/use a coherent spacing scale.
+
+Do not manually use random values everywhere.
+
+Preserve intentional editorial asymmetry.
+
+
+==================================================
+49. BORDER SYSTEM
+==================================================
+
+Standardize:
+
+editorial rules
+button borders
+input borders
+story separators
+
+Avoid inconsistent 1px/2px colors.
+
+Use a shared rule token.
+
+
+==================================================
+50. BORDER RADIUS
+==================================================
+
+This is an editorial website.
+
+Avoid random rounded corners.
+
+Standardize to:
+
+0
+or
+very subtle radius
+
+depending on component.
+
+Do not use different radius values arbitrarily.
+
+
+==================================================
+51. STORY LINK HIT AREA
+==================================================
+
+Story cards/list items should have comfortable interaction areas.
+
+Do not require clicking only a tiny arrow.
+
+Make title/image or logical story region clickable while preserving
+valid semantic markup.
+
+Avoid nested links.
+
+
+==================================================
+52. FILTER BUTTONS
+==================================================
+
+Audit Work/Article filters.
+
+Required states:
+
+default
+hover
+active
+focus
+
+Active state must be obvious without relying only on color.
+
+On mobile:
+
+allow horizontal scrolling if appropriate,
+or wrap cleanly.
+
+Do not create overflow.
+
+
+==================================================
+53. SHARE BUTTONS
+==================================================
+
+Audit:
+
+Copy link
+Facebook
+X
+LinkedIn
+WhatsApp
+
+Ensure:
+
+- correct semantics
+- consistent style
+- touch targets
+- focus
+- copy confirmation
+
+Avoid third-party SDKs.
+
+
+==================================================
+54. COPY LINK FEEDBACK
+==================================================
+
+When user clicks Copy Link:
+
+provide feedback such as:
+
+Copied
+
+Then return to original label after a short period.
+
+Use accessible live-region feedback if practical.
+
+
+==================================================
+55. ARTICLE READING EXPERIENCE
+==================================================
+
+Audit:
+
+- headline
+- deck
+- byline
+- date
+- publication
+- hero
+- caption
+- body
+- headings
+- blockquotes
+- links
+- lists
+- images
+- related stories
+
+Body reading width should remain comfortable.
+
+Do not allow giant editorial canvas width for body paragraphs.
+
+
+==================================================
+56. READING PROGRESS
+==================================================
+
+If reading progress exists:
+
+verify:
+
+- starts correctly
+- reaches 100%
+- no hydration problem
+- no unnecessary re-render loop
+- accessible/decorative semantics
+
+Remove it if broken rather than keeping a buggy feature.
+
+
+==================================================
+57. 404 PAGE
+==================================================
+
+Verify both locales.
+
+It should:
+
+- fit the editorial brand
+- clearly say page not found
+- provide Home
+- provide Work/Reporting navigation
+
+No dead-end page.
+
+
+==================================================
+58. ERROR BOUNDARIES
+==================================================
+
+Use sensible Next.js error handling where appropriate.
+
+Check whether route-level:
+
+error.tsx
+not-found.tsx
+
+are needed.
+
+Do not expose raw stack traces to users.
+
+
+==================================================
+59. LOADING STATES
+==================================================
+
+If pages/actions genuinely wait:
+
+use lightweight loading states.
+
+Do not create unnecessary full-screen loaders.
+
+Avoid fake delays.
+
+
+==================================================
+60. SEO AUDIT
+==================================================
+
+Verify rendered HTML, not just source code.
+
+Check:
+
+- title
+- description
+- canonical
+- hreflang
+- Open Graph
+- Twitter/X metadata
+- robots
+- sitemap
+- structured data
+- html lang
+- H1
+- heading hierarchy
+
+
+==================================================
+61. HREFLANG
+==================================================
+
+Every equivalent English/Bangla page should correctly reference:
+
+en
+bn
+
+and x-default if used.
+
+Verify actual output.
+
+
+==================================================
+62. CANONICAL
+==================================================
+
+English pages canonicalize to English.
+
+Bangla pages canonicalize to Bangla.
+
+Never canonicalize all Bangla pages to English.
+
+
+==================================================
+63. STRUCTURED DATA
+==================================================
+
+Validate:
+
+Person
+WebSite
+BreadcrumbList
+Article / NewsArticle
+
+Do not emit empty or fabricated values.
+
+Do not duplicate conflicting schemas.
+
+
+==================================================
+64. DEMO CONTENT SEO
+==================================================
+
+IMPORTANT:
+
+If demo/sample stories remain:
+
+do NOT allow misleading demo journalism to become indexed as if it were
+real reporting.
+
+Choose an appropriate strategy.
+
+For example:
+
+- clearly label demo content
+- optionally noindex demo detail pages
+- exclude unfinished demo content from production sitemap
+
+Do not damage the legitimate profile pages.
+
+
+==================================================
+65. SITEMAP
+==================================================
+
+Verify:
+
+- valid XML
+- both locales
+- no broken URLs
+- no demo URLs if they should not be indexed
+- correct canonical routes
+
+
+==================================================
+66. ROBOTS
+==================================================
+
+Verify robots.txt does not accidentally block the entire site.
+
+Also ensure private/admin/API areas are handled appropriately if relevant.
+
+
+==================================================
+67. PERFORMANCE
+==================================================
+
+Audit:
+
+- JS bundle
+- client components
+- images
+- fonts
+- hydration
+- third-party code
+- unused libraries
+
+Do not sacrifice the current design.
+
+
+==================================================
+68. CLIENT COMPONENT AUDIT
+==================================================
+
+Search all:
+
+"use client"
+
+Ask whether each one genuinely needs client execution.
+
+Convert static presentation to server components where safe.
+
+Do not break interactive functionality.
+
+
+==================================================
+69. FONT PERFORMANCE
+==================================================
+
+Audit:
+
+- English display font
+- English UI font
+- Bangla font
+
+Avoid downloading unnecessary weights.
+
+Prevent layout shift where possible.
+
+
+==================================================
+70. ACCESSIBILITY
+==================================================
+
+Perform a real accessibility pass.
+
+Check:
+
+- landmarks
+- heading order
+- skip link
+- keyboard
+- focus
+- menu
+- gallery
+- forms
+- contrast
+- links
+- buttons
+- alt text
+- reduced motion
+
+Fix actual issues.
+
+
+==================================================
+71. REDUCED MOTION
+==================================================
+
+When:
+
+prefers-reduced-motion: reduce
+
+disable/reduce:
+
+- reveal transitions
+- image scaling
+- arrow movement
+- smooth scrolling
+- decorative motion
+
+The website must remain fully usable.
+
+
+==================================================
+72. CURSOR STATES
+==================================================
+
+Interactive elements:
+pointer where appropriate.
+
+Disabled:
+not-allowed/default as appropriate.
+
+Do not apply pointer cursor to non-interactive content.
+
+
+==================================================
+73. TEXT SELECTION
+==================================================
+
+If custom selection styling exists:
+
+verify sufficient contrast in both light and dark sections.
+
+
+==================================================
+74. MOBILE SAFE AREA
+==================================================
+
+Check modern phones.
+
+Use safe-area handling where useful for:
+
+mobile navigation
+fixed elements
+
+Do not let controls collide with device edges.
+
+
+==================================================
+75. IOS / SAFARI CONSIDERATIONS
+==================================================
+
+Avoid depending on unstable viewport assumptions.
+
+Prefer:
+
+svh / dvh
+
+where appropriate.
+
+Test hero sizing conceptually for mobile Safari.
+
+Avoid 100vh bugs where possible.
+
+
+==================================================
+76. SCROLL BEHAVIOR
+==================================================
+
+Verify:
+
+- no scroll locking after menu closes
+- no scroll locking after lightbox closes
+- anchor links account for sticky header
+- no unexpected scroll jumps
+
+
+==================================================
+77. CONTENT OVERFLOW
+==================================================
+
+Test unusually long:
+
+English headline
+Bangla headline
+publication name
+category
+email
+URL
+
+Components must fail gracefully.
+
+
+==================================================
+78. EMAIL LINK
+==================================================
+
+Verify:
+
+mailto:amozomdar@gmail.com
+
+where appropriate.
+
+Do not expose private CV contact information.
+
+
+==================================================
+79. PRIVACY
+==================================================
+
+Search the entire public code/output for sensitive resume information.
+
+Ensure public pages do NOT expose:
+
+- home address
+- permanent address
+- parents' names
+- DOB
+- marital status
+- religion
+- blood group
+- unnecessary private phone numbers
+
+Also check:
+
+JSON-LD
+metadata
+source-visible content
+demo data
+
+not only visible UI.
+
+
+==================================================
+80. FACTUAL SAFETY
+==================================================
+
+Do not invent:
+
+- awards
+- article titles presented as real
+- achievements
+- reporting beats
+- quotes
+- follower counts
+- metrics
+- employers
+- political affiliations
+
+Keep placeholder content clearly identified.
+
+
+==================================================
+81. BANGLA NAME
+==================================================
+
+If the Bangla spelling of Abdullah Mozomdar has not been owner-verified,
+keep it editable/unverified in the data model.
+
+Do not silently convert an AI transliteration into verified factual data.
+
+
+==================================================
+82. REMOVE DEBUG CODE
+==================================================
+
+Before completion remove:
+
+console.log
+debugger
+temporary test UI
+unused mocks
+development-only visual markers
+
+Exception:
+intentional server logging should be reviewed and not leak sensitive form
+data.
+
+
+==================================================
+83. CONTACT FORM LOGGING
+==================================================
+
+Do not log full contact submissions containing personal information in
+production console.
+
+Use safe production behavior.
+
+Prepare integration point for a transactional email provider without
+exposing secrets.
+
+
+==================================================
+84. ENVIRONMENT VARIABLES
+==================================================
+
+Audit env usage.
+
+Never expose server secrets through:
+
+NEXT_PUBLIC_*
+
+unless genuinely public.
+
+
+==================================================
+85. SECURITY HEADERS
+==================================================
+
+Review sensible production security headers where compatible.
+
+Do not blindly add a CSP that breaks Next.js.
+
+Implement only correctly configured protections.
+
+
+==================================================
+86. DEPENDENCIES
+==================================================
+
+Audit package.json.
+
+Remove clearly unused dependencies if safe.
+
+Do not upgrade every package unnecessarily during a bug-fix pass.
+
+Do not introduce large dependencies for simple UI problems.
+
+
+==================================================
+87. FINAL CROSS-PAGE DESIGN CONSISTENCY
+==================================================
+
+Compare:
+
+Home
+About
+Experience
+Work
+Story
+Articles
+Article
+Gallery
+Contact
+404
+
+They should feel like ONE publication.
+
+Check:
+
+buttons
+links
+chapter labels
+rules
+typography
+colors
+spacing
+metadata
+forms
+
+
+==================================================
+88. FINAL BUTTON AUDIT
+==================================================
+
+Before finishing, search the entire codebase for:
+
+<button
+<Button
+<Link
+<a
+
+Inspect all relevant instances.
+
+There should be no:
+
+- unstyled button
+- inaccessible button
+- inconsistent CTA
+- tiny icon control
+- missing focus state
+- wrong semantic element
+- conflicting radius
+- inconsistent arrow spacing
+
+
+==================================================
+89. FINAL VISUAL QA
+==================================================
+
+Capture/inspect at 100% zoom:
+
+ENGLISH
+- desktop homepage
+- mobile homepage
+- work page
+- story page
+- contact page
+
+BANGLA
+- desktop homepage
+- mobile homepage
+- work page
+- story page
+- contact page
+
+Do NOT judge typography only from a scaled full-page screenshot.
+
+
+==================================================
+90. FINAL FUNCTIONAL TEST
+==================================================
+
+Test:
+
+- every header link
+- every footer link
+- language switching
+- mobile menu
+- selected story links
+- latest story links
+- filters
+- gallery
+- share controls
+- contact form
+- email link
+- 404
+- breadcrumbs
+
+
+==================================================
+91. FINAL BUILD TEST
+==================================================
+
+Run final:
+
+lint
+type check
+production build
+
+All must pass.
+
+Then inspect runtime for:
+
+console errors
+hydration warnings
+404 assets
+broken fonts
+broken images
+
+
+==================================================
+92. DO NOT FAKE SUCCESS
+==================================================
+
+Do not say:
+
+"everything works perfectly"
+
+unless actually tested.
+
+If something cannot be tested, state exactly what remains unverified.
+
+Do not give subjective design praise.
+
+Give concrete QA results.
+
+
+==================================================
+93. COMPLETION FORMAT
+==================================================
+
+After implementing all fixes, respond with ONLY these sections:
+
+A. FIXED
+List actual problems found and fixed.
+
+B. BUTTON & UI SYSTEM
+Briefly describe standardized:
+- button variants
+- states
+- inputs
+- links
+- interactive controls
+
+C. RESPONSIVE FIXES
+List actual breakpoint/mobile issues fixed.
+
+D. BANGLA FIXES
+List typography/localization issues fixed.
+
+E. SEO / ACCESSIBILITY / PERFORMANCE
+List actual technical issues fixed.
+
+F. STILL REQUIRES REAL CONTENT
+Examples:
+- real portrait
+- real published stories
+- verified reporting beats
+- verified Bangla name spelling
+
+G. VERIFICATION
+Report results for:
+- lint
+- type check
+- production build
+- tested routes
+- tested viewport sizes
+
+Do not include marketing language.
+
+
+==================================================
+94. MOST IMPORTANT INSTRUCTION
+==================================================
+
+DO NOT ONLY AUDIT.
+
+DO NOT ONLY EXPLAIN.
+
+DO NOT ONLY WRITE A REPORT.
+
+OPEN THE EXISTING CODE AND FIX THE PROBLEMS.
+
+Preserve the current editorial design identity while making the implementation
+consistent, robust, accessible, responsive and production-ready.
+
+
+==================================================
+95. PRIORITY ORDER
+==================================================
+
+Fix in this exact priority:
+
+1. Build/runtime errors
+2. Broken interactions
+3. Mobile/responsive problems
+4. Button and link consistency
+5. Accessibility
+6. Bangla typography/localization
+7. Readability
+8. Forms
+9. SEO correctness
+10. Image/font performance
+11. Visual spacing consistency
+12. Code cleanup
+
+Do not spend time inventing new features.
+
+
+==================================================
+FINAL COMMAND
+==================================================
+
+Start by running and inspecting the existing application.
+
+Create a concrete internal issue list from the ACTUAL code and rendered UI.
+
+Then fix those issues systematically.
+
+Do not redesign the brand.
+
+Do not add unnecessary functionality.
+
+Do not replace working architecture.
+
+The goal of this pass is:
+
+NO BROKEN BUTTONS.
+NO INCONSISTENT CTAs.
+NO MOBILE OVERFLOW.
+NO UNREADABLE MICRO-TEXT.
+NO BROKEN BANGLA.
+NO ACCESSIBILITY REGRESSIONS.
+NO SEO REGRESSIONS.
+NO BUILD ERRORS.
+NO CONSOLE ERRORS.
+NO HYDRATION ERRORS.
+NO OBVIOUS UI INCONSISTENCIES.
+
+Make the existing journalist portfolio genuinely production-ready.
