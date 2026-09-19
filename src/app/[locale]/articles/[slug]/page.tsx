@@ -16,6 +16,7 @@ import { siteName } from "@/content/site-messages";
 import { profile } from "@/content/profile";
 import { isLocale, otherLocale } from "@/i18n/config";
 import { formatDate } from "@/lib/format";
+import { ogImage } from "@/lib/seo";
 import type { Locale } from "@/content/types";
 
 interface PageProps {
@@ -39,8 +40,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `/${locale}/articles/${story.slug}`,
       languages: { [locale]: `/${locale}/articles/${story.slug}`, [other]: `/${other}/articles/${story.slug}`, "x-default": `/en/articles/${story.slug}` },
     },
-    openGraph: { type: "article", title: story.title[locale], description: story.summary[locale], url: `${siteConfig.url}/${locale}/articles/${story.slug}`, publishedTime: story.publishedAt, authors: [profile.name[locale]], tags: story.tags, locale: locale === "bn" ? "bn_BD" : "en_US" },
-    twitter: { card: "summary_large_image", title: story.title[locale], description: story.summary[locale] },
+    openGraph: { type: "article", title: story.title[locale], description: story.summary[locale], url: `${siteConfig.url}/${locale}/articles/${story.slug}`, publishedTime: story.publishedAt, authors: [profile.name[locale]], tags: story.tags, locale: locale === "bn" ? "bn_BD" : "en_US", images: story.heroImage ? [ogImage(story.heroAlt[locale], story.heroImage)] : [ogImage(story.title[locale])] },
+    twitter: { card: "summary_large_image", title: story.title[locale], description: story.summary[locale], images: [ogImage(story.heroAlt[locale], story.heroImage ?? "/opengraph-image")] },
   };
 }
 

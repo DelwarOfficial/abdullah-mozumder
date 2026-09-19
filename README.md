@@ -160,7 +160,7 @@ Rebuild after content changes — pages are statically generated.
 
 ## Deployment
 
-Full runbook: **[`DEPLOYMENT.md`](./DEPLOYMENT.md)** — env, build, Caddy, updates, and the owner pre-launch checklist (real articles, portrait, Bangla name verification, Resend key, gallery photos).
+Full runbook: **[`DEPLOYMENT.md`](./DEPLOYMENT.md)** — env, build, Caddy, updates, and the owner pre-launch checklist (real articles, Bangla name verification, Resend key).
 
 Short version:
 
@@ -178,6 +178,7 @@ Back up `db/custom.db` on a schedule — it holds contact messages.
 
 - ESLint: clean · TypeScript: clean (build-enforced) · Production build: 41 pages
 - Live-verified: all routes 200, contact POST persists to DB, honeypot silent, security headers present (`X-Frame-Options`, `nosniff`, `Referrer-Policy`, HSTS in prod), OG/icon endpoints render, branded localized 404
+- Images: `next/image` everywhere (responsive srcset, AVIF/WebP via sharp) — portrait in hero/about, real story heroes, 12-photo gallery, publication mastheads on experience rows; every route emits a correct `og:image`
 - Zero hydration warnings; CLS-safe theme and fonts
 
 ---

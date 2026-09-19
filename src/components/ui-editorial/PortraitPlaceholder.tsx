@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface PortraitPlaceholderProps {
@@ -14,12 +15,15 @@ const sizeClasses = {
   lg: "w-44 h-56 sm:w-52 sm:h-64 lg:w-56 lg:h-72",
 };
 
+const pixelSizes = {
+  sm: 64,
+  md: 128,
+  lg: 224,
+};
+
 /**
- * Editorial portrait placeholder.
- * Renders a tasteful "no portrait supplied" panel when `src` is null.
- * Replace by setting `profile.portrait` to a real image path.
- *
- * Per project brief: DO NOT generate a fake portrait of Abdullah.
+ * Editorial portrait. Renders the photo when `src` is set, otherwise a
+ * tasteful "no portrait supplied" panel.
  */
 export function PortraitPlaceholder({
   size = "lg",
@@ -30,16 +34,21 @@ export function PortraitPlaceholder({
 }: PortraitPlaceholderProps) {
   if (src) {
     return (
-       
-      <img
-        src={src}
-        alt={alt}
+      <div
         className={cn(
-          "object-cover grayscale-[0.05] border border-rule shadow-sm",
+          "relative overflow-hidden border border-rule shadow-sm",
           sizeClasses[size],
           className,
         )}
-      />
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={`${pixelSizes[size]}px`}
+          className="object-cover object-top"
+        />
+      </div>
     );
   }
 

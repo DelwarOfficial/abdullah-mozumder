@@ -15,6 +15,7 @@ import { siteName } from "@/content/site-messages";
 import { profile } from "@/content/profile";
 import { isLocale, otherLocale } from "@/i18n/config";
 import { formatDate } from "@/lib/format";
+import { ogImage } from "@/lib/seo";
 import type { Locale, Localized } from "@/content/types";
 
 interface PageProps {
@@ -49,8 +50,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       authors: [profile.name[locale]],
       tags: story.tags,
       locale: locale === "bn" ? "bn_BD" : "en_US",
+      images: story.heroImage ? [ogImage(story.heroAlt[locale], story.heroImage)] : [ogImage(story.title[locale])],
     },
-    twitter: { card: "summary_large_image", title: story.title[locale], description: story.summary[locale] },
+    twitter: { card: "summary_large_image", title: story.title[locale], description: story.summary[locale], images: [ogImage(story.heroAlt[locale], story.heroImage ?? "/opengraph-image")] },
   };
 }
 

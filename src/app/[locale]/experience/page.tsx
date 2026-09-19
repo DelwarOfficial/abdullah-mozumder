@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { Breadcrumbs } from "@/components/ui-editorial/Breadcrumbs";
@@ -81,7 +82,14 @@ export default async function ExperiencePage({ params }: PageProps) {
                     <span className="inline-block bg-newsroom text-paper text-[0.625rem] uppercase tracking-[0.14em] px-2 py-0.5 font-semibold mb-3">{locale === "en" ? "Current" : "বর্তমান"}</span>
                   )}
                   <h2 className="font-serif font-bold text-ink leading-tight tracking-[-0.015em]" style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}>{exp.role[locale]}</h2>
-                  <p className="mt-2 text-base sm:text-lg text-ink-soft font-medium">{exp.organization[locale]}</p>
+                  <p className="mt-2 flex flex-wrap items-center gap-3 text-base sm:text-lg text-ink-soft font-medium">
+                    {exp.logo && (
+                      <span className="inline-flex items-center bg-paper border border-rule px-2 py-1">
+                        <Image src={exp.logo} alt="" width={112} height={36} className="h-7 w-auto object-contain" aria-hidden="true" />
+                      </span>
+                    )}
+                    {exp.organization[locale]}
+                  </p>
                   <p className="mt-1 text-sm text-ink-muted">{exp.location[locale]}</p>
                   {exp.description ? (
                     <p className="mt-4 text-base text-ink-soft leading-relaxed max-w-2xl">{exp.description[locale]}</p>

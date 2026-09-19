@@ -14,6 +14,7 @@ import { memberships } from "@/content/memberships";
 import { reportingAreas, digitalSkills } from "@/content/reporting-areas";
 import { isLocale, otherLocale, localeHref } from "@/i18n/config";
 import { localeDigits } from "@/lib/format";
+import { ogImage } from "@/lib/seo";
 import type { Locale } from "@/content/types";
 
 interface PageProps {
@@ -38,6 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: locale === "en" ? `About ${profile.name.en}.` : `${profile.name.bn} সম্পর্কে।`,
       url: `${siteConfig.url}/${locale}/about`,
       type: "profile",
+      images: [ogImage(profile.portraitAlt[locale], "/image/profile.jpg")],
     },
   };
 }

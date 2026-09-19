@@ -7,6 +7,7 @@ import { siteConfig } from "@/content/site";
 import { siteName } from "@/content/site-messages";
 import { stories } from "@/content/stories";
 import { isLocale, otherLocale } from "@/i18n/config";
+import { ogImage } from "@/lib/seo";
 import type { Locale } from "@/content/types";
 
 interface PageProps {
@@ -27,8 +28,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       languages: { [locale]: `/${locale}/work`, [other]: `/${other}/work`, "x-default": "/en/work" },
     },
     openGraph: {
-      title: `${locale === "en" ? "Work" : "কাজ"} — ${siteName[locale]}`,
+      title: `${locale === "en" ? "Work" : "প্রতিবেদন"} — ${siteName[locale]}`,
       url: `${siteConfig.url}/${locale}/work`,
+      images: [ogImage(locale === "en" ? "Selected reporting by Abdullah Mozomdar" : "আবদুল্লাহ মোজোমদারের নির্বাচিত প্রতিবেদন", "/image/journalists-rally.jpg")],
     },
   };
 }

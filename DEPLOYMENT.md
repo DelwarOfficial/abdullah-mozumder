@@ -44,10 +44,17 @@ provisions HTTPS automatically.
 - [ ] Set `translationStatus: "reviewed"` on Bangla copy you have verified.
 - [ ] Confirm the Bangla name spelling in `src/content/site.ts` and
       `src/content/profile.ts` (currently an unverified transliteration).
-- [ ] Add a portrait: put the file in `public/`, set `portrait` in
-      `src/content/profile.ts` and `src/content/site.ts`.
+- [x] Portrait wired: `public/image/profile.jpg` (hero, about page, OG card)
+- [x] Photography wired: story heroes + 12-photo gallery (`src/content/gallery.ts`)
+- [x] Newspaper mastheads on experience rows (`public/logo/`)
+- [ ] Replace the 5 demo stories in `src/content/stories.ts` with real
+      published articles (slug, dates, publication, optional `articleUrl`).
+      Delete entries you cannot replace — the site renders correctly
+      with zero stories (honest empty states).
+- [ ] Set `translationStatus: "reviewed"` on Bangla copy you have verified.
+- [ ] Confirm the Bangla name spelling in `src/content/site.ts` and
+      `src/content/profile.ts` (currently an unverified transliteration).
 - [ ] Review placeholder reporting areas in `src/content/reporting-areas.ts`.
-- [ ] Replace gallery placeholders in `src/content/gallery.ts`.
 - [ ] Set `RESEND_API_KEY` and verify your sending domain at resend.com.
 
 ## 5. Updates

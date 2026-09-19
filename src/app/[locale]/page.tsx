@@ -16,6 +16,7 @@ import { profile } from "@/content/profile";
 import { siteConfig } from "@/content/site";
 import { siteName, siteDescription } from "@/content/site-messages";
 import { isLocale, otherLocale } from "@/i18n/config";
+import { ogImage } from "@/lib/seo";
 import type { Locale } from "@/content/types";
 
 interface PageProps {
@@ -47,11 +48,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: siteDescription[locale],
       siteName: siteName[locale],
       locale: locale === "bn" ? "bn_BD" : "en_US",
+      images: [ogImage(title)],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: siteDescription[locale],
+      images: [ogImage(title)],
     },
   };
 }

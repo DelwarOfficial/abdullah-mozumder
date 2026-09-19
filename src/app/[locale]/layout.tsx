@@ -9,6 +9,7 @@ import { isLocale } from "@/i18n/config";
 import { siteConfig } from "@/content/site";
 import { siteName, siteDescription } from "@/content/site-messages";
 import { profile } from "@/content/profile";
+import { ogImage } from "@/lib/seo";
 import type { Locale } from "@/content/types";
 
 interface LayoutProps {
@@ -48,11 +49,13 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
       siteName: siteName[loc],
       title,
       description: siteDescription[loc],
+      images: [ogImage(title)],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: siteDescription[loc],
+      images: [ogImage(title)],
     },
   };
 }

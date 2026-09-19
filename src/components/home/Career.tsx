@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { experiences } from "@/content/experiences";
@@ -91,9 +92,21 @@ export function Career({ locale }: CareerProps) {
                   {exp.role[locale]}
                 </h3>
                 <p
-                  className="font-serif text-ink-soft font-medium mt-3"
+                  className="font-serif text-ink-soft font-medium mt-3 flex items-center gap-3"
                   style={{ fontSize: "clamp(1.0625rem, 1.4vw, 1.375rem)" }}
                 >
+                  {exp.logo && (
+                    <span className="inline-flex items-center bg-paper border border-rule px-2 py-1 shrink-0">
+                      <Image
+                        src={exp.logo}
+                        alt=""
+                        width={112}
+                        height={36}
+                        className="h-6 sm:h-7 w-auto object-contain"
+                        aria-hidden="true"
+                      />
+                    </span>
+                  )}
                   {exp.organization[locale]}
                 </p>
                 <p className="body-small mt-2 text-ink-muted">{exp.location[locale]}</p>
