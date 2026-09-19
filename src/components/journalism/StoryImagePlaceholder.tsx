@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface StoryImagePlaceholderProps {
@@ -6,6 +7,8 @@ interface StoryImagePlaceholderProps {
   ratio?: "3/2" | "4/3" | "16/9" | "1/1";
   className?: string;
   priority?: boolean;
+  /** Responsive sizes hint for next/image */
+  sizes?: string;
 }
 
 const ratioClasses = {
@@ -26,19 +29,21 @@ export function StoryImagePlaceholder({
   ratio = "3/2",
   className,
   priority = false,
+  sizes = "(min-width: 768px) 50vw, 100vw",
 }: StoryImagePlaceholderProps) {
   const aspectClass = ratioClasses[ratio];
 
   if (src) {
     return (
       <div className={cn("relative overflow-hidden bg-paper-deep border border-rule", aspectClass, className)}>
-        { }
-        <img
+        <Image
           src={src}
           alt={alt}
+          fill
+          sizes={sizes}
           loading={priority ? "eager" : "lazy"}
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover"
+          priority={priority}
+          className="object-cover"
         />
       </div>
     );

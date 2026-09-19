@@ -55,6 +55,7 @@ export interface Story {
 export interface Experience {
   id: string;
   organization: Localized<string>;
+  logo?: string;
   role: Localized<string>;
   startDate: string;
   endDate: string | null;

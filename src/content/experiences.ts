@@ -5,6 +5,7 @@ export const experiences: Experience[] = [
   {
     id: "exp-1",
     organization: L("Daily Banijjo Pratidin", "দৈনিক বাণিজ্য প্রতিদিন"),
+    logo: "/logo/banijjo-pratidin.jpeg",
     role: L("Senior Reporter", "সিনিয়র রিপোর্টার"),
     startDate: "2025",
     endDate: null,
@@ -16,6 +17,7 @@ export const experiences: Experience[] = [
   {
     id: "exp-2",
     organization: L("Dhaka Times", "ঢাকা টাইমস"),
+    logo: "/logo/dhaka-times.jpeg",
     role: L("Reporter", "রিপোর্টার"),
     startDate: "2024",
     endDate: "2025",
@@ -27,6 +29,7 @@ export const experiences: Experience[] = [
   {
     id: "exp-3",
     organization: L("Daily Banglar Nabokantha", "দৈনিক বাংলার নবোকণ্ঠ"),
+    logo: "/logo/bangla-nabakantha.jpeg",
     role: L("Reporter", "রিপোর্টার"),
     startDate: "2019",
     endDate: "2024",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { profile } from "@/content/profile";
 import { sectionLabels } from "@/content/site";
@@ -143,31 +144,44 @@ function HeroPortrait({ locale }: { locale: Locale }) {
     <div
       className="relative aspect-[4/5] w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[340px] xl:max-w-[380px] mx-auto lg:mx-0 border border-paper/20 bg-paper/5 flex flex-col items-center justify-center overflow-hidden"
       role="img"
-      aria-label={`${profile.portraitAlt[locale]} — ${locale === "en" ? "portrait to be added" : "ছবিটি শীঘ্রই যোগ হবে"}`}
+      aria-label={profile.portraitAlt[locale]}
     >
       {/* Inner frame */}
       <div
-        className="absolute inset-3 border border-paper/10 pointer-events-none"
+        className="absolute inset-3 border border-paper/10 pointer-events-none z-10"
         aria-hidden="true"
       />
 
-      {/* Large initials */}
-      <span
-        className="font-serif font-bold text-paper/20 leading-none"
-        style={{ fontSize: "clamp(4rem, 12vw, 8rem)" }}
-      >
-        AM
-      </span>
+      {profile.portrait ? (
+        <Image
+          src={profile.portrait}
+          alt={profile.portraitAlt[locale]}
+          fill
+          priority
+          sizes="(min-width: 1280px) 380px, (min-width: 1024px) 340px, (min-width: 640px) 320px, 280px"
+          className="object-cover"
+        />
+      ) : (
+        <>
+          {/* Large initials */}
+          <span
+            className="font-serif font-bold text-paper/20 leading-none"
+            style={{ fontSize: "clamp(4rem, 12vw, 8rem)" }}
+          >
+            AM
+          </span>
 
-      {/* Label */}
-      <div className="absolute bottom-6 left-6 right-6 text-center">
-        <p className="editorial-eyebrow text-paper/40">
-          {locale === "en" ? "Portrait" : "ছবি"}
-        </p>
-        <p className="text-xs text-paper/60 mt-1 font-medium uppercase tracking-[0.14em]">
-          {locale === "en" ? "To be added" : "শীঘ্রই যোগ হবে"}
-        </p>
-      </div>
+          {/* Label */}
+          <div className="absolute bottom-6 left-6 right-6 text-center">
+            <p className="editorial-eyebrow text-paper/40">
+              {locale === "en" ? "Portrait" : "ছবি"}
+            </p>
+            <p className="text-xs text-paper/60 mt-1 font-medium uppercase tracking-[0.14em]">
+              {locale === "en" ? "To be added" : "শীঘ্রই যোগ হবে"}
+            </p>
+          </div>
+        </>
+      )}
     </div>
   );
 }
