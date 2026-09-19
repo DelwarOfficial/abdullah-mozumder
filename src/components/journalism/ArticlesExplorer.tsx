@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
 import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { stories, storyCategories, getStoryYears, getStoryPublications } from "@/content/stories";
+import { formatDate, localeDigits, localeCount } from "@/lib/format";
 import type { Locale } from "@/content/types";
 
 interface ArticlesExplorerProps {
@@ -41,18 +42,18 @@ export function ArticlesExplorer({ locale }: ArticlesExplorerProps) {
   const hasFilters = query.trim() || category !== "All" || year !== "All" || publication !== "All";
 
   const L = {
-    chapter: locale === "en" ? "Latest" : "সাম্প্রতিক",
-    title: locale === "en" ? "Articles" : "প্রতিবেদন",
-    desc: locale === "en" ? "A text-first index of articles, interviews and features." : "প্রতিবেদন, সাক্ষাৎকার ও ফিচারের তালিকা।",
-    search: locale === "en" ? "Search" : "অনুসন্ধান",
-    searchPh: locale === "en" ? "Search headlines, summaries…" : "শিরোনাম, সারসংক্ষেপ…",
+    chapter: locale === "en" ? "Latest" : "সর্বশেষ",
+    title: locale === "en" ? "Articles" : "লেখা",
+    desc: locale === "en" ? "A text-first index of articles, interviews and features." : "লেখা, সাক্ষাৎকার ও ফিচারের সূচি।",
+    search: locale === "en" ? "Search" : "খুঁজুন",
+    searchPh: locale === "en" ? "Search headlines, summaries…" : "শিরোনাম বা সারসংক্ষেপ লিখুন…",
     cat: locale === "en" ? "Category" : "বিভাগ",
-    yr: locale === "en" ? "Year" : "বছর",
-    pub: locale === "en" ? "Publication" : "প্রকাশনা",
+    yr: locale === "en" ? "Year" : "সাল",
+    pub: locale === "en" ? "Publication" : "পত্রিকা",
     all: locale === "en" ? "All" : "সব",
-    noMatch: locale === "en" ? "No articles match." : "কোনো প্রতিবেদন পাওয়া যায়নি।",
-    tryAdj: locale === "en" ? "Try adjusting or resetting filters." : "ফিল্টার পরিবর্তন করুন বা রিসেট করুন।",
-    reset: locale === "en" ? "Reset filters" : "ফিল্টার রিসেট",
+    noMatch: locale === "en" ? "No articles match." : "কোনো লেখা মেলেনি।",
+    tryAdj: locale === "en" ? "Try adjusting or resetting filters." : "ফিল্টার বদলে দেখুন, অথবা সব মুছুন।",
+    reset: locale === "en" ? "Reset filters" : "ফিল্টার মুছুন",
   };
 
   return (
@@ -70,11 +71,11 @@ export function ArticlesExplorer({ locale }: ArticlesExplorerProps) {
           </div>
         </div>
         <div className="md:col-span-2"><label htmlFor="art-cat" className="editorial-eyebrow block mb-2">{L.cat}</label><select id="art-cat" value={category} onChange={(e) => setCategory(e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink">{categories.map((c) => <option key={c} value={c}>{c}</option>)}</select></div>
-        <div className="md:col-span-2"><label htmlFor="art-yr" className="editorial-eyebrow block mb-2">{L.yr}</label><select id="art-yr" value={year} onChange={(e) => setYear(e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink"><option value="All">{L.all}</option>{years.map((y) => <option key={y} value={y}>{y}</option>)}</select></div>
+        <div className="md:col-span-2"><label htmlFor="art-yr" className="editorial-eyebrow block mb-2">{L.yr}</label><select id="art-yr" value={year} onChange={(e) => setYear(e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink"><option value="All">{L.all}</option>{years.map((y) => <option key={y} value={y}>{localeDigits(y, locale)}</option>)}</select></div>
         <div className="md:col-span-2"><label htmlFor="art-pb" className="editorial-eyebrow block mb-2">{L.pub}</label><select id="art-pb" value={publication} onChange={(e) => setPublication(e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink"><option value="All">{L.all}</option>{publications.map((p) => <option key={p} value={p}>{p}</option>)}</select></div>
       </div>
 
-      {hasFilters && <div className="mt-4 flex items-center gap-3"><span className="text-xs text-ink-muted">{filtered.length} {locale === "en" ? (filtered.length === 1 ? "article" : "articles") : "প্রতিবেদন"}</span><button type="button" onClick={reset} className="text-xs text-newsroom hover:text-newsroom-deep underline underline-offset-2 transition-colors">{L.reset}</button></div>}
+      {hasFilters && <div className="mt-4 flex items-center gap-3"><span className="text-xs text-ink-muted">{localeCount(filtered.length, locale, "articles", "লেখা")}</span><button type="button" onClick={reset} className="text-xs text-newsroom hover:text-newsroom-deep underline underline-offset-2 transition-colors">{L.reset}</button></div>}
 
       <ol className="mt-8 divide-y divide-rule border-t border-rule">
         {filtered.length === 0 ? (
@@ -83,7 +84,7 @@ export function ArticlesExplorer({ locale }: ArticlesExplorerProps) {
           filtered.map((story) => (
             <li key={story.id}>
               <Link href={`/${locale}/articles/${story.slug}`} className="group grid grid-cols-12 gap-4 py-6 hover:bg-paper-deep/30 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
-                <div className="col-span-12 sm:col-span-2"><span className="editorial-meta text-ink-muted">{story.publishedLabel[locale]}</span></div>
+                <div className="col-span-12 sm:col-span-2"><span className="editorial-meta text-ink-muted">{formatDate(story.publishedAt, locale)}</span></div>
                 <div className="col-span-12 sm:col-span-8">
                   <div className="flex items-baseline gap-3 mb-1.5"><span className="editorial-eyebrow text-newsroom">{story.category[locale]}</span><span className="text-xs text-ink-muted">{story.publication[locale]}</span></div>
                   <h2 className="font-serif text-xl sm:text-2xl text-ink leading-tight tracking-[-0.01em] group-hover:text-newsroom transition-colors">{story.title[locale]}</h2>

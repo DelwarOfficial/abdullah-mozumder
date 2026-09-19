@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { siteConfig, navItems, navContact, languageLabels } from "@/content/site";
+import { siteConfig, navItems, navContact, sectionLabels, languageLabels } from "@/content/site";
 import { siteName } from "@/content/site-messages";
 import { profile } from "@/content/profile";
 import { memberships } from "@/content/memberships";
-import { localeHref, otherLocale } from "@/i18n/config";
+import { localeHref } from "@/i18n/config";
 import type { Locale } from "@/content/types";
 
 interface SiteFooterProps {
@@ -15,11 +15,11 @@ export function SiteFooter({ locale }: SiteFooterProps) {
 
   return (
     <footer className="mt-auto bg-night text-paper">
-      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12 py-16 sm:py-24">
+      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12 py-14 sm:py-24">
         {/* Top — oversized name */}
-        <div className="border-b border-paper/15 pb-12 mb-12">
+        <div className="border-b border-paper/15 pb-10 mb-10 lg:pb-12 lg:mb-12">
           <p className="editorial-eyebrow text-paper/50 mb-4">
-            {locale === "en" ? "Journalist" : "সাংবাদিক"}
+            {sectionLabels.journalist[locale]}
           </p>
           <h2 className="font-serif font-bold text-paper leading-[0.9] tracking-[-0.03em] text-[clamp(2.5rem,9vw,7rem)]">
             {siteName[locale].split(" ").map((part, i) => (
@@ -41,12 +41,12 @@ export function SiteFooter({ locale }: SiteFooterProps) {
         {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-12 gap-8 lg:gap-12">
           {/* Nav */}
-          <nav className="col-span-1 md:col-span-3" aria-label="Footer">
+          <nav className="col-span-1 md:col-span-3" aria-label={locale === "en" ? "Footer" : "ফুটার মেনু"}>
             <p className="editorial-eyebrow text-paper/50 mb-5">
-              {locale === "en" ? "Navigate" : "নেভিগেট"}
+              {sectionLabels.navigate[locale]}
             </p>
             <ul className="space-y-3">
-              {[{ label: { en: "Home", bn: "হোম" }, href: "/" }, ...navItems].map((item) => (
+              {[{ label: sectionLabels.home, href: "/" }, ...navItems].map((item) => (
                 <li key={item.href}>
                   <Link
                     href={localeHref(item.href, locale)}
@@ -63,7 +63,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
           {/* Contact */}
           <div className="col-span-1 md:col-span-3">
             <p className="editorial-eyebrow text-paper/50 mb-5">
-              {locale === "en" ? "Contact" : "যোগাযোগ"}
+              {sectionLabels.contact[locale]}
             </p>
             <a
               href={`mailto:${siteConfig.email}`}
@@ -86,7 +86,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
           {/* Memberships */}
           <div className="col-span-2 md:col-span-3">
             <p className="editorial-eyebrow text-paper/50 mb-5">
-              {locale === "en" ? "Memberships" : "সদস্যপদ"}
+              {sectionLabels.memberships[locale]}
             </p>
             <ul className="space-y-4">
               {memberships.map((m) => (
@@ -106,10 +106,10 @@ export function SiteFooter({ locale }: SiteFooterProps) {
             </ul>
           </div>
 
-          {/* Language */}
+          {/* Language + location */}
           <div className="col-span-2 md:col-span-3">
             <p className="editorial-eyebrow text-paper/50 mb-5">
-              {locale === "en" ? "Language" : "ভাষা"}
+              {sectionLabels.language[locale]}
             </p>
             <div className="flex items-center gap-3" style={{ fontSize: "clamp(0.9375rem, 1vw, 1.0625rem)" }}>
               <Link
@@ -128,7 +128,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
             </div>
             <div className="mt-8 pt-6 border-t border-paper/10">
               <p className="editorial-eyebrow text-paper/50 mb-2">
-                {locale === "en" ? "Based in" : "অবস্থান"}
+                {sectionLabels.basedIn[locale]}
               </p>
               <p className="text-paper/70" style={{ fontSize: "0.9375rem" }}>{profile.location[locale]}</p>
             </div>
@@ -138,10 +138,10 @@ export function SiteFooter({ locale }: SiteFooterProps) {
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-paper/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <p className="text-paper/50" style={{ fontSize: "0.8125rem" }}>
-            © {year} {siteName[locale]}. {locale === "en" ? "All rights reserved." : "সর্বস্বত্ব সংরক্ষিত।"}
+            © {year} {siteName[locale]}. {sectionLabels.allRights[locale]}
           </p>
           <p className="text-paper/50 font-mono" style={{ fontSize: "0.8125rem" }}>
-            {locale === "en" ? "Dhaka, Bangladesh" : "ঢাকা, বাংলাদেশ"}
+            {profile.location[locale]}
           </p>
         </div>
       </div>

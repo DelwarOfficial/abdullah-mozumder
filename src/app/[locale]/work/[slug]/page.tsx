@@ -8,11 +8,13 @@ import { Divider } from "@/components/ui-editorial/Divider";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { ShareButtons } from "@/components/journalism/ShareButtons";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/seo/StructuredData";
-import { stories, getStoryBySlug, getRelatedStories, getNextPrevStories, type Story, type StoryBlock } from "@/content/stories";
+import { stories, getStoryBySlug, getRelatedStories, getNextPrevStories } from "@/content/stories";
+import type { Story, StoryBlock } from "@/content/types";
 import { siteConfig } from "@/content/site";
 import { siteName } from "@/content/site-messages";
 import { profile } from "@/content/profile";
 import { isLocale, otherLocale } from "@/i18n/config";
+import { formatDate } from "@/lib/format";
 import type { Locale, Localized } from "@/content/types";
 
 interface PageProps {
@@ -84,7 +86,7 @@ export default async function StoryPage({ params }: PageProps) {
             <div className="flex items-center justify-center gap-3 mb-4">
               <span className="editorial-eyebrow text-newsroom">{story.category[locale]}</span>
               <span aria-hidden="true" className="text-rule">·</span>
-              <span className="editorial-eyebrow">{story.publishedLabel[locale]}</span>
+              <span className="editorial-eyebrow">{formatDate(story.publishedAt, locale)}</span>
               {story.isDemo && <span className="inline-block border border-newsroom/40 text-newsroom text-[0.625rem] uppercase tracking-[0.14em] px-1.5 py-0.5">{locale === "en" ? "Demo" : "নমুনা"}</span>}
             </div>
             <h1 className="font-serif font-bold text-ink leading-[1.1] tracking-[-0.02em]" style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}>{story.title[locale]}</h1>
@@ -151,7 +153,7 @@ export default async function StoryPage({ params }: PageProps) {
                   <li key={r.id}>
                     <Link href={`/${locale}/work/${r.slug}`} className="group block">
                       <StoryImagePlaceholder ratio="4/3" alt={r.heroAlt[locale]} src={r.heroImage} className="group-hover:scale-[1.02] transition-transform duration-500" />
-                      <div className="mt-3 flex items-baseline gap-3 mb-1"><span className="editorial-eyebrow text-newsroom">{r.category[locale]}</span><span className="editorial-eyebrow">{r.publishedLabel[locale]}</span></div>
+                      <div className="mt-3 flex items-baseline gap-3 mb-1"><span className="editorial-eyebrow text-newsroom">{r.category[locale]}</span><span className="editorial-eyebrow">{formatDate(r.publishedAt, locale)}</span></div>
                       <h3 className="font-serif text-lg font-semibold text-ink group-hover:text-newsroom transition-colors">{r.title[locale]}</h3>
                     </Link>
                   </li>

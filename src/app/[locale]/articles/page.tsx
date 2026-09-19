@@ -16,10 +16,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const locale: Locale = isLocale(localeParam) ? localeParam : "en";
   const other = otherLocale[locale];
   return {
-    title: locale === "en" ? "Articles" : "প্রতিবেদন",
+    title: locale === "en" ? "Articles" : "লেখা",
     description: locale === "en"
       ? `Articles by ${siteName.en} — a text-first index of journalism.`
-      : `${siteName.bn}-এর প্রতিবেদন — সাংবাদিকতার কাজের সূচি।`,
+      : `${siteName.bn}-এর লেখা — সাংবাদিকতার কাজের সূচি।`,
     alternates: {
       canonical: `/${locale}/articles`,
       languages: { [locale]: `/${locale}/articles`, [other]: `/${other}/articles`, "x-default": "/en/articles" },
@@ -35,7 +35,7 @@ export default async function ArticlesPage({ params }: PageProps) {
     <>
       <BreadcrumbSchema items={[
         { name: siteName[locale], url: `${siteConfig.url}/${locale}` },
-        { name: locale === "en" ? "Articles" : "প্রতিবেদন", url: `${siteConfig.url}/${locale}/articles` },
+        { name: locale === "en" ? "Articles" : "লেখা", url: `${siteConfig.url}/${locale}/articles` },
       ]} />
       <ArticlesExplorer locale={locale} />
     </>

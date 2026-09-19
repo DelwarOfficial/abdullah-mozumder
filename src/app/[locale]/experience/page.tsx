@@ -8,6 +8,7 @@ import { siteConfig } from "@/content/site";
 import { siteName } from "@/content/site-messages";
 import { isLocale, otherLocale, localeHref } from "@/i18n/config";
 import { cn } from "@/lib/utils";
+import { localeDigits } from "@/lib/format";
 import type { Locale } from "@/content/types";
 
 interface PageProps {
@@ -70,7 +71,7 @@ export default async function ExperiencePage({ params }: PageProps) {
               >
                 <div className="col-span-12 lg:col-span-4">
                   <div className="flex items-baseline gap-2 lg:gap-3">
-                    <span className={cn("font-serif font-bold tabular-nums leading-none tracking-[-0.02em]", exp.current ? "text-newsroom" : "text-ink")} style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>{exp.startDate}</span>
+                    <span className={cn("font-serif font-bold tabular-nums leading-none tracking-[-0.02em]", exp.current ? "text-newsroom" : "text-ink")} style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>{localeDigits(exp.startDate, locale)}</span>
                     <span className="text-ink-muted font-serif text-2xl sm:text-3xl">—</span>
                     <span className={cn("font-serif font-bold tabular-nums leading-none tracking-[-0.02em]", exp.current ? "text-newsroom" : "text-ink-soft")} style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>{exp.current ? (locale === "en" ? "Now" : "এখ") : exp.endDate}</span>
                   </div>

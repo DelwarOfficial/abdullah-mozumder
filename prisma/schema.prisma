@@ -30,3 +30,18 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+/// Contact-form submissions. Durable record even if email delivery fails.
+model ContactMessage {
+  id           String   @id @default(cuid())
+  name         String
+  email        String
+  organization String?
+  subject      String
+  message      String
+  ip           String?
+  emailSent    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  @@index([createdAt])
+}

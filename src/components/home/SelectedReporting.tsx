@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { getFeaturedStory, stories } from "@/content/stories";
+import { formatDate } from "@/lib/format";
 import { localeHref } from "@/i18n/config";
 import type { Locale } from "@/content/types";
 
@@ -14,10 +15,12 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
   const lead = getFeaturedStory();
   if (!lead) return null;
 
+  // Index-safe: the section renders gracefully even when stories[] shrinks
   const secondary = stories.filter((s) => s.id !== lead.id).slice(0, 3);
-  const chapterLabel = locale === "en" ? "Selected Reporting" : "নির্বাচিত প্রতিবেদন";
-  const sectionTitle = locale === "en" ? "Selected Journalism" : "নির্বাচিত সাংবাদিকতা";
-  const allWorkLabel = locale === "en" ? "All Work" : "সব কাজ";
+  const brief = stories.find((s) => s.id !== lead.id && !secondary.includes(s)) ?? null;
+  const chapterLabel = locale === "en" ? "Selected Reporting" : "বাছাই করা প্রতিবেদন";
+  const sectionTitle = locale === "en" ? "Selected Journalism" : "নির্বাচিত প্রতিবেদন";
+  const allWorkLabel = locale === "en" ? "All Work" : "সব প্রতিবেদন";
   const readLabel = locale === "en" ? "Read Report" : "প্রতিবেদন পড়ুন";
 
   return (
@@ -69,7 +72,7 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
                 <div className="flex items-baseline gap-3 mb-5">
                   <span className="editorial-eyebrow text-newsroom">{lead.category[locale]}</span>
                   <span aria-hidden="true" className="text-rule">·</span>
-                  <span className="editorial-eyebrow">{lead.publishedLabel[locale]}</span>
+                  <span className="editorial-eyebrow">{formatDate(lead.publishedAt, locale)}</span>
                   {lead.isDemo && (
                     <span className="ml-1 inline-block border border-newsroom/40 text-newsroom text-[0.6875rem] uppercase tracking-[0.14em] px-1.5 py-0.5">
                       {locale === "en" ? "Demo" : "নমুনা"}
@@ -107,6 +110,7 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
         <div className="grid grid-cols-12 gap-x-4 lg:gap-x-10 gap-y-16 border-t border-rule pt-12 lg:pt-20">
 
           {/* Story 2 — image-left / text-right (horizontal split) */}
+          {secondary[0] && (
           <article className="col-span-12 lg:col-span-7 group">
             <Link
               href={localeHref(`/work/${secondary[0].slug}`, locale)}
@@ -124,7 +128,7 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
                 <div className="col-span-12 sm:col-span-7 sm:pt-2">
                   <div className="flex items-baseline gap-3 mb-3">
                     <span className="editorial-eyebrow text-newsroom">{secondary[0].category[locale]}</span>
-                    <span className="editorial-eyebrow">{secondary[0].publishedLabel[locale]}</span>
+                    <span className="editorial-eyebrow">{formatDate(secondary[0].publishedAt, locale)}</span>
                   </div>
                   <h3
                     className="font-serif font-semibold text-ink leading-[1.1] tracking-[-0.015em] group-hover:text-newsroom transition-colors"
@@ -143,8 +147,10 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
               </div>
             </Link>
           </article>
+          )}
 
           {/* Story 3 — text-led, no image, larger headline */}
+          {secondary[1] && (
           <article className="col-span-12 lg:col-span-5 group lg:pt-8">
             <Link
               href={localeHref(`/work/${secondary[1].slug}`, locale)}
@@ -152,7 +158,7 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
             >
               <div className="flex items-baseline gap-3 mb-4">
                 <span className="editorial-eyebrow text-newsroom">{secondary[1].category[locale]}</span>
-                <span className="editorial-eyebrow">{secondary[1].publishedLabel[locale]}</span>
+                <span className="editorial-eyebrow">{formatDate(secondary[1].publishedAt, locale)}</span>
               </div>
               <h3
                 className="font-serif font-semibold text-ink leading-[1.1] tracking-[-0.015em] group-hover:text-newsroom transition-colors"
@@ -169,8 +175,10 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
               </div>
             </Link>
           </article>
+          )}
 
           {/* Story 4 — smaller, image-on-top with wider ratio */}
+          {secondary[2] && (
           <article className="col-span-12 lg:col-span-5 group">
             <Link
               href={localeHref(`/work/${secondary[2].slug}`, locale)}
@@ -184,7 +192,7 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
               />
               <div className="mt-4 flex items-baseline gap-3 mb-2">
                 <span className="editorial-eyebrow text-newsroom">{secondary[2].category[locale]}</span>
-                <span className="editorial-eyebrow">{secondary[2].publishedLabel[locale]}</span>
+                <span className="editorial-eyebrow">{formatDate(secondary[2].publishedAt, locale)}</span>
               </div>
               <h3
                 className="font-serif font-semibold text-ink leading-[1.15] tracking-[-0.01em] group-hover:text-newsroom transition-colors"
@@ -198,19 +206,20 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
               </div>
             </Link>
           </article>
+          )}
 
           {/* Story 5 — compact text-only brief, balances the row */}
-          {stories[4] && (
+          {brief && (
             <article className="col-span-12 lg:col-span-7 group lg:pt-4">
               <Link
-                href={localeHref(`/work/${stories[4].slug}`, locale)}
+                href={localeHref(`/work/${brief.slug}`, locale)}
                 className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
               >
                 <div className="grid grid-cols-12 gap-4 items-baseline">
                   <div className="col-span-12 sm:col-span-3">
                     <div className="flex flex-col gap-1">
-                      <span className="editorial-eyebrow text-newsroom">{stories[4].category[locale]}</span>
-                      <span className="editorial-eyebrow">{stories[4].publishedLabel[locale]}</span>
+                      <span className="editorial-eyebrow text-newsroom">{brief.category[locale]}</span>
+                      <span className="editorial-eyebrow">{formatDate(brief.publishedAt, locale)}</span>
                     </div>
                   </div>
                   <div className="col-span-12 sm:col-span-9">
@@ -218,13 +227,13 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
                       className="font-serif font-semibold text-ink leading-[1.15] tracking-[-0.01em] group-hover:text-newsroom transition-colors"
                       style={{ fontSize: "clamp(1.25rem, 1.75vw, 1.5rem)" }}
                     >
-                      {stories[4].title[locale]}
+                      {brief.title[locale]}
                     </h3>
                     <p className="body-small mt-2 line-clamp-2">
-                      {stories[4].summary[locale]}
+                      {brief.summary[locale]}
                     </p>
                     <div className="mt-3 flex items-center gap-3">
-                      <span className="editorial-meta">{stories[4].publication[locale]}</span>
+                      <span className="editorial-meta">{brief.publication[locale]}</span>
                       <ArrowRight className="h-3.5 w-3.5 text-ink-muted group-hover:text-newsroom group-hover:translate-x-1 transition-all" aria-hidden="true" />
                     </div>
                   </div>

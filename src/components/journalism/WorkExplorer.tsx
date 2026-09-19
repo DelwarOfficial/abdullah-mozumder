@@ -8,6 +8,7 @@ import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { stories, storyCategories, getStoryYears, getStoryPublications } from "@/content/stories";
 import { cn } from "@/lib/utils";
+import { formatDate, localeDigits, localeCount } from "@/lib/format";
 import type { Locale } from "@/content/types";
 
 interface WorkExplorerProps {
@@ -60,19 +61,19 @@ export function WorkExplorer({ locale }: WorkExplorerProps) {
   const hasFilters = activeCategory !== "All" || activeYear !== "All" || activePublication !== "All" || query.trim().length > 0;
 
   const labels = {
-    chapter: locale === "en" ? "Selected Reporting" : "নির্বাচিত প্রতিবেদন",
-    title: locale === "en" ? "Work" : "কাজ",
-    desc: locale === "en" ? "Reporting, features, interviews and multimedia. Filter by category, year or publication." : "প্রতিবেদন, ফিচার, সাক্ষাৎকার ও মাল্টিমিডিয়া। বিভাগ, বছর বা প্রকাশনা অনুযায়ী ফিল্টার করুন।",
-    search: locale === "en" ? "Search" : "অনুসন্ধান",
-    searchPh: locale === "en" ? "Headlines, summaries, tags…" : "শিরোনাম, সারসংক্ষেপ, ট্যাগ…",
+    chapter: locale === "en" ? "Selected Reporting" : "বাছাই করা প্রতিবেদন",
+    title: locale === "en" ? "Work" : "প্রতিবেদন",
+    desc: locale === "en" ? "Reporting, features, interviews and multimedia. Filter by category, year or publication." : "প্রতিবেদন, ফিচার, সাক্ষাৎকার ও মাল্টিমিডিয়া — বিভাগ, সাল বা পত্রিকা অনুযায়ী খুঁজুন।",
+    search: locale === "en" ? "Search" : "খুঁজুন",
+    searchPh: locale === "en" ? "Headlines, summaries, tags…" : "শিরোনাম, সারসংক্ষেপ বা ট্যাগ লিখুন…",
     category: locale === "en" ? "Category" : "বিভাগ",
-    year: locale === "en" ? "Year" : "বছর",
-    pub: locale === "en" ? "Publication" : "প্রকাশনা",
-    results: (n: number) => `${n} ${n === 1 ? (locale === "en" ? "story" : "প্রতিবেদন") : (locale === "en" ? "stories" : "প্রতিবেদন")}`,
-    reset: locale === "en" ? "Reset all" : "সব রিসেট",
-    noResults: locale === "en" ? "No stories match the current filters." : "বর্তমান ফিল্টারে কোনো প্রতিবেদন নেই।",
-    tryReset: locale === "en" ? "Try removing a filter or resetting all filters." : "একটি ফিল্টার সরান বা সব রিসেট করুন।",
-    resetBtn: locale === "en" ? "Reset filters" : "ফিল্টার রিসেট",
+    year: locale === "en" ? "Year" : "সাল",
+    pub: locale === "en" ? "Publication" : "পত্রিকা",
+    results: (n: number) => localeCount(n, locale, "stories", "প্রতিবেদন"),
+    reset: locale === "en" ? "Reset all" : "সব মুছুন",
+    noResults: locale === "en" ? "No stories match the current filters." : "এই ফিল্টারে কোনো প্রতিবেদন মেলেনি।",
+    tryReset: locale === "en" ? "Try removing a filter or resetting all filters." : "একটি ফিল্টার বাদ দিয়ে দেখুন, অথবা সব ফিল্টার মুছুন।",
+    resetBtn: locale === "en" ? "Reset filters" : "ফিল্টার মুছুন",
   };
 
   return (
@@ -98,7 +99,7 @@ export function WorkExplorer({ locale }: WorkExplorerProps) {
             <label htmlFor="filter-year" className="editorial-eyebrow block mb-2">{labels.year}</label>
             <select id="filter-year" value={activeYear} onChange={(e) => updateParam("year", e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink">
               <option value="All">{locale === "en" ? "All" : "সব"}</option>
-              {years.map((y) => <option key={y} value={y}>{y}</option>)}
+              {years.map((y) => <option key={y} value={y}>{localeDigits(y, locale)}</option>)}
             </select>
           </div>
           <div className="lg:col-span-2">
@@ -137,7 +138,7 @@ export function WorkExplorer({ locale }: WorkExplorerProps) {
                       <StoryImagePlaceholder ratio="4/3" alt={story.heroAlt[locale]} src={story.heroImage} className="group-hover:scale-[1.02] transition-transform duration-500 ease-out" />
                       <div className="mt-4 flex items-baseline gap-3 mb-1.5">
                         <span className="editorial-eyebrow text-newsroom">{story.category[locale]}</span>
-                        <span className="editorial-eyebrow">{story.publishedLabel[locale]}</span>
+                        <span className="editorial-eyebrow">{formatDate(story.publishedAt, locale)}</span>
                       </div>
                       <h2 className="font-serif text-xl sm:text-2xl font-semibold text-ink leading-tight tracking-[-0.01em] group-hover:text-newsroom transition-colors">{story.title[locale]}</h2>
                       <p className="mt-2 text-sm text-ink-soft leading-relaxed line-clamp-3">{story.summary[locale]}</p>

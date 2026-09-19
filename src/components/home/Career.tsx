@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { experiences } from "@/content/experiences";
+import { localeDigits } from "@/lib/format";
 import { localeHref } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/content/types";
@@ -61,7 +62,7 @@ export function Career({ locale }: CareerProps) {
                     )}
                     style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
                   >
-                    {exp.current ? exp.startDate : exp.startDate}
+                    {localeDigits(exp.startDate, locale)}
                   </span>
                   <span className="text-ink-muted font-serif text-2xl sm:text-3xl">—</span>
                   <span
@@ -71,7 +72,7 @@ export function Career({ locale }: CareerProps) {
                     )}
                     style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
                   >
-                    {exp.current ? (locale === "en" ? "Now" : "এখ") : exp.endDate}
+                    {exp.current ? nowLabel : localeDigits(exp.endDate ?? "", locale)}
                   </span>
                 </div>
               </div>

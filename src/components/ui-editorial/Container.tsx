@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
-import type { ReactNode } from "react";
+import type { ReactNode, ElementType } from "react";
 
 interface ContainerProps {
   children: ReactNode;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
+  as?: ElementType;
   size?: "default" | "wide" | "narrow" | "reading";
 }
 

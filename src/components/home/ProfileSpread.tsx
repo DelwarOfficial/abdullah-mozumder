@@ -13,8 +13,8 @@ export function ProfileSpread({ locale }: ProfileSpreadProps) {
   const chapterLabel = locale === "en" ? "Profile" : "পরিচিতি";
   const heading = locale === "en"
     ? ["A journalist", "covering", "stories that count."]
-    : ["একজন সাংবাদিক", "যিনি তুলে ধরেন", "গুরুত্বপূর্ণ গল্প।"];
-  const ctaLabel = locale === "en" ? "More about Abdullah" : "আরও পরিচিতি";
+    : ["একজন সাংবাদিক,", "গুরুত্বপূর্ণ গল্পের", "সন্ধানে।"];
+  const ctaLabel = locale === "en" ? "More about Abdullah" : "বিস্তারিত পরিচিতি";
 
   return (
     <section aria-labelledby="profile-heading" className="py-16 sm:py-24 lg:py-32 bg-paper-deep/30">
@@ -45,7 +45,7 @@ export function ProfileSpread({ locale }: ProfileSpreadProps) {
           <div className="col-span-12 lg:col-span-5 lg:col-start-7">
             <div className="max-w-[52ch]">
               <p
-                className="font-serif text-ink leading-[1.8] first-letter:font-bold first-letter:text-[5rem] first-letter:font-serif first-letter:mr-3 first-letter:float-left first-letter:leading-[0.85] first-letter:mt-1 first-letter:text-newsroom"
+                className="drop-cap font-serif text-ink leading-[1.8]"
                 style={{ fontSize: "clamp(1.125rem, 1.4vw, 1.375rem)" }}
               >
                 {profile.longBio[locale]}
@@ -67,7 +67,7 @@ export function ProfileSpread({ locale }: ProfileSpreadProps) {
             <dl className="grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-rule pt-8">
               <div>
                 <dt className="editorial-eyebrow mb-2">
-                  {locale === "en" ? "Current" : "বর্তমান"}
+                  {locale === "en" ? "Current" : "বর্তমানে"}
                 </dt>
                 <dd className="body-readable font-medium text-ink">
                   {profile.currentPosition.role[locale]}

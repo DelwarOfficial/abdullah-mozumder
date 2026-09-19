@@ -13,11 +13,11 @@ export function ContactCTA({ locale }: ContactCTAProps) {
   const chapterLabel = locale === "en" ? "Contact" : "যোগাযোগ";
   const heading = locale === "en"
     ? ["Have a story?", "Let's talk."]
-    : ["গল্প আছে?", "কথা বলা যাক।"];
+    : ["কোনো তথ্য বা", "খবর জানাতে চান?"];
   const ctaLabel = locale === "en" ? "Get in touch" : "যোগাযোগ করুন";
   const desc = locale === "en"
     ? "Reach out for editorial enquiries, story tips, media collaborations, speaking engagements or any professional communication."
-    : "সম্পাদকীয় অনুসন্ধান, খবরের ইঙ্গিত, গণমাধ্যম সহযোগিতা, আলোচনা বা যেকোনো পেশাগত যোগাযোগের জন্য।";
+    : "সংবাদ বা তথ্য জানাতে, সাক্ষাৎকার বা সহযোগিতার বিষয়ে কথা বলতে — সরাসরি যোগাযোগ করুন।";
 
   return (
     <section aria-labelledby="contact-heading" className="py-24 sm:py-32 lg:py-48">

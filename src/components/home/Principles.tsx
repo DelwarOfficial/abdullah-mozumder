@@ -13,15 +13,15 @@ export function Principles({ locale }: PrinciplesProps) {
         { word: "Verification.", desc: "Multiple sources. Primary documents. On-the-ground reporting wherever possible." },
       ]
     : [
-        { word: "নির্ভুলতা।", desc: "প্রকাশের আগে প্রতিটি তথ্য যাচাই করা। প্রয়োজনে দ্রুত সংশোধন প্রকাশ।" },
-        { word: "স্বচ্ছতা।", desc: "সহজ ভাষা, পরিষ্কার গঠন। পাঠকের বোঝার সুবিধার জন্য গল্প সাজানো।" },
-        { word: "জনস্বার্থ।", desc: "পাঠকের স্বার্থে প্রতিবেদন — ক্ষমতাবানের স্বার্থে নয়।" },
-        { word: "যাচাই।", desc: "একাধিক উৎস। মূল নথি। সরাসরি মাঠপর্যায়ের প্রতিবেদন।" },
+        { word: "নির্ভুলতা।", desc: "প্রকাশের আগে প্রতিটি তথ্য যাচাই। ভুল হলে দ্রুত সংশোধন।" },
+        { word: "স্পষ্টতা।", desc: "সহজ ভাষায় লেখা, যেন পাঠক অকষ্টে পুরো ঘটনা বুঝতে পারেন।" },
+        { word: "জনস্বার্থ।", desc: "প্রতিবেদন হবে পাঠকের জন্য — ক্ষমতাবানের জন্য নয়।" },
+        { word: "যাচাই।", desc: "একাধিক সূত্র, মূল দলিল, আর যেখানে সম্ভব — নিজে গিয়ে দেখা।" },
       ];
 
   const heading = locale === "en"
     ? ["Accuracy.", "Clarity.", "Public Interest."]
-    : ["নির্ভুলতা।", "স্বচ্ছতা।", "জনস্বার্থ।"];
+    : ["নির্ভুলতা।", "স্পষ্টতা।", "জনস্বার্থ।"];
 
   return (
     <section
@@ -82,7 +82,7 @@ export function Principles({ locale }: PrinciplesProps) {
         >
           {locale === "en"
             ? "Editorial copy describing the website's journalism principles. Not a direct quote attributed to the journalist."
-            : "ওয়েবসাইটের সাংবাদিকতার নীতি বর্ণনাকারী সম্পাদকীয় লেখা। এটি সাংবাদিকের সরাসরি উক্তি নয়।"}
+            : "এই ওয়েবসাইটের সাংবাদিকতা-নীতি বোঝানোর জন্য লেখা বিবৃতি — সাংবাদিকের সরাসরি উক্তি নয়।"}
         </p>
       </div>
     </section>

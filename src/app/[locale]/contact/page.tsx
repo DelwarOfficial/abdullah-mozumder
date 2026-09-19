@@ -67,7 +67,7 @@ export default async function ContactPage({ params }: PageProps) {
               <p className="mt-6 text-lg text-ink-soft leading-relaxed max-w-md">
                 {locale === "en"
                   ? "Reach out for editorial enquiries, story tips, media collaborations, speaking engagements or any professional communication."
-                  : "সম্পাদকীয় অনুসন্ধান, খবরের ইঙ্গিত, গণমাধ্যম সহযোগিতা, আলোচনা বা যেকোনো পেশাগত যোগাযোগের জন্য।"}
+                  : "সংবাদ বা তথ্য জানাতে, সাক্ষাৎকার বা সহযোগিতার বিষয়ে কথা বলতে — সরাসরি লিখুন। বার্তা সরাসরি সাংবাদিকের কাছে পৌঁছে যাবে।"}
               </p>
               <dl className="mt-10 space-y-5 border-t border-rule pt-6">
                 <div>
@@ -79,7 +79,7 @@ export default async function ContactPage({ params }: PageProps) {
                   <dd className="mt-1 text-sm text-ink-soft font-medium">{profile.location[locale]}</dd>
                 </div>
                 <div>
-                  <dt className="editorial-eyebrow">{locale === "en" ? "Currently" : "বর্তমান"}</dt>
+                  <dt className="editorial-eyebrow">{locale === "en" ? "Currently" : "বর্তমানে"}</dt>
                   <dd className="mt-1 text-sm text-ink-soft font-medium">{profile.currentPosition.role[locale]}<br />{profile.currentPosition.organization[locale]}</dd>
                 </div>
               </dl>

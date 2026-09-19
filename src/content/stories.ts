@@ -11,6 +11,11 @@ import { L } from "./types";
  *
  * Both English and Bangla versions are provided. Bangla translations of demo
  * content are illustrative — replace with verified Bangla article text.
+ *
+ * FALLBACK POLICY: every story must ship hand-written copy for both locales.
+ * If a Bangla version is missing, do NOT machine-translate at runtime —
+ * either show the English text with a language indication or omit the
+ * Bangla listing. `translationStatus: "needs-review"` marks unreviewed copy.
  */
 
 const demoBodyEn: StoryBlock[] = [
@@ -64,22 +69,22 @@ export const stories: Story[] = [
     slug: "sample-report-title",
     deck: L(
       "Demo lead story — replace with verified published reporting.",
-      "নমুনা মুখ্য প্রতিবেদন — যাচাইকৃত প্রকাশিত প্রতিবেদন দিয়ে প্রতিস্থাপন করুন।",
+      "নমুনা প্রতিবেদন — যাচাইকৃত প্রকাশিত প্রতিবেদন দিয়ে প্রতিস্থাপন করুন।",
     ),
     summary: L(
       "This is a placeholder portfolio item. Replace with Abdullah's actual published reporting before launch.",
-      "এটি একটি নমুনা পোর্টফোলিও আইটেম। লঞ্চের আগে আবদুল্লাহর প্রকৃত প্রকাশিত প্রতিবেদন দিয়ে প্রতিস্থাপন করুন।",
+      "এটি নমুনা পোর্টফোলিও আইটেম। লঞ্চের আগে প্রকৃত প্রকাশিত প্রতিবেদন দিয়ে প্রতিস্থাপন করুন।",
     ),
     category: L("Reports", "প্রতিবেদন"),
     title: L("Sample Report Title", "নমুনা প্রতিবেদন শিরোনাম"),
     publication: L("Daily Banijjo Pratidin", "দৈনিক বাণিজ্য প্রতিদিন"),
     publishedAt: "2026-09-12",
     publishedLabel: L("12 Sep 2026", "১২ সেপ্টেম্বর ২০২৬"),
-    readingTime: L("6 min read", "৬ মিনিট পড়া"),
-    heroImage: null,
+    readingTime: L("6 min read", "পড়তে ৬ মিনিট"),
+    heroImage: "/image/duj-council.jpg",
     heroAlt: L(
-      "Demo hero image — replace with the article's actual hero image.",
-      "নমুনা হিরো ছবি — প্রতিবেদনের প্রকৃত হিরো ছবি দিয়ে প্রতিস্থাপন করুন।",
+      "Speaking at the Dhaka Union of Journalists triennial council",
+      "ঢাকা ইউনিয়ন অব জার্নালিস্টস-এর ত্রি-বার্ষিক সম্মেলনে বক্তব্য",
     ),
     caption: L(
       "Demo caption. Replace with the verified image caption and credit.",
@@ -109,11 +114,11 @@ export const stories: Story[] = [
     publication: L("Dhaka Times", "ঢাকা টাইমস"),
     publishedAt: "2026-08-04",
     publishedLabel: L("04 Aug 2026", "০৪ আগস্ট ২০২৬"),
-    readingTime: L("8 min read", "৮ মিনিট পড়া"),
-    heroImage: null,
+    readingTime: L("8 min read", "পড়তে ৮ মিনিট"),
+    heroImage: "/image/duj-rally.jpg",
     heroAlt: L(
-      "Demo hero image — replace with the article's actual hero image.",
-      "নমুনা হিরো ছবি — প্রতিবেদনের প্রকৃত হিরো ছবি দিয়ে প্রতিস্থাপন করুন।",
+      "Journalists at a Dhaka Union of Journalists rally",
+      "ঢাকা ইউনিয়ন অব জার্নালিস্টসের সমাবেশে সাংবাদিকেরা",
     ),
     caption: null,
     body: demoBody,
@@ -140,11 +145,11 @@ export const stories: Story[] = [
     publication: L("Daily Banglar Nabokantha", "দৈনিক বাংলার নবোকণ্ঠ"),
     publishedAt: "2026-06-21",
     publishedLabel: L("21 Jun 2026", "২১ জুন ২০২৬"),
-    readingTime: L("5 min read", "৫ মিনিট পড়া"),
-    heroImage: null,
+    readingTime: L("5 min read", "পড়তে ৫ মিনিট"),
+    heroImage: "/image/newsroom-meeting.jpg",
     heroAlt: L(
-      "Demo hero image — replace with the article's actual hero image.",
-      "নমুনা হিরো ছবি — প্রতিবেদনের প্রকৃত হিরো ছবি দিয়ে প্রতিস্থাপন করুন।",
+      "A conversation with senior editors at a newsroom meeting",
+      "নিউজরুমে জ্যেষ্ঠ সম্পাদকদের সঙ্গে আলাপ",
     ),
     caption: null,
     body: demoBody,
@@ -171,11 +176,11 @@ export const stories: Story[] = [
     publication: L("Daily Banijjo Pratidin", "দৈনিক বাণিজ্য প্রতিদিন"),
     publishedAt: "2026-04-09",
     publishedLabel: L("09 Apr 2026", "০৯ এপ্রিল ২০২৬"),
-    readingTime: L("4 min read", "৪ মিনিট পড়া"),
-    heroImage: null,
+    readingTime: L("4 min read", "পড়তে ৪ মিনিট"),
+    heroImage: "/image/field-reporting.jpg",
     heroAlt: L(
-      "Demo hero image — replace with the article's actual hero image.",
-      "নমুনা হিরো ছবি — প্রতিবেদনের প্রকৃত হিরো ছবি দিয়ে প্রতিস্থাপন করুন।",
+      "On assignment among a street crowd in Dhaka",
+      "ঢাকার রাসপথে প্রতিবেদন নিয়ে মাঠে",
     ),
     caption: null,
     body: demoBody,
@@ -202,11 +207,11 @@ export const stories: Story[] = [
     publication: L("Dhaka Times", "ঢাকা টাইমস"),
     publishedAt: "2026-02-17",
     publishedLabel: L("17 Feb 2026", "১৭ ফেব্রুয়ারি ২০২৬"),
-    readingTime: L("7 min read", "৭ মিনিট পড়া"),
-    heroImage: null,
+    readingTime: L("7 min read", "পড়তে ৭ মিনিট"),
+    heroImage: "/image/journalists-rally.jpg",
     heroAlt: L(
-      "Demo hero image — replace with the article's actual hero image.",
-      "নমুনা হিরো ছবি — প্রতিবেদনের প্রকৃত হিরো ছবি দিয়ে প্রতিস্থাপন করুন।",
+      "Journalists at a unity rally in Dhaka",
+      "ঢাকায় সাংবাদিকদের ঐক্য সমাবেশ",
     ),
     caption: null,
     body: demoBody,

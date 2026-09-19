@@ -45,6 +45,11 @@ export interface Story {
   location: Localized<string> | null;
   featured: boolean;
   isDemo: boolean;
+  /**
+   * Editorial review flag for the Bangla copy — NEVER rendered publicly.
+   * "needs-review" = Bangla text awaiting a human editor's pass.
+   */
+  translationStatus?: "reviewed" | "needs-review";
 }
 
 export interface Experience {

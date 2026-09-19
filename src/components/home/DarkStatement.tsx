@@ -55,7 +55,7 @@ export function DarkStatement({ locale }: DarkStatementProps) {
           <p className="mt-12 text-sm sm:text-base text-paper/50 italic max-w-xl">
             {locale === "en"
               ? "Editorial site copy describing journalism principles. Not a direct quote attributed to the journalist."
-              : "সাংবাদিকতার নীতি বর্ণনাকারী সম্পাদকীয় লেখা। এটি সাংবাদিকের সরাসরি উক্তি নয়।"}
+              : "এই বিবৃতিটি সাংবাদিকতার কর্মপদ্ধতি বোঝাতে লেখা — সাংবাদিকের সরাসরি উক্তি নয়।"}
           </p>
         </div>
       </div>

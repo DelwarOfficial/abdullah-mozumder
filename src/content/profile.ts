@@ -6,7 +6,7 @@ export const profile: Profile = {
   slug: "abdullah-mozomdar",
   headline: L(
     "Reporting stories that matter.",
-    "খবরের পেছনের গল্প তুলে ধরা।",
+    "যে গল্প জানা জরুরি।",
   ),
   title: L("Journalist & Senior Reporter", "সাংবাদিক ও সিনিয়র রিপোর্টার"),
   shortBio: L(
@@ -19,10 +19,10 @@ export const profile: Profile = {
   ),
   location: L("Dhaka, Bangladesh", "ঢাকা, বাংলাদেশ"),
   email: "amozomdar@gmail.com",
-  portrait: null,
+  portrait: "/image/profile.jpg",
   portraitAlt: L(
     "Portrait of Abdullah Mozomdar",
-    "আবদুল্লাহ মোজোমদারের প্রতিকৃতি",
+    "আবদুল্লাহ মোজোমদারের ছবি",
   ),
   languages: L(["Bangla", "English"], ["বাংলা", "English"]),
   currentPosition: {

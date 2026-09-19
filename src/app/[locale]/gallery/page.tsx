@@ -8,6 +8,7 @@ import { galleryItems } from "@/content/gallery";
 import { siteConfig } from "@/content/site";
 import { siteName } from "@/content/site-messages";
 import { isLocale, otherLocale, localeHref } from "@/i18n/config";
+import { toBnDigits } from "@/lib/format";
 import type { Locale } from "@/content/types";
 
 interface PageProps {
@@ -47,10 +48,14 @@ export default async function GalleryPage({ params }: PageProps) {
           <ChapterMark number="—" label={locale === "en" ? "Gallery" : "গ্যালারি"} locale={locale} className="mt-10 mb-6" />
           <h1 className="section-headline text-ink mb-6" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>{locale === "en" ? "Photojournalism" : "ফটোসাংবাদিকতা"}</h1>
           <p className="text-lg text-ink-soft leading-relaxed max-w-2xl mb-4">
-            {galleryItems.length} {locale === "en" ? "images. Click any image to open the viewer. Use arrow keys to navigate, Escape to close." : "ছবি। যেকোনো ছবিতে ক্লিক করুন। তীর কী দিয়ে চলুন, এস্কেপ দিয়ে বন্ধ করুন।"}
+            {locale === "en"
+              ? `${galleryItems.length} images. Click any image to open the viewer. Use arrow keys to navigate, Escape to close.`
+              : `${toBnDigits(galleryItems.length)}টি ছবি। ছবিতে চাপ দিলে বড় করে দেখা যাবে; পাশের তীরে চলুন, Escape দিয়ে বন্ধ করুন।`}
           </p>
           <p className="text-xs text-ink-muted italic max-w-xl mb-10">
-            {locale === "en" ? "The gallery currently shows placeholder frames. Replace with the journalist's verified field photographs." : "গ্যালারিতে বর্তমানে নমুনা ফ্রেম রয়েছে। সাংবাদিকের যাচাইকৃত মাঠপর্যায়ের ছবি দিয়ে প্রতিস্থাপন করুন।"}
+            {locale === "en"
+              ? "The gallery currently shows placeholder frames. Replace with the journalist's verified field photographs."
+              : "গ্যালারিতে এখনো নমুনা ফ্রেম বসানো আছে — সাংবাদিকের যাচাই করা মাঠপর্যায়ের ছবি দিয়ে এগুলো বসবে।"}
           </p>
           <GalleryExplorer locale={locale} />
         </div>

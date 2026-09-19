@@ -18,10 +18,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const locale: Locale = isLocale(localeParam) ? localeParam : "en";
   const other = otherLocale[locale];
   return {
-    title: locale === "en" ? "Work" : "কাজ",
+    title: locale === "en" ? "Work" : "প্রতিবেদন",
     description: locale === "en"
       ? `Selected journalism by ${siteName.en}. Reports, features, interviews and multimedia.`
-      : `${siteName.bn}-এর নির্বাচিত সাংবাদিকতা। প্রতিবেদন, ফিচার, সাক্ষাৎকার ও মাল্টিমিডিয়া।`,
+      : `${siteName.bn}-এর নির্বাচিত প্রতিবেদন — ফিচার, সাক্ষাৎকার ও মাল্টিমিডিয়া।`,
     alternates: {
       canonical: `/${locale}/work`,
       languages: { [locale]: `/${locale}/work`, [other]: `/${other}/work`, "x-default": "/en/work" },
@@ -42,7 +42,7 @@ export default async function WorkPage({ params }: PageProps) {
     <>
       <BreadcrumbSchema items={[
         { name: siteName[locale], url: `${siteConfig.url}/${locale}` },
-        { name: locale === "en" ? "Work" : "কাজ", url: `${siteConfig.url}/${locale}/work` },
+        { name: locale === "en" ? "Work" : "প্রতিবেদন", url: `${siteConfig.url}/${locale}/work` },
       ]} />
       <Suspense fallback={<div className="pt-32 text-center text-sm text-ink-muted">{locale === "en" ? "Loading…" : "লোড হচ্ছে…"}</div>}>
         <WorkExplorer locale={locale} />

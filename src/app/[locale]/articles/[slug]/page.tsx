@@ -9,11 +9,13 @@ import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceho
 import { ShareButtons } from "@/components/journalism/ShareButtons";
 import { ReadingProgress } from "@/components/journalism/ReadingProgress";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/seo/StructuredData";
-import { stories, getStoryBySlug, getRelatedStories, getNextPrevStories, type Story, type StoryBlock } from "@/content/stories";
+import { stories, getStoryBySlug, getRelatedStories, getNextPrevStories } from "@/content/stories";
+import type { Story, StoryBlock } from "@/content/types";
 import { siteConfig } from "@/content/site";
 import { siteName } from "@/content/site-messages";
 import { profile } from "@/content/profile";
 import { isLocale, otherLocale } from "@/i18n/config";
+import { formatDate } from "@/lib/format";
 import type { Locale } from "@/content/types";
 
 interface PageProps {
@@ -74,7 +76,7 @@ export default async function ArticlePage({ params }: PageProps) {
             <div className="flex items-center gap-3 mb-4">
               <span className="editorial-eyebrow text-newsroom">{story.category[locale]}</span>
               <span aria-hidden="true" className="text-rule">·</span>
-              <span className="editorial-eyebrow">{story.publishedLabel[locale]}</span>
+              <span className="editorial-eyebrow">{formatDate(story.publishedAt, locale)}</span>
               {story.isDemo && <span className="inline-block border border-newsroom/40 text-newsroom text-[0.625rem] uppercase tracking-[0.14em] px-1.5 py-0.5">{locale === "en" ? "Demo" : "নমুনা"}</span>}
             </div>
             <h1 className="font-serif font-bold text-ink leading-[1.1] tracking-[-0.02em]" style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>{story.title[locale]}</h1>
@@ -116,7 +118,7 @@ export default async function ArticlePage({ params }: PageProps) {
               <Divider label={locale === "en" ? "Related" : "সম্পর্কিত"} />
               <h2 id="related-heading" className="sr-only">{locale === "en" ? "Related articles" : "সম্পর্কিত প্রতিবেদন"}</h2>
               <ul className="grid grid-cols-1 gap-4 mt-6">
-                {related.map((r) => (<li key={r.id}><Link href={`/${locale}/articles/${r.slug}`} className="group block py-4 border-b border-rule-soft hover:bg-paper-deep/30 transition-colors"><div className="flex items-baseline gap-3 mb-1"><span className="editorial-eyebrow text-newsroom">{r.category[locale]}</span><span className="text-xs text-ink-muted">{r.publishedLabel[locale]}</span></div><h3 className="font-serif text-lg text-ink group-hover:text-newsroom transition-colors">{r.title[locale]}</h3></Link></li>))}
+                {related.map((r) => (<li key={r.id}><Link href={`/${locale}/articles/${r.slug}`} className="group block py-4 border-b border-rule-soft hover:bg-paper-deep/30 transition-colors"><div className="flex items-baseline gap-3 mb-1"><span className="editorial-eyebrow text-newsroom">{r.category[locale]}</span><span className="text-xs text-ink-muted">{formatDate(r.publishedAt, locale)}</span></div><h3 className="font-serif text-lg text-ink group-hover:text-newsroom transition-colors">{r.title[locale]}</h3></Link></li>))}
               </ul>
             </section>
           )}

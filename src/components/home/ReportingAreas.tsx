@@ -8,13 +8,13 @@ interface ReportingAreasProps {
 
 export function ReportingAreas({ locale }: ReportingAreasProps) {
   const chapterLabel = locale === "en" ? "Beats" : "প্রতিবেদনের ক্ষেত্র";
-  const sectionTitle = locale === "en" ? "Areas of Reporting" : "প্রতিবেদনের ক্ষেত্রসমূহ";
+  const sectionTitle = locale === "en" ? "Areas of Reporting" : "প্রতিবেদনের ক্ষেত্র";
   const demoLabel = locale === "en" ? "Demo" : "নমুনা";
   const demoNoteTitle = locale === "en" ? "Demo Content" : "নমুনা বিষয়বস্তু";
   const skillsLabel = locale === "en" ? "Digital Skills" : "ডিজিটাল দক্ষতা";
   const disclaimer = locale === "en"
     ? "The CV does not establish specific reporting beats. The labels below are placeholders demonstrating the data architecture. Replace with verified specialties before launch."
-    : "সিভিতে নির্দিষ্ট প্রতিবেদনের ক্ষেত্র উল্লেখ নেই। নিচের লেবেলগুলো তথ্যকাঠামো প্রদর্শনের নমুনা। লঞ্চের আগে যাচাইকৃত বিষয় দিয়ে প্রতিস্থাপন করুন।";
+    : "সিভিতে নির্দিষ্ট প্রতিবেদনের ক্ষেত্র উল্লেখ নেই। নিচের বিষয়গুলো কাঠামো দেখানোর নমুনা মাত্র — লঞ্চের আগে যাচাই করা তথ্য দিয়ে বসানো হবে।";
 
   return (
     <section aria-labelledby="areas-heading" className="py-16 sm:py-24 lg:py-32 bg-paper-deep/30">

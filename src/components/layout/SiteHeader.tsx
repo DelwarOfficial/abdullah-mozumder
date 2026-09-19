@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/content/site";
 import { navItems, navContact, languageLabels } from "@/content/site";
 import { siteName } from "@/content/site-messages";
-import { MobileNav } from "./MobileNav";
+import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { localeHref, otherLocale } from "@/i18n/config";
 import type { Locale } from "@/content/types";
@@ -34,37 +34,38 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
 
   // Determine if we're on the homepage (hero is full-screen there)
   const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
+  const onHero = isHome && atTop;
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        isHome && atTop
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-safe-header",
+        onHero
           ? "bg-transparent"
           : "bg-paper/95 backdrop-blur-md border-b border-rule supports-[backdrop-filter]:bg-paper/85",
       )}
     >
-      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-[1560px] px-4 sm:px-8 lg:px-12">
         <div className={cn(
-          "flex items-center justify-between gap-4 transition-all duration-300",
-          scrolled ? "h-14" : "h-16 lg:h-20",
+          "flex items-center justify-between gap-3 transition-all duration-300",
+          scrolled ? "h-14" : "h-14 lg:h-20",
         )}>
           {/* Wordmark */}
           <Link
             href={localeHref("/", locale)}
             className="group inline-flex items-baseline gap-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink shrink-0"
-            aria-label={`${siteName[locale]} — home`}
+            aria-label={`${siteName[locale]} — ${locale === "en" ? "home" : "হোম"}`}
           >
             <span className={cn(
               "font-serif font-bold tracking-tight transition-all duration-300",
-              isHome && atTop ? "text-paper" : "text-ink",
-              scrolled ? "text-xl" : "text-2xl",
+              onHero ? "text-paper" : "text-ink",
+              scrolled ? "text-xl" : "text-xl lg:text-2xl",
             )}>
               {siteConfig.wordmark}
             </span>
             <span className={cn(
               "hidden sm:inline-block font-sans font-medium tracking-wide transition-all duration-300 text-xs",
-              isHome && atTop ? "text-paper/70" : "text-ink-muted",
+              onHero ? "text-paper/70" : "text-ink-muted",
             )}>
               {siteName[locale]}
             </span>
@@ -72,7 +73,7 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
 
           {/* Desktop nav */}
           <nav
-            aria-label="Primary"
+            aria-label={locale === "en" ? "Primary" : "প্রধান মেনু"}
             className="hidden lg:flex items-center gap-8"
           >
             {navItems.map((item) => {
@@ -85,7 +86,7 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "relative font-medium tracking-wide transition-colors hover:opacity-100",
-                    isHome && atTop
+                    onHero
                       ? isActive ? "text-paper" : "text-paper/70 hover:text-paper"
                       : isActive ? "text-ink" : "text-ink-muted hover:text-ink",
                   )}
@@ -96,7 +97,7 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
                     aria-hidden="true"
                     className={cn(
                       "absolute -bottom-1.5 left-0 h-[2px] transition-all duration-300",
-                      isHome && atTop ? "bg-paper" : "bg-newsroom",
+                      onHero ? "bg-paper" : "bg-newsroom",
                       isActive ? "w-full" : "w-0",
                     )}
                   />
@@ -105,20 +106,25 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
             })}
           </nav>
 
-          {/* Right cluster */}
-          <div className="flex items-center gap-3 lg:gap-5">
+          {/* Right cluster — brand, theme, language, contact */}
+          <div className="flex items-center gap-1.5 sm:gap-3 lg:gap-5">
+            <ThemeToggle
+              locale={locale}
+              className={cn(onHero ? "text-paper" : "text-ink")}
+            />
+
             <LanguageSwitcher
               locale={locale}
               other={otherLocale[locale]}
               otherLabel={languageLabels[otherLocale[locale]]}
-              isHome={isHome && atTop}
+              isHome={onHero}
             />
 
             <Link
               href={localeHref(navContact.href, locale)}
               className={cn(
                 "hidden lg:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors duration-300",
-                isHome && atTop
+                onHero
                   ? "border border-paper/30 text-paper hover:bg-paper hover:text-ink"
                   : "bg-ink text-paper hover:bg-newsroom",
               )}
@@ -126,8 +132,6 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
               {navContact.label[locale]}
               <span aria-hidden="true" className="text-[0.9em]">↗</span>
             </Link>
-
-            <MobileNav locale={locale} isHome={isHome && atTop} />
           </div>
         </div>
       </div>

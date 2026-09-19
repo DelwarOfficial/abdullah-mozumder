@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { profile } from "@/content/profile";
-import { siteName } from "@/content/site-messages";
+import { sectionLabels } from "@/content/site";
 import { localeHref } from "@/i18n/config";
 import type { Locale } from "@/content/types";
 
@@ -24,7 +24,7 @@ export function Hero({ locale }: HeroProps) {
           className="font-serif font-bold text-paper/[0.04] leading-none tracking-[-0.05em]"
           style={{ fontSize: "clamp(12rem, 35vw, 32rem)" }}
         >
-          {locale === "en" ? "AM" : "আম"}
+          AM
         </span>
       </div>
 
@@ -41,7 +41,7 @@ export function Hero({ locale }: HeroProps) {
               {/* Eyebrow */}
               <div className="flex items-center gap-3 mb-6 lg:mb-10">
                 <span className="editorial-eyebrow text-paper/60">
-                  {locale === "en" ? "Journalist" : "সাংবাদিক"} · {profile.location[locale]}
+                  {sectionLabels.journalist[locale]} · {profile.location[locale]}
                 </span>
                 <span className="h-px flex-1 max-w-[120px] bg-paper/20" aria-hidden="true" />
               </div>
@@ -60,9 +60,8 @@ export function Hero({ locale }: HeroProps) {
                   </>
                 ) : (
                   <>
-                    <span className="block">খবরের পেছনের</span>
-                    <span className="block italic font-normal text-newsroom">গল্প</span>
-                    <span className="block">তুলে ধরা।</span>
+                    <span className="block">যে গল্প</span>
+                    <span className="block italic font-normal text-newsroom">জানা জরুরি।</span>
                   </>
                 )}
               </h1>
@@ -117,7 +116,7 @@ export function Hero({ locale }: HeroProps) {
                 href={localeHref("/work", locale)}
                 className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-paper hover:text-newsroom transition-colors"
               >
-                {locale === "en" ? "Selected Reporting" : "নির্বাচিত প্রতিবেদন"}
+                {locale === "en" ? "Selected Reporting" : "নির্বাচিত প্রতিবেদন দেখুন"}
                 <ArrowRight
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5"
                   aria-hidden="true"
@@ -128,7 +127,7 @@ export function Hero({ locale }: HeroProps) {
             {/* Scroll hint */}
             <div className="col-span-12 lg:col-span-4 lg:text-right hidden lg:flex items-end justify-end gap-2 text-paper/50">
               <span className="editorial-eyebrow">
-                {locale === "en" ? "Scroll" : "স্ক্রল"}
+                {locale === "en" ? "Scroll" : "নিচে দেখুন"}
               </span>
               <ArrowDown className="h-4 w-4 animate-scroll-hint" aria-hidden="true" />
             </div>
@@ -142,9 +141,9 @@ export function Hero({ locale }: HeroProps) {
 function HeroPortrait({ locale }: { locale: Locale }) {
   return (
     <div
-      className="relative aspect-[4/5] w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[340px] xl:max-w-[380px] border border-paper/20 bg-paper/5 flex flex-col items-center justify-center overflow-hidden"
+      className="relative aspect-[4/5] w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[340px] xl:max-w-[380px] mx-auto lg:mx-0 border border-paper/20 bg-paper/5 flex flex-col items-center justify-center overflow-hidden"
       role="img"
-      aria-label={`${profile.portraitAlt[locale]} — ${locale === "en" ? "portrait to be added" : "প্রতিকৃতি যোগ করা হবে"}`}
+      aria-label={`${profile.portraitAlt[locale]} — ${locale === "en" ? "portrait to be added" : "ছবিটি শীঘ্রই যোগ হবে"}`}
     >
       {/* Inner frame */}
       <div
@@ -163,10 +162,10 @@ function HeroPortrait({ locale }: { locale: Locale }) {
       {/* Label */}
       <div className="absolute bottom-6 left-6 right-6 text-center">
         <p className="editorial-eyebrow text-paper/40">
-          {locale === "en" ? "Portrait" : "প্রতিকৃতি"}
+          {locale === "en" ? "Portrait" : "ছবি"}
         </p>
         <p className="text-xs text-paper/60 mt-1 font-medium uppercase tracking-[0.14em]">
-          {locale === "en" ? "To be added" : "যোগ করা হবে"}
+          {locale === "en" ? "To be added" : "শীঘ্রই যোগ হবে"}
         </p>
       </div>
     </div>

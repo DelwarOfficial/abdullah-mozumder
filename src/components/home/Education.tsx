@@ -1,5 +1,6 @@
 import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { education } from "@/content/education";
+import { localeDigits } from "@/lib/format";
 import type { Locale } from "@/content/types";
 
 interface EducationProps {
@@ -9,7 +10,6 @@ interface EducationProps {
 export function Education({ locale }: EducationProps) {
   const chapterLabel = locale === "en" ? "Education" : "শিক্ষাজীবন";
   const sectionTitle = locale === "en" ? "Academic Background" : "শিক্ষাজীবন";
-  const univLabel = locale === "en" ? "Dhaka" : "ঢাকা";
 
   return (
     <section aria-labelledby="education-heading" className="py-16 sm:py-24 lg:py-32">
@@ -33,7 +33,7 @@ export function Education({ locale }: EducationProps) {
                     className="font-serif font-bold text-newsroom tabular-nums leading-none tracking-[-0.02em]"
                     style={{ fontSize: "clamp(3rem, 6vw, 5rem)" }}
                   >
-                    {edu.year}
+                    {localeDigits(edu.year, locale)}
                   </span>
                 </div>
 
@@ -49,7 +49,7 @@ export function Education({ locale }: EducationProps) {
                     className="mt-3 font-serif text-ink-soft italic"
                     style={{ fontSize: "clamp(1.0625rem, 1.4vw, 1.375rem)" }}
                   >
-                    {locale === "en" ? "in" : "বিষয়ে"} {edu.field[locale]}
+                    {locale === "en" ? `in ${edu.field.en}` : `${edu.field.bn} বিষয়ে`}
                   </p>
                 </div>
 
@@ -61,7 +61,6 @@ export function Education({ locale }: EducationProps) {
                   >
                     {edu.institution[locale]}
                   </p>
-                  <p className="editorial-meta mt-2">{univLabel}</p>
                 </div>
               </div>
             </div>

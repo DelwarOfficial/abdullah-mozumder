@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { stories } from "@/content/stories";
+import { formatDate } from "@/lib/format";
 import { localeHref } from "@/i18n/config";
 import type { Locale } from "@/content/types";
 
@@ -33,9 +34,9 @@ export function NewsDesk({ locale }: NewsDeskProps) {
     return () => window.removeEventListener("mousemove", onMove);
   }, [hoveredIdx]);
 
-  const chapterLabel = locale === "en" ? "Latest" : "সাম্প্রতিক";
+  const chapterLabel = locale === "en" ? "Latest" : "সর্বশেষ";
   const sectionTitle = locale === "en" ? "Latest Reporting" : "সাম্প্রতিক প্রতিবেদন";
-  const allLabel = locale === "en" ? "All Articles" : "সব প্রতিবেদন";
+  const allLabel = locale === "en" ? "All Articles" : "সব লেখা";
 
   return (
     <section aria-labelledby="news-desk-heading" className="py-16 sm:py-24 lg:py-32 bg-paper-deep/30">
@@ -64,6 +65,13 @@ export function NewsDesk({ locale }: NewsDeskProps) {
 
         {/* News desk list — headline dominates each row */}
         <div ref={containerRef} className="relative">
+          {items.length === 0 ? (
+            <p className="border-t border-rule py-16 text-ink-muted body-readable">
+              {locale === "en"
+                ? "The reporting archive is being prepared. Selected work will appear here."
+                : "প্রতিবেদনের সংগ্রহ প্রস্তুত হচ্ছে। বাছাই করা কাজ শিগগিরই এখানে যোগ হবে।"}
+            </p>
+          ) : (
           <ol className="divide-y divide-rule border-t border-rule">
             {items.map((story, idx) => (
               <li key={story.id}>
@@ -76,7 +84,7 @@ export function NewsDesk({ locale }: NewsDeskProps) {
                   {/* Date + Category — left, small metadata */}
                   <div className="col-span-12 lg:col-span-3 flex flex-col gap-1.5">
                     <span className="editorial-meta text-ink">
-                      {story.publishedLabel[locale]}
+                      {formatDate(story.publishedAt, locale)}
                     </span>
                     <span className="editorial-eyebrow text-newsroom">
                       {story.category[locale]}
@@ -113,6 +121,7 @@ export function NewsDesk({ locale }: NewsDeskProps) {
               </li>
             ))}
           </ol>
+          )}
 
           {/* Floating thumbnail preview — desktop only */}
           {hoveredIdx !== null && (

@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { LocaleSetter } from "@/components/layout/LocaleSetter";
+import { MobileShell } from "@/components/layout/MobileShell";
 import { isLocale } from "@/i18n/config";
 import { siteConfig } from "@/content/site";
 import { siteName, siteDescription } from "@/content/site-messages";
@@ -65,12 +66,15 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   return (
     <>
       <LocaleSetter locale={locale} />
-      <SkipLink />
+      <SkipLink locale={locale} />
       <SiteHeader locale={locale} />
       <main id="main" className="flex-1">
         {children}
       </main>
       <SiteFooter locale={locale} />
+      {/* Spacer so footer content clears the mobile bottom navigation */}
+      <div aria-hidden="true" className="h-16 lg:hidden bg-night" />
+      <MobileShell locale={locale} />
     </>
   );
 }

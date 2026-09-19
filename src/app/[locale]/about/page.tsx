@@ -13,6 +13,7 @@ import { education } from "@/content/education";
 import { memberships } from "@/content/memberships";
 import { reportingAreas, digitalSkills } from "@/content/reporting-areas";
 import { isLocale, otherLocale, localeHref } from "@/i18n/config";
+import { localeDigits } from "@/lib/format";
 import type { Locale } from "@/content/types";
 
 interface PageProps {
@@ -79,9 +80,7 @@ export default async function AboutPage({ params }: PageProps) {
               <Divider variant="thick" className="mt-10 mb-10" />
 
               <div className="prose-editorial" style={{ marginInline: 0 }}>
-                <p className="first-letter:font-bold first-letter:text-[4rem] first-letter:font-serif first-letter:mr-3 first-letter:float-left first-letter:leading-[0.85] first-letter:mt-1 first-letter:text-newsroom">
-                  {profile.longBio[locale]}
-                </p>
+                <p className="drop-cap">{profile.longBio[locale]}</p>
               </div>
 
               {/* Memberships */}
@@ -104,10 +103,10 @@ export default async function AboutPage({ params }: PageProps) {
                   {education.map((edu) => (
                     <li key={edu.id} className="grid grid-cols-12 gap-4 items-baseline">
                       <div className="col-span-3 sm:col-span-2">
-                        <span className="font-serif text-2xl sm:text-3xl text-newsroom font-bold">{edu.year}</span>
+                        <span className="font-serif text-2xl sm:text-3xl text-newsroom font-bold">{localeDigits(edu.year, locale)}</span>
                       </div>
                       <div className="col-span-9 sm:col-span-10">
-                        <h3 className="font-serif text-lg font-semibold text-ink">{edu.degree[locale]} {locale === "en" ? "in" : "বিষয়ে"} {edu.field[locale]}</h3>
+                        <h3 className="font-serif text-lg font-semibold text-ink">{edu.degree[locale]}{locale === "en" ? ` in ${edu.field.en}` : ` — ${edu.field.bn}`}</h3>
                         <p className="text-sm text-ink-soft">{edu.institution[locale]}</p>
                       </div>
                     </li>
@@ -160,7 +159,7 @@ export default async function AboutPage({ params }: PageProps) {
                   <dd className="mt-1 text-sm text-ink-soft font-medium">{profile.location[locale]}</dd>
                 </div>
                 <div>
-                  <dt className="editorial-eyebrow">{locale === "en" ? "Currently" : "বর্তমান"}</dt>
+                  <dt className="editorial-eyebrow">{locale === "en" ? "Currently" : "বর্তমানে"}</dt>
                   <dd className="mt-1 text-sm text-ink-soft font-medium">{profile.currentPosition.role[locale]}<br />{profile.currentPosition.organization[locale]}</dd>
                 </div>
                 <div>

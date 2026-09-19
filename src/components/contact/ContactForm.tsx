@@ -33,16 +33,16 @@ export function ContactForm({ locale }: ContactFormProps) {
     send: locale === "en" ? "Send message" : "বার্তা পাঠান",
     sending: locale === "en" ? "Sending…" : "পাঠানো হচ্ছে…",
     sent: locale === "en" ? "Message sent." : "বার্তা পাঠানো হয়েছে।",
-    sentDesc: locale === "en" ? "Thank you for reaching out. Your message has been received and will be reviewed shortly." : "যোগাযোগের জন্য ধন্যবাদ। আপনার বার্তা গ্রহণ করা হয়েছে এবং শীঘ্রই পর্যালোচনা করা হবে।",
-    sendAnother: locale === "en" ? "Send another message" : "আরেকটি বার্তা পাঠান",
-    couldNotSend: locale === "en" ? "Could not send message." : "বার্তা পাঠানো যায়নি।",
+    sentDesc: locale === "en" ? "Thank you for reaching out. Your message has been received and will be reviewed shortly." : "যোগাযোগের জন্য ধন্যবাদ। আপনার বার্তা এসে পড়েছে — শিগগিরই দেখা হবে।",
+    sendAnother: locale === "en" ? "Send another message" : "আরেকটি বার্তা লিখুন",
+    couldNotSend: locale === "en" ? "Could not send message." : "বার্তা পাঠানো যায়নি। আবার চেষ্টা করুন।",
     orEmail: locale === "en" ? "Or email directly" : "অথবা সরাসরি ইমেইল করুন",
-    errName: locale === "en" ? "Please enter your name." : "অনুগ্রহ করে নাম লিখুন।",
-    errEmailReq: locale === "en" ? "Please enter your email." : "অনুগ্রহ করে ইমেইল লিখুন।",
-    errEmailVal: locale === "en" ? "Please enter a valid email address." : "একটি সঠিক ইমেইল ঠিকানা লিখুন।",
-    errSubject: locale === "en" ? "Please enter a subject." : "অনুগ্রহ করে বিষয় লিখুন।",
-    errMsgReq: locale === "en" ? "Please enter a message." : "অনুগ্রহ করে বার্তা লিখুন।",
-    errMsgLen: locale === "en" ? "Message should be at least 10 characters." : "বার্তা কমপক্ষে ১০ অক্ষরের হতে হবে।",
+    errName: locale === "en" ? "Please enter your name." : "আপনার নাম লিখুন।",
+    errEmailReq: locale === "en" ? "Please enter your email." : "ইমেইল ঠিকানা লিখুন।",
+    errEmailVal: locale === "en" ? "Please enter a valid email address." : "সঠিক ইমেইল ঠিকানা লিখুন।",
+    errSubject: locale === "en" ? "Please enter a subject." : "বিষয় লিখুন।",
+    errMsgReq: locale === "en" ? "Please enter a message." : "বার্তা লিখুন।",
+    errMsgLen: locale === "en" ? "Message should be at least 10 characters." : "বার্তাটি কমপক্ষে ১০ অক্ষরের হতে হবে।",
   };
 
   const validate = (): FieldErrors => {
@@ -70,9 +70,16 @@ export function ContactForm({ locale }: ContactFormProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+      if (res.status === 422) {
+        const data = await res.json().catch(() => ({}));
+        const fields: FieldErrors = data.fields ?? {};
+        setErrors((prev) => ({ ...prev, ...fields }));
+        setStatus("idle");
+        return;
+      }
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || (locale === "en" ? "Something went wrong." : "কিছু সমস্যা হয়েছে।"));
+        throw new Error(data.error || (locale === "en" ? "Something went wrong." : "কিছু একটা সমস্যা হয়েছে।"));
       }
       setStatus("success");
       setForm(initialState);

@@ -54,6 +54,7 @@
 
 :root {
   --radius: 4px;
+  color-scheme: light;
 
   /* Editorial palette */
   --paper: #F7F6F2;
@@ -106,39 +107,46 @@
   --sidebar-ring: #111111;
 }
 
+/*
+  Editorial dark theme — late-night newsroom, not inverted light.
+  Chapter rhythm is preserved: --paper surfaces lift slightly above
+  --background, while --night sections stay the deepest black.
+*/
 .dark {
-  --paper: #14130F;
-  --paper-deep: #1B1A16;
-  --paper-darker: #222019;
-  --ink: #F2EFE6;
-  --ink-soft: #D8D5CC;
-  --ink-muted: #9A978E;
-  --rule: #2C2A24;
-  --rule-soft: #211F1A;
-  --newsroom: #D4495C;
-  --newsroom-deep: #B83247;
-  --newsroom-soft: #2A171A;
-  --night: #14130F;
-  --night-deep: #0A0908;
+  color-scheme: dark;
 
-  --background: #14130F;
-  --foreground: #F2EFE6;
-  --card: #1B1A16;
-  --card-foreground: #F2EFE6;
-  --popover: #1B1A16;
-  --popover-foreground: #F2EFE6;
-  --primary: #F2EFE6;
-  --primary-foreground: #14130F;
-  --secondary: #1B1A16;
-  --secondary-foreground: #F2EFE6;
-  --muted: #1B1A16;
-  --muted-foreground: #9A978E;
-  --accent: #D4495C;
-  --accent-foreground: #14130F;
+  --paper: #141311;
+  --paper-deep: #191815;
+  --paper-darker: #201E1A;
+  --ink: #EDEAE1;
+  --ink-soft: #D5D2C8;
+  --ink-muted: #999689;
+  --rule: #2B2922;
+  --rule-soft: #232118;
+  --newsroom: #D45062;
+  --newsroom-deep: #E06B7B;
+  --newsroom-soft: #2A171A;
+  --night: #0E0D0B;
+  --night-deep: #070605;
+
+  --background: #0E0E0D;
+  --foreground: #EDEAE1;
+  --card: #161614;
+  --card-foreground: #EDEAE1;
+  --popover: #161614;
+  --popover-foreground: #EDEAE1;
+  --primary: #EDEAE1;
+  --primary-foreground: #141311;
+  --secondary: #191815;
+  --secondary-foreground: #EDEAE1;
+  --muted: #191815;
+  --muted-foreground: #999689;
+  --accent: #D45062;
+  --accent-foreground: #141311;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: #2C2A24;
-  --input: #2C2A24;
-  --ring: #F2EFE6;
+  --border: #2B2922;
+  --input: #2B2922;
+  --ring: #EDEAE1;
 }
 
 @layer base {
@@ -154,12 +162,28 @@
     scroll-behavior: smooth;
   }
 
+  /* Keep native controls (selects, inputs) in sync with the resolved theme */
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
     line-height: 1.65;
     font-feature-settings: "kern", "liga", "calt";
   }
+
+  /* Dark-mode autofill: prevent Chrome's forced pale fill */
+  .dark input:-webkit-autofill,
+  .dark textarea:-webkit-autofill,
+  .dark select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--paper-deep) inset;
+    -webkit-text-fill-color: var(--ink);
+    caret-color: var(--ink);
+    transition: background-color 9999s ease-in-out 0s;
+  }
+
+  /* Editorial photography stays accurate in dark mode — no global dimming */
 
   /* Bangla locale: switch to Bangla serif for editorial feel */
   html[lang="bn"] body,
@@ -182,8 +206,32 @@
     font-size: 0.8125rem;
   }
 
-  /* Bangla navigation slightly larger */
-  html[lang="bn"] nav a {
+  /* Bangla display type: relax the aggressive English display metrics */
+  html[lang="bn"] .display-headline,
+  html[lang="bn"] .section-headline,
+  html[lang="bn"] .chapter-title {
+    line-height: 1.22;
+    letter-spacing: 0;
+  }
+
+  /* Bangla ghost/oversized type must not clip conjuncts or vowel signs */
+  html[lang="bn"] .ghost-type {
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+
+  /* Drop caps are a Latin convention — disable for Bangla */
+  html[lang="bn"] .prose-editorial p:first-letter,
+  html[lang="bn"] .drop-cap {
+    float: none;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    color: inherit;
+  }
+
+  /* Bangla navigation slightly larger (header only — avoid overriding sheet/cards) */
+  html[lang="bn"] header nav a {
     font-size: 0.9375rem;
   }
 
@@ -249,6 +297,29 @@
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--ink-muted);
+  }
+
+  /* Drop cap — Latin convention, disabled for Bangla via the bn override above */
+  .drop-cap:first-letter {
+    float: left;
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 700;
+    font-size: 4.5rem;
+    line-height: 0.85;
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+    color: var(--newsroom);
+  }
+
+  /* Safe-area helpers for the mobile app shell */
+  .pb-safe-nav {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 4.5rem);
+  }
+  @media (min-width: 1024px) {
+    .pb-safe-nav { padding-bottom: 0; }
+  }
+  .pt-safe-header {
+    padding-top: env(safe-area-inset-top, 0px);
   }
 
   /* Readable body text utility — 16-18px range */
