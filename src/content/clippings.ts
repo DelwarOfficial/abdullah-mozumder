@@ -12,11 +12,11 @@ import { L } from "./types";
  *  - No claims about page numbers, section names or story specifics that are
  *    not visible in the clipping itself.
  *
- * NAME-SPELLING DISCREPANCY (pending owner decision):
- *   The printed byline reads "মোজুমদার" while the site's (unverified) name
- *   placeholder is "মোজোমদার". The clipping renders the EXACT printed
- *   spelling. Neither spelling has been changed until the journalist
- *   confirms the authoritative form.
+ * NAME SPELLING (owner-verified): the Bangla surname is "মোজুমদার".
+ *
+ * DC-CONFERENCE BYLINE (owner directive): that clipping's printed byline
+ * ("এম আবদুল্লাহ") is NOT his and must NOT appear on the website — its
+ * `byline` is null and the UI omits the byline line for it.
  *
  * These clippings do NOT change the status of the demo entries in
  * stories.ts — those remain clearly labelled demo content.
@@ -27,7 +27,8 @@ export interface Clipping {
   slug: string;
   publication: Localized<string>;
   headline: Localized<string>;
-  byline: Localized<string>;
+  /** Printed byline, or null when the byline must not be shown (owner directive). */
+  byline: Localized<string> | null;
   summary: Localized<string>;
   image: string;
   alt: Localized<string>;
@@ -65,7 +66,7 @@ export const clippings: Clipping[] = [
       "District Commissioners' conference begins today — eight proposals on the table",
       "আজ থেকে হচ্ছে জেলা প্রশাসক সম্মেলন উঠে আসবে ৮টি প্রস্তাব",
     ),
-    byline: L("N Abdullah", "এন আবদুল্লাহ"),
+    byline: null,
     summary: L(
       "Report on the Deputy Commissioners' conference and the eight proposals set to come up.",
       "জেলা প্রশাসক (ডিসি) সম্মেলন এবং সম্মেলনে উঠে আসা আটটি প্রস্তাব নিয়ে প্রতিবেদন।",

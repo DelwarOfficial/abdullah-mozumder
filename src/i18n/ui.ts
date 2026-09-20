@@ -9,13 +9,13 @@ import type { Localized } from "@/content/types";
  * Bangla is written as native newsroom Bengali, not translated word-by-word.
  */
 
-export const siteName: Localized<string> = L("Abdullah Mozomdar", "আবদুল্লাহ মোজোমদার");
+export const siteName: Localized<string> = L("Abdullah Mozomdar", "আবদুল্লাহ মোজুমদার");
 
 export const siteTitle: Localized<string> = L("Journalist & Senior Reporter", "সাংবাদিক ও সিনিয়র রিপোর্টার");
 
 export const siteDescription: Localized<string> = L(
   "Portfolio of Bangladeshi journalist Abdullah Mozomdar, Senior Reporter at Daily Banijjo Pratidin, featuring professional experience, selected reporting and contact information.",
-  "বাংলাদেশি সাংবাদিক আবদুল্লাহ মোজোমদারের পোর্টফোলিও — দৈনিক বাণিজ্য প্রতিদিন-এর সিনিয়র রিপোর্টার। পেশাগত অভিজ্ঞতা, নির্বাচিত প্রতিবেদন ও যোগাযোগের তথ্য।",
+  "বাংলাদেশি সাংবাদিক আবদুল্লাহ মোজুমদারের পোর্টফোলিও — দৈনিক বাণিজ্য প্রতিদিন-এর সিনিয়র রিপোর্টার। পেশাগত অভিজ্ঞতা, নির্বাচিত প্রতিবেদন ও যোগাযোগের তথ্য।",
 );
 
 /** Server-rendered metadata stays in English (single-URL model). */
@@ -62,11 +62,3 @@ export const sectionLabels = {
   switchLanguage: L("Switch to Bangla", "সুইচ টু ইংলিশ — Switch to English"),
 } as const;
 
-/**
- * NOTE: The Bangla name "আবদুল্লাহ মোজোমদার" is an editable placeholder
- * until a verified Bangla spelling is provided by the owner.
- */
-export const nameEditabilityNote: Localized<string> = L(
-  "Bangla name spelling is editable — awaiting verification.",
-  "বাংলা নামের বানান সম্পাদনযোগ্য — যাচাইয়ের অপেক্ষায়।",
-);

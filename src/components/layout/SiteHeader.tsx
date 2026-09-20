@@ -49,7 +49,7 @@ export function SiteHeader() {
           <Link
             href="/"
             className="group inline-flex items-baseline gap-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink shrink-0"
-            aria-label={language === "en" ? "Abdullah Mozomdar — home" : "আবদুল্লাহ মোজোমদার — হোম"}
+            aria-label={language === "en" ? "Abdullah Mozomdar — home" : "আবদুল্লাহ মোজুমদার — হোম"}
           >
             <span className={cn(
               "font-serif font-bold tracking-tight transition-all duration-300",
@@ -62,7 +62,7 @@ export function SiteHeader() {
               "hidden sm:inline-block font-sans font-medium tracking-wide transition-all duration-300 text-xs",
               onHero ? "text-paper/70" : "text-ink-muted",
             )}>
-              {language === "en" ? "Abdullah Mozomdar" : "আবদুল্লাহ মোজোমদার"}
+              {language === "en" ? "Abdullah Mozomdar" : "আবদুল্লাহ মোজুমদার"}
             </span>
           </Link>
 

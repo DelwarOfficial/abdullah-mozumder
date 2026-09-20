@@ -168,7 +168,7 @@ export function MobileShell() {
             style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
           >
             <span className="font-serif text-xl font-bold text-ink">
-              {language === "en" ? "Abdullah Mozomdar" : "আবদুল্লাহ মোজোমদার"}
+              {language === "en" ? "Abdullah Mozomdar" : "আবদুল্লাহ মোজুমদার"}
             </span>
             <button
               ref={closeRef}
@@ -231,7 +231,7 @@ export function MobileShell() {
               <LanguageSwitcher variant="block" />
             </div>
             <p className="mt-4 text-[0.6875rem] text-ink-muted">
-              © {new Date().getFullYear()} {language === "en" ? "Abdullah Mozomdar" : "আবদুল্লাহ মোজোমদার"} · {siteConfig.url.replace("https://", "")}
+              © {new Date().getFullYear()} {language === "en" ? "Abdullah Mozomdar" : "আবদুল্লাহ মোজুমদার"} · {siteConfig.url.replace("https://", "")}
             </p>
           </div>
         </div>

@@ -174,7 +174,11 @@ function ClippingViewer({ clippings, index, onClose, onNavigate }: ViewerProps) 
       <div className="px-4 sm:px-8 py-4 border-t border-paper/10 shrink-0">
         <p className="text-sm sm:text-base text-paper font-serif">{item.headline[L.language]}</p>
         <p className="mt-1 text-sm text-paper/80">
-          {item.publication[L.language]} · {item.byline[L.language]}
+          {item.publication[L.language]}
+          {item.byline && (<>
+            {" · "}
+            {item.byline[L.language]}
+          </>)}
         </p>
         <p className="mt-0.5 text-xs text-paper/50">{L.printPage}</p>
       </div>
@@ -241,7 +245,7 @@ export function PressClippings() {
                 >
                   {lead.headline[L.language]}
                 </h3>
-                <p className="clipping-meta mt-4 text-newsroom">{lead.byline[L.language]}</p>
+                {lead.byline && <p className="clipping-meta mt-4 text-newsroom">{lead.byline[L.language]}</p>}
                 <p className="body-small mt-3 line-clamp-2">{lead.summary[L.language]}</p>
                 <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink group-hover:text-newsroom transition-colors">
                   {L.view}
@@ -279,7 +283,7 @@ export function PressClippings() {
                   <VerifiedBadge label={L.verified} />
                   <span className="clipping-meta">{clip.publication[L.language]}</span>
                   <span aria-hidden="true" className="text-rule">·</span>
-                  <span className="clipping-meta text-newsroom">{clip.byline[L.language]}</span>
+                  {clip.byline && <span className="clipping-meta text-newsroom">{clip.byline[L.language]}</span>}
                 </div>
                 <h3
                   className="font-serif font-semibold text-ink leading-[1.2] tracking-[-0.01em] group-hover:text-newsroom transition-colors"
@@ -345,7 +349,7 @@ export function ClippingsStrip() {
                 <div className="flex flex-wrap items-center gap-3 mb-1.5">
                   <span className="clipping-meta">{clip.publication[L.language]}</span>
                   <span aria-hidden="true" className="text-rule">·</span>
-                  <span className="clipping-meta text-newsroom">{clip.byline[L.language]}</span>
+                  {clip.byline && <span className="clipping-meta text-newsroom">{clip.byline[L.language]}</span>}
                 </div>
                 <h3
                   className="font-serif font-semibold text-ink leading-tight tracking-[-0.01em] group-hover:text-newsroom transition-colors"
