@@ -57,39 +57,39 @@
   color-scheme: light;
 
   /* Editorial palette */
-  --paper: #F7F6F2;
-  --paper-deep: #EFEEE7;
-  --paper-darker: #E5E3DB;
-  --ink: #111111;
-  --ink-soft: #2A2A28;
-  --ink-muted: #6B6862;
-  --rule: #DAD8D2;
-  --rule-soft: #ECEAE4;
-  --newsroom: #A51C30;
-  --newsroom-deep: #7E1222;
-  --newsroom-soft: #F3E2E4;
-  --night: #14130F;
-  --night-deep: #0A0908;
+  --paper: #FBFAF8;
+  --paper-deep: #F1F0EB;
+  --paper-darker: #E9E7E1;
+  --ink: #191917;
+  --ink-soft: #33322F;
+  --ink-muted: #6E6C66;
+  --rule: #E2E0DA;
+  --rule-soft: #ECEAE5;
+  --newsroom: #175E4C;
+  --newsroom-deep: #0F4636;
+  --newsroom-soft: #E6F0EB;
+  --night: #161713;
+  --night-deep: #0D0E0B;
 
   /* shadcn aliases */
-  --background: #F7F6F2;
+  --background: #FBFAF8;
   --foreground: #111111;
-  --card: #F7F6F2;
+  --card: #FBFAF8;
   --card-foreground: #111111;
   --popover: #FFFFFF;
   --popover-foreground: #111111;
-  --primary: #111111;
-  --primary-foreground: #F7F6F2;
-  --secondary: #EFEEE7;
+  --primary: #191917;
+  --primary-foreground: #FBFAF8;
+  --secondary: #F1F0EB;
   --secondary-foreground: #111111;
-  --muted: #EFEEE7;
-  --muted-foreground: #6B6862;
-  --accent: #A51C30;
-  --accent-foreground: #FFFFFF;
+  --muted: #F1F0EB;
+  --muted-foreground: #6E6C66;
+  --accent: #175E4C;
+  --accent-foreground: #FBFAF8;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #DAD8D2;
-  --input: #DAD8D2;
-  --ring: #111111;
+  --border: #E2E0DA;
+  --input: #E2E0DA;
+  --ring: #191917;
 
   --chart-1: #A51C30;
   --chart-2: #6B6862;
@@ -97,14 +97,14 @@
   --chart-4: #8A8A85;
   --chart-5: #C9A57A;
 
-  --sidebar: #EFEEE7;
+  --sidebar: #F1F0EB;
   --sidebar-foreground: #111111;
-  --sidebar-primary: #111111;
-  --sidebar-primary-foreground: #F7F6F2;
-  --sidebar-accent: #EFEEE7;
+  --sidebar-primary: #191917;
+  --sidebar-primary-foreground: #FBFAF8;
+  --sidebar-accent: #F1F0EB;
   --sidebar-accent-foreground: #111111;
-  --sidebar-border: #DAD8D2;
-  --sidebar-ring: #111111;
+  --sidebar-border: #E2E0DA;
+  --sidebar-ring: #191917;
 }
 
 /*
@@ -115,38 +115,38 @@
 .dark {
   color-scheme: dark;
 
-  --paper: #141311;
-  --paper-deep: #191815;
-  --paper-darker: #201E1A;
-  --ink: #EDEAE1;
-  --ink-soft: #D5D2C8;
-  --ink-muted: #999689;
-  --rule: #2B2922;
-  --rule-soft: #232118;
-  --newsroom: #D45062;
-  --newsroom-deep: #E06B7B;
-  --newsroom-soft: #2A171A;
-  --night: #0E0D0B;
-  --night-deep: #070605;
+  --paper: #171814;
+  --paper-deep: #1D1F1A;
+  --paper-darker: #242620;
+  --ink: #ECEBE4;
+  --ink-soft: #D3D1C8;
+  --ink-muted: #9B998F;
+  --rule: #2E302A;
+  --rule-soft: #262822;
+  --newsroom: #3D9B77;
+  --newsroom-deep: #5BB593;
+  --newsroom-soft: #1A2B23;
+  --night: #101110;
+  --night-deep: #0A0B09;
 
-  --background: #0E0E0D;
-  --foreground: #EDEAE1;
-  --card: #161614;
-  --card-foreground: #EDEAE1;
-  --popover: #161614;
-  --popover-foreground: #EDEAE1;
-  --primary: #EDEAE1;
-  --primary-foreground: #141311;
-  --secondary: #191815;
-  --secondary-foreground: #EDEAE1;
-  --muted: #191815;
-  --muted-foreground: #999689;
-  --accent: #D45062;
-  --accent-foreground: #141311;
+  --background: #131412;
+  --foreground: #ECEBE4;
+  --card: #1B1D19;
+  --card-foreground: #ECEBE4;
+  --popover: #1B1D19;
+  --popover-foreground: #ECEBE4;
+  --primary: #ECEBE4;
+  --primary-foreground: #171814;
+  --secondary: #1D1F1A;
+  --secondary-foreground: #ECEBE4;
+  --muted: #1D1F1A;
+  --muted-foreground: #9B998F;
+  --accent: #3D9B77;
+  --accent-foreground: #131412;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: #2B2922;
-  --input: #2B2922;
-  --ring: #EDEAE1;
+  --border: #2E302A;
+  --input: #2E302A;
+  --ring: #ECEBE4;
 }
 
 @layer base {
@@ -202,8 +202,7 @@
   /* Bangla needs more breathing room — no tight letter-spacing */
   html[lang="bn"] .editorial-eyebrow,
   html[lang="bn"] .editorial-meta {
-    letter-spacing: 0.06em;
-    font-size: 0.8125rem;
+    font-size: 0.9375rem;
   }
 
   /* Bangla display type: relax the aggressive English display metrics */
@@ -283,18 +282,14 @@
 
   .editorial-eyebrow {
     font-family: var(--font-sans), system-ui, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.875rem;
+    font-weight: 500;
     color: var(--ink-muted);
   }
 
   .editorial-meta {
     font-family: var(--font-sans), system-ui, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: 500;
     color: var(--ink-muted);
   }

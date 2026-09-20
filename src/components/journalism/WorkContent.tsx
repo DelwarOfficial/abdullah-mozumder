@@ -4,7 +4,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, X } from "lucide-react";
-import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { stories, storyCategories, getStoryYears, getStoryPublications } from "@/content/stories";
 import { cn } from "@/lib/utils";
@@ -75,7 +74,6 @@ export function WorkContent() {
 
   return (
     <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12 pt-24 lg:pt-32 pb-16 lg:pb-24">
-      <ChapterMark number="01" label={labels.chapter} locale={language} className="mb-6" />
       <h1 className="section-headline text-ink mb-6" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>{labels.title}</h1>
       <p className="text-lg text-ink-soft leading-relaxed max-w-2xl mb-12">{labels.desc}</p>
 

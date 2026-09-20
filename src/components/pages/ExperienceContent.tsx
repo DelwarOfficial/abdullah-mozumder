@@ -1,6 +1,5 @@
 "use client";
 
-import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { Breadcrumbs } from "@/components/ui-editorial/Breadcrumbs";
 import { experiences } from "@/content/experiences";
 import { sectionLabels } from "@/i18n/ui";
@@ -20,7 +19,6 @@ export function ExperienceContent() {
           { label: en ? "Experience" : "অভিজ্ঞতা" },
         ]} />
 
-        <ChapterMark number="03" label={en ? "Career" : "পেশাগত অভিজ্ঞতা"} locale={language} className="mt-10 mb-6" />
         <h1
           className="section-headline text-ink mb-12 lg:mb-16"
           style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}

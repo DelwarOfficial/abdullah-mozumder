@@ -1,6 +1,5 @@
 "use client";
 
-import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { Breadcrumbs } from "@/components/ui-editorial/Breadcrumbs";
 import { GalleryExplorer } from "@/components/gallery/GalleryExplorer";
 import { galleryItems } from "@/content/gallery";
@@ -19,7 +18,6 @@ export function GalleryContent() {
           { label: sectionLabels.home[language], href: "/" },
           { label: sectionLabels.gallery[language] },
         ]} />
-        <ChapterMark number="—" label={sectionLabels.gallery[language]} locale={language} className="mt-10 mb-6" />
         <h1 className="section-headline text-ink mb-6" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>
           {en ? "Photojournalism" : "ফটোসাংবাদিকতা"}
         </h1>

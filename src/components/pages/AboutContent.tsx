@@ -1,6 +1,5 @@
 "use client";
 
-import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { Divider } from "@/components/ui-editorial/Divider";
 import { Breadcrumbs } from "@/components/ui-editorial/Breadcrumbs";
 import { PortraitPlaceholder } from "@/components/ui-editorial/PortraitPlaceholder";
@@ -25,8 +24,6 @@ export function AboutContent() {
           { label: sectionLabels.home[language], href: "/" },
           { label: en ? "About" : "পরিচিতি" },
         ]} />
-
-        <ChapterMark number="05" label={en ? "Profile" : "পরিচিতি"} locale={language} className="mt-10 mb-8" />
 
         <div className="grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-12">
           {/* Main */}

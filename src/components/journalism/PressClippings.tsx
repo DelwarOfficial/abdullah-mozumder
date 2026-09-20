@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Maximize2, Minimize2, X, ChevronLeft, ChevronRight, BadgeCheck } from "lucide-react";
-import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { clippings, type Clipping } from "@/content/clippings";
 import { localeDigits } from "@/lib/format";
 import { useLockBodyScroll } from "@/lib/use-lock-body-scroll";
@@ -200,7 +199,6 @@ export function PressClippings() {
       <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-12 gap-4 mb-12 lg:mb-16">
           <div className="col-span-12 lg:col-span-10">
-            <ChapterMark number="03" label={L.chapter} locale={L.language} />
             <h2
               id="clippings-heading"
               className="section-headline text-ink mt-6"

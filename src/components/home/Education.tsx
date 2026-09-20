@@ -1,4 +1,3 @@
-import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { education } from "@/content/education";
 import { localeDigits } from "@/lib/format";
 import type { Locale } from "@/content/types";
@@ -14,7 +13,6 @@ export function Education({ locale }: EducationProps) {
   return (
     <section aria-labelledby="education-heading" className="py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
-        <ChapterMark number="08" label={chapterLabel} locale={locale} className="mb-8 lg:mb-12" />
         <h2
           id="education-heading"
           className="section-headline text-ink mb-12 lg:mb-20"

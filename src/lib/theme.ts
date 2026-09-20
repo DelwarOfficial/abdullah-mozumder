@@ -34,7 +34,7 @@ export const themeInitScript = `
     var lang = localStorage.getItem("site-language");
     root.lang = lang === "bn" ? "bn" : "en";
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", dark ? "#0E0E0D" : "#F7F6F2");
+    if (meta) meta.setAttribute("content", dark ? "#131412" : "#FBFAF8");
   } catch (e) {}
 })();
 `;
@@ -52,7 +52,7 @@ export function applyTheme(mode: ThemeChoice): void {
     localStorage.setItem(THEME_STORAGE_KEY, mode);
   } catch {}
   const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute("content", dark ? "#0E0E0D" : "#F7F6F2");
+  if (meta) meta.setAttribute("content", dark ? "#131412" : "#FBFAF8");
   notifyThemeSubscribers();
 }
 

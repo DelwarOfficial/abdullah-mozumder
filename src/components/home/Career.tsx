@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { experiences } from "@/content/experiences";
 import { localeDigits } from "@/lib/format";
 
@@ -23,7 +22,6 @@ export function Career({ locale }: CareerProps) {
       <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-12 gap-4 mb-12 lg:mb-20">
           <div className="col-span-12 lg:col-span-8">
-            <ChapterMark number="04" label={chapterLabel} locale={locale} />
             <h2
               id="career-heading"
               className="section-headline text-ink mt-6"

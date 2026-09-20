@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { stories } from "@/content/stories";
 import { formatDate } from "@/lib/format";
@@ -43,7 +42,6 @@ export function NewsDesk({ locale }: NewsDeskProps) {
       <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-12 gap-4 mb-12 lg:mb-16">
           <div className="col-span-12 lg:col-span-10">
-            <ChapterMark number="02" label={chapterLabel} locale={locale} />
             <h2
               id="news-desk-heading"
               className="section-headline text-ink mt-6"

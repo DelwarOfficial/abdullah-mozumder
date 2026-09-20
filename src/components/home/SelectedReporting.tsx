@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { getFeaturedStory, stories } from "@/content/stories";
 import { formatDate } from "@/lib/format";
@@ -29,7 +28,6 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
         {/* Chapter mark + title */}
         <div className="grid grid-cols-12 gap-4 mb-12 lg:mb-20">
           <div className="col-span-12 lg:col-span-10">
-            <ChapterMark number="01" label={chapterLabel} locale={locale} />
             <h2
               id="selected-heading"
               className="section-headline text-ink mt-6"

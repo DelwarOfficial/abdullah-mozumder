@@ -1,4 +1,4 @@
-import { Inter, Newsreader, Noto_Serif_Bengali } from "next/font/google";
+import { IBM_Plex_Sans, Spectral, Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/content/site";
@@ -10,15 +10,14 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { MobileShell } from "@/components/layout/MobileShell";
 
-const inter = Inter({
+const plexSans = IBM_Plex_Sans({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
 });
 
-const newsreader = Newsreader({
+const spectral = Spectral({
   variable: "--font-newsreader",
   subsets: ["latin"],
   display: "swap",
@@ -62,7 +61,7 @@ export const viewport = {
   viewportFit: "cover" as const,
   // Single dynamic meta — the pre-paint theme script flips it for dark,
   // so no media-scoped duplicates can fall out of sync.
-  themeColor: "#F7F6F2",
+  themeColor: "#FBFAF8",
 };
 
 export default function RootLayout({
@@ -77,7 +76,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
-        className={`${inter.variable} ${newsreader.variable} ${banglaSerif.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
+        className={`${plexSans.variable} ${spectral.variable} ${banglaSerif.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
       >
         <LanguageProvider>
           <SkipLink />

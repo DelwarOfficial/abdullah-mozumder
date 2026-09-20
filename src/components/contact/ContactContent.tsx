@@ -1,6 +1,5 @@
 "use client";
 
-import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { Breadcrumbs } from "@/components/ui-editorial/Breadcrumbs";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { profile } from "@/content/profile";
@@ -22,7 +21,6 @@ export function ContactContent() {
 
         <div className="mt-10 grid grid-cols-12 gap-12 lg:gap-16">
           <div className="col-span-12 lg:col-span-5">
-            <ChapterMark number="10" label={sectionLabels.contact[language]} locale={language} className="mb-6" />
             <h1 className="chapter-title text-ink" style={{ fontSize: "clamp(2.5rem, 7vw, 6rem)" }}>
               {en ? (
                 <>
