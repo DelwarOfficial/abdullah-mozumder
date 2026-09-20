@@ -1,23 +1,46 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, Search, X } from "lucide-react";
 import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { stories, storyCategories, getStoryYears, getStoryPublications } from "@/content/stories";
 import { formatDate, localeDigits, localeCount } from "@/lib/format";
 import { useLanguage } from "@/i18n/language-context";
 
+/**
+ * §37 — shareable filtered views: /articles?category=…&year=…&publication=…
+ */
 export function ArticlesContent() {
   const { language } = useLanguage();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("All");
-  const [year, setYear] = useState("All");
-  const [publication, setPublication] = useState("All");
+
+  const category = searchParams.get("category") ?? "All";
+  const year = searchParams.get("year") ?? "All";
+  const publication = searchParams.get("publication") ?? "All";
 
   const years = useMemo(() => getStoryYears(), []);
   const publications = useMemo(() => getStoryPublications(language), [language]);
   const categories = storyCategories[language];
+
+  const updateParam = useCallback(
+    (key: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (value === "All" || !value) params.delete(key);
+      else params.set(key, value);
+      const qs = params.toString();
+      router.push(qs ? `/articles?${qs}` : "/articles", { scroll: false });
+    },
+    [router, searchParams],
+  );
+
+  const reset = useCallback(() => {
+    setQuery("");
+    router.push("/articles", { scroll: false });
+  }, [router]);
 
   const filtered = useMemo(() => {
     return stories
@@ -35,7 +58,6 @@ export function ArticlesContent() {
       .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
   }, [query, category, year, publication, language]);
 
-  const reset = () => { setQuery(""); setCategory("All"); setYear("All"); setPublication("All"); };
   const hasFilters = query.trim() || category !== "All" || year !== "All" || publication !== "All";
 
   const L = {
@@ -51,6 +73,9 @@ export function ArticlesContent() {
     noMatch: language === "en" ? "No articles match." : "কোনো লেখা মেলেনি।",
     tryAdj: language === "en" ? "Try adjusting or resetting filters." : "ফিল্টার বদলে দেখুন, অথবা সব মুছুন।",
     reset: language === "en" ? "Reset filters" : "ফিল্টার মুছুন",
+    category: language === "en" ? "Category" : "বিভাগ",
+    yearL: language === "en" ? "Year" : "সাল",
+    pubL: language === "en" ? "Publication" : "পত্রিকা",
   };
 
   return (
@@ -67,16 +92,25 @@ export function ArticlesContent() {
             <input id="art-search" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={L.searchPh} className="w-full bg-transparent border border-rule pl-9 pr-3 py-2 text-sm text-ink placeholder:text-ink-muted/60 focus:outline-none focus:border-ink transition-colors" />
           </div>
         </div>
-        <div className="md:col-span-2"><label htmlFor="art-cat" className="editorial-eyebrow block mb-2">{L.cat}</label><select id="art-cat" value={category} onChange={(e) => setCategory(e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink">{categories.map((c) => <option key={c} value={c}>{c}</option>)}</select></div>
-        <div className="md:col-span-2"><label htmlFor="art-yr" className="editorial-eyebrow block mb-2">{L.yr}</label><select id="art-yr" value={year} onChange={(e) => setYear(e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink"><option value="All">{L.all}</option>{years.map((y) => <option key={y} value={y}>{localeDigits(y, language)}</option>)}</select></div>
-        <div className="md:col-span-2"><label htmlFor="art-pb" className="editorial-eyebrow block mb-2">{L.pub}</label><select id="art-pb" value={publication} onChange={(e) => setPublication(e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink"><option value="All">{L.all}</option>{publications.map((p) => <option key={p} value={p}>{p}</option>)}</select></div>
+        <div className="md:col-span-2"><label htmlFor="art-cat" className="editorial-eyebrow block mb-2">{L.cat}</label><select id="art-cat" value={category} onChange={(e) => updateParam("category", e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink">{categories.map((c) => <option key={c} value={c}>{c}</option>)}</select></div>
+        <div className="md:col-span-2"><label htmlFor="art-yr" className="editorial-eyebrow block mb-2">{L.yr}</label><select id="art-yr" value={year} onChange={(e) => updateParam("year", e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink"><option value="All">{L.all}</option>{years.map((y) => <option key={y} value={y}>{localeDigits(y, language)}</option>)}</select></div>
+        <div className="md:col-span-2"><label htmlFor="art-pb" className="editorial-eyebrow block mb-2">{L.pub}</label><select id="art-pb" value={publication} onChange={(e) => updateParam("publication", e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink"><option value="All">{L.all}</option>{publications.map((p) => <option key={p} value={p}>{p}</option>)}</select></div>
       </div>
 
-      {hasFilters && <div className="mt-4 flex items-center gap-3"><span className="text-xs text-ink-muted">{localeCount(filtered.length, language, "articles", "লেখা")}</span><button type="button" onClick={reset} className="text-xs text-newsroom hover:text-newsroom-deep underline underline-offset-2 transition-colors">{L.reset}</button></div>}
+      {hasFilters && (
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          {category !== "All" && <FilterChip label={`${L.category}: ${category}`} onClear={() => updateParam("category", "All")} />}
+          {year !== "All" && <FilterChip label={`${L.yearL}: ${year}`} onClear={() => updateParam("year", "All")} />}
+          {publication !== "All" && <FilterChip label={`${L.pubL}: ${publication}`} onClear={() => updateParam("publication", "All")} />}
+          {query.trim() && <FilterChip label={`"${query}"`} onClear={() => setQuery("")} />}
+          <button type="button" onClick={reset} className="text-xs text-newsroom hover:text-newsroom-deep underline underline-offset-2 transition-colors ml-2">{L.reset}</button>
+          <span className="text-xs text-ink-muted">{localeCount(filtered.length, language, "articles", "লেখা")}</span>
+        </div>
+      )}
 
       <ol className="mt-8 divide-y divide-rule border-t border-rule">
         {filtered.length === 0 ? (
-          <li className="py-20 text-center"><p className="font-serif text-2xl text-ink">{L.noMatch}</p><p className="mt-2 text-sm text-ink-muted">{L.tryAdj}</p></li>
+          <li className="py-20 text-center"><p className="font-serif text-2xl text-ink">{L.noMatch}</p><p className="mt-2 text-sm text-ink-muted">{L.tryAdj}</p><button type="button" onClick={reset} className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-ink text-paper text-xs font-semibold uppercase tracking-[0.14em] hover:bg-newsroom transition-colors">{L.reset}</button></li>
         ) : (
           filtered.map((story) => (
             <li key={story.id}>
@@ -95,5 +129,16 @@ export function ArticlesContent() {
         )}
       </ol>
     </div>
+  );
+}
+
+function FilterChip({ label, onClear }: { label: string; onClear: () => void }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 border border-rule bg-paper-deep px-3 py-1 text-xs text-ink-soft">
+      {label}
+      <button type="button" onClick={onClear} aria-label={`Clear filter: ${label}`} className="text-ink-muted hover:text-newsroom transition-colors">
+        <X className="h-3 w-3" aria-hidden="true" />
+      </button>
+    </span>
   );
 }

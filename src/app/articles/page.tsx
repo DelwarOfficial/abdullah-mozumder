@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ArticlesContent } from "@/components/journalism/ArticlesContent";
 import { BreadcrumbSchema } from "@/components/seo/StructuredData";
 import { siteConfig } from "@/content/site";
@@ -19,7 +20,9 @@ export default function ArticlesPage() {
         { name: siteName.en, url: siteConfig.url },
         { name: "Articles", url: `${siteConfig.url}/articles` },
       ]} />
-      <ArticlesContent />
+      <Suspense fallback={<div className="pt-32 text-center text-sm text-ink-muted">Loading…</div>}>
+        <ArticlesContent />
+      </Suspense>
     </>
   );
 }

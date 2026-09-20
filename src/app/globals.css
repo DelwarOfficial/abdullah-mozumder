@@ -443,8 +443,9 @@
   }
 
   /* Prose for article reading */
+  /* Prose for article reading — ~720px column (spec: 680–760px) */
   .prose-editorial {
-    max-width: 42rem;
+    max-width: 45rem;
     margin-inline: auto;
     font-family: var(--font-serif), Georgia, serif;
     font-size: 1.1875rem;

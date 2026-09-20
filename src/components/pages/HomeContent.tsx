@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/i18n/language-context";
 import { Hero } from "@/components/home/Hero";
+import { StatusStrip } from "@/components/home/StatusStrip";
 import { SelectedReporting } from "@/components/home/SelectedReporting";
 import { NewsDesk } from "@/components/home/NewsDesk";
 import { PressClippings } from "@/components/journalism/PressClippings";
@@ -24,6 +25,7 @@ export function HomeContent() {
   return (
     <>
       <Hero locale={language} />
+      <StatusStrip />
       <SelectedReporting locale={language} />
       <NewsDesk locale={language} />
       <PressClippings />

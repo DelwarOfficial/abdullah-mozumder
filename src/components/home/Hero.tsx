@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { profile } from "@/content/profile";
 import { sectionLabels } from "@/i18n/ui";
@@ -113,16 +114,29 @@ export function Hero({ locale }: HeroProps) {
 
             {/* CTA */}
             <div className="col-span-12 sm:col-span-6 lg:col-span-4 lg:text-center">
-              <Link
-                href={`/work`}
-                className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-paper hover:text-newsroom transition-colors"
-              >
-                {locale === "en" ? "Selected Reporting" : "নির্বাচিত প্রতিবেদন দেখুন"}
-                <ArrowRight
-                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5"
-                  aria-hidden="true"
-                />
-              </Link>
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 sm:justify-end lg:justify-center">
+                <Link
+                  href="/work"
+                  className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-paper hover:text-newsroom transition-colors"
+                >
+                  {locale === "en" ? "Selected Reporting" : "নির্বাচিত প্রতিবেদন দেখুন"}
+                  <ArrowRight
+                    className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5"
+                    aria-hidden="true"
+                  />
+                </Link>
+                <span aria-hidden="true" className="hidden sm:block h-4 w-px bg-paper/25" />
+                <Link
+                  href="/contact"
+                  className={cn(
+                    "inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] border border-paper/30 text-paper transition-colors duration-300",
+                    "hover:bg-paper hover:text-ink",
+                  )}
+                >
+                  {locale === "en" ? "Contact" : "যোগাযোগ"}
+                  <span aria-hidden="true" className="text-[0.9em]">↗</span>
+                </Link>
+              </div>
             </div>
 
             {/* Scroll hint */}
