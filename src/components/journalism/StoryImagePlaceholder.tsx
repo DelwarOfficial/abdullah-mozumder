@@ -68,7 +68,7 @@ export function StoryImagePlaceholder({
             "repeating-linear-gradient(180deg, transparent 0 14px, var(--rule-soft) 14px 15px)",
         }}
       />
-      <span className="relative font-serif text-xs uppercase tracking-[0.18em] text-ink-muted">
+      <span className="relative font-serif text-xs text-ink-muted">
         Image pending
       </span>
     </div>

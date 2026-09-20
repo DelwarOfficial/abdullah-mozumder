@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { siteConfig } from "@/content/site";
 
 import type { Locale } from "@/content/types";
@@ -53,10 +53,9 @@ export function ContactCTA({ locale }: ContactCTAProps) {
             <div className="space-y-6">
               <Link
                 href={`/contact`}
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-ink text-paper text-sm font-semibold uppercase tracking-[0.14em] hover:bg-newsroom transition-colors duration-300"
+                className="group inline-flex items-center gap-2 px-8 py-4 bg-ink text-paper text-sm font-semibold hover:bg-newsroom transition-colors duration-300"
               >
                 {ctaLabel}
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
               </Link>
               <div className="pt-6 border-t border-rule">
                 <a

@@ -44,7 +44,7 @@ export function ExperienceContent() {
               </div>
               <div className="col-span-12 lg:col-span-6 lg:col-start-6">
                 {exp.current && (
-                  <span className="inline-block bg-newsroom text-paper text-[0.625rem] uppercase tracking-[0.14em] px-2 py-0.5 font-semibold mb-3">{en ? "Current" : "বর্তমান"}</span>
+                  <span className="inline-block bg-newsroom text-paper text-[0.625rem] px-2 py-0.5 font-semibold mb-3">{en ? "Current" : "বর্তমান"}</span>
                 )}
                 <h2 className="font-serif font-bold text-ink leading-tight tracking-[-0.015em]" style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}>{exp.role[language]}</h2>
                 <p className="mt-2 flex flex-wrap items-center gap-3 text-base sm:text-lg text-ink-soft font-medium">

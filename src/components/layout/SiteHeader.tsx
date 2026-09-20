@@ -114,14 +114,13 @@ export function SiteHeader() {
             <Link
               href={navContact.href}
               className={cn(
-                "hidden lg:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors duration-300",
+                "hidden lg:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold transition-colors duration-300",
                 onHero
                   ? "border border-paper/30 text-paper hover:bg-paper hover:text-ink"
                   : "bg-ink text-paper hover:bg-newsroom",
               )}
             >
               {navContact.label[language]}
-              <span aria-hidden="true" className="text-[0.9em]">↗</span>
             </Link>
           </div>
         </div>

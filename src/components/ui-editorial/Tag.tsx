@@ -11,7 +11,7 @@ export function Tag({ children, className, variant = "default" }: TagProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center uppercase tracking-[0.14em] text-[0.6875rem] font-semibold",
+        "inline-flex items-center text-[0.6875rem] font-semibold",
         variant === "default" && "text-ink-muted",
         variant === "accent" && "text-newsroom",
         variant === "outline" &&

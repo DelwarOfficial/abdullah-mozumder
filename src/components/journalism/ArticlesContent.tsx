@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Search, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { stories, storyCategories, getStoryYears, getStoryPublications } from "@/content/stories";
 import { formatDate, localeDigits, localeCount } from "@/lib/format";
 import { useLanguage } from "@/i18n/language-context";
@@ -108,7 +108,7 @@ export function ArticlesContent() {
 
       <ol className="mt-8 divide-y divide-rule border-t border-rule">
         {filtered.length === 0 ? (
-          <li className="py-20 text-center"><p className="font-serif text-2xl text-ink">{L.noMatch}</p><p className="mt-2 text-sm text-ink-muted">{L.tryAdj}</p><button type="button" onClick={reset} className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-ink text-paper text-xs font-semibold uppercase tracking-[0.14em] hover:bg-newsroom transition-colors">{L.reset}</button></li>
+          <li className="py-20 text-center"><p className="font-serif text-2xl text-ink">{L.noMatch}</p><p className="mt-2 text-sm text-ink-muted">{L.tryAdj}</p><button type="button" onClick={reset} className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-ink text-paper text-xs font-semibold hover:bg-newsroom transition-colors">{L.reset}</button></li>
         ) : (
           filtered.map((story) => (
             <li key={story.id}>
@@ -120,7 +120,7 @@ export function ArticlesContent() {
                   <p className="mt-2 text-sm text-ink-soft leading-relaxed line-clamp-2">{story.summary[language]}</p>
                   {story.readingTime && <span className="text-xs text-ink-muted mt-2 inline-block">{story.readingTime[language]}</span>}
                 </div>
-                <div className="hidden sm:flex col-span-2 items-center justify-end"><ArrowRight className="h-4 w-4 text-ink-muted transition-transform duration-300 group-hover:translate-x-1 group-hover:text-newsroom" aria-hidden="true" /></div>
+                <div className="hidden sm:flex col-span-2 items-center justify-end"></div>
               </Link>
             </li>
           ))

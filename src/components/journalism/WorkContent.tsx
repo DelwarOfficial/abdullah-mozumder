@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, X } from "lucide-react";
+import { X } from "lucide-react";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { stories, storyCategories, getStoryYears, getStoryPublications } from "@/content/stories";
 import { cn } from "@/lib/utils";
@@ -121,7 +121,7 @@ export function WorkContent() {
           <div className="py-20 text-center border border-rule bg-paper-deep/30">
             <p className="font-serif text-2xl text-ink max-w-md mx-auto">{labels.noResults}</p>
             <p className="mt-2 text-sm text-ink-muted max-w-md mx-auto">{labels.tryReset}</p>
-            <button type="button" onClick={resetFilters} className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-ink text-paper text-xs font-semibold uppercase tracking-[0.14em] hover:bg-newsroom transition-colors">{labels.resetBtn}</button>
+            <button type="button" onClick={resetFilters} className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-ink text-paper text-xs font-semibold hover:bg-newsroom transition-colors">{labels.resetBtn}</button>
           </div>
         ) : (
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
@@ -138,7 +138,6 @@ export function WorkContent() {
                     <p className="mt-2 text-sm text-ink-soft leading-relaxed line-clamp-3">{story.summary[language]}</p>
                     <div className="mt-3 flex items-center justify-between">
                       <span className="editorial-meta">{story.publication[language]}</span>
-                      <ArrowRight className="h-4 w-4 text-ink-muted transition-transform duration-300 group-hover:translate-x-1 group-hover:text-newsroom" aria-hidden="true" />
                     </div>
                   </Link>
                 </article>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { getFeaturedStory, stories } from "@/content/stories";
 import { formatDate } from "@/lib/format";
@@ -39,10 +38,9 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
           <div className="col-span-12 lg:col-span-2 flex lg:items-end lg:justify-end">
             <Link
               href={`/work`}
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink hover:text-newsroom transition-colors"
+              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-newsroom transition-colors"
             >
               {allWorkLabel}
-              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -69,10 +67,10 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
               <div className="col-span-12 lg:col-span-5 lg:pt-6">
                 <div className="flex items-baseline gap-3 mb-5">
                   <span className="editorial-eyebrow text-newsroom">{lead.category[locale]}</span>
-                  <span aria-hidden="true" className="text-rule">·</span>
+                  
                   <span className="editorial-eyebrow">{formatDate(lead.publishedAt, locale)}</span>
                   {lead.isDemo && (
-                    <span className="ml-1 inline-block border border-newsroom/40 text-newsroom text-[0.6875rem] uppercase tracking-[0.14em] px-1.5 py-0.5">
+                    <span className="ml-1 inline-block border border-newsroom/40 text-newsroom text-[0.6875rem] px-1.5 py-0.5">
                       {locale === "en" ? "Demo" : "নমুনা"}
                     </span>
                   )}
@@ -90,14 +88,13 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
                   <span className="editorial-meta text-newsroom">{lead.publication[locale]}</span>
                   {lead.readingTime && (
                     <>
-                      <span aria-hidden="true" className="text-rule">·</span>
+                      
                       <span className="editorial-meta">{lead.readingTime[locale]}</span>
                     </>
                   )}
                 </div>
-                <span className="mt-10 inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink group-hover:text-newsroom transition-colors">
+                <span className="mt-10 inline-flex items-center gap-1.5 text-sm font-semibold text-ink group-hover:text-newsroom transition-colors">
                   {readLabel}
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
                 </span>
               </div>
             </div>
@@ -139,7 +136,6 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
                   </p>
                   <div className="mt-4 flex items-center justify-between">
                     <span className="editorial-meta">{secondary[0].publication[locale]}</span>
-                    <ArrowRight className="h-4 w-4 text-ink-muted group-hover:text-newsroom group-hover:translate-x-1 transition-all" aria-hidden="true" />
                   </div>
                 </div>
               </div>
@@ -169,7 +165,6 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
               </p>
               <div className="mt-6 pt-4 border-t border-rule-soft flex items-center justify-between">
                 <span className="editorial-meta">{secondary[1].publication[locale]}</span>
-                <ArrowRight className="h-4 w-4 text-ink-muted group-hover:text-newsroom group-hover:translate-x-1 transition-all" aria-hidden="true" />
               </div>
             </Link>
           </article>
@@ -200,7 +195,6 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
               </h3>
               <div className="mt-3 flex items-center justify-between">
                 <span className="editorial-meta">{secondary[2].publication[locale]}</span>
-                <ArrowRight className="h-4 w-4 text-ink-muted group-hover:text-newsroom group-hover:translate-x-1 transition-all" aria-hidden="true" />
               </div>
             </Link>
           </article>
@@ -232,7 +226,6 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
                     </p>
                     <div className="mt-3 flex items-center gap-3">
                       <span className="editorial-meta">{brief.publication[locale]}</span>
-                      <ArrowRight className="h-3.5 w-3.5 text-ink-muted group-hover:text-newsroom group-hover:translate-x-1 transition-all" aria-hidden="true" />
                     </div>
                   </div>
                 </div>

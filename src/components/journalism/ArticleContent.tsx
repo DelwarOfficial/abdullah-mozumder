@@ -42,17 +42,17 @@ export function ArticleContent({ slug }: ArticleContentProps) {
           <header className="mt-10">
             <div className="flex items-center gap-3 mb-4">
               <span className="editorial-eyebrow text-newsroom">{story.category[language]}</span>
-              <span aria-hidden="true" className="text-rule">·</span>
+              
               <span className="editorial-eyebrow">{formatDate(story.publishedAt, language)}</span>
-              {story.isDemo && <span className="inline-block border border-newsroom/40 text-newsroom text-[0.625rem] uppercase tracking-[0.14em] px-1.5 py-0.5">{en ? "Demo" : "নমুনা"}</span>}
+              {story.isDemo && <span className="inline-block border border-newsroom/40 text-newsroom text-[0.625rem] px-1.5 py-0.5">{en ? "Demo" : "নমুনা"}</span>}
             </div>
             <h1 className="font-serif font-bold text-ink leading-[1.1] tracking-[-0.02em]" style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>{story.title[language]}</h1>
             <p className="mt-5 text-lg font-serif italic text-ink-soft leading-relaxed">{story.deck[language]}</p>
             <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-ink-muted border-y border-rule py-3">
               <span className="font-medium text-ink">{profile.name[language]}</span>
-              <span aria-hidden="true" className="text-rule">·</span>
+              
               <span>{story.publication[language]}</span>
-              {story.readingTime && (<><span aria-hidden="true" className="text-rule">·</span><span className="inline-flex items-center gap-1"><Clock className="h-3.5 w-3.5" aria-hidden="true" />{story.readingTime[language]}</span></>)}
+              {story.readingTime && (<><span className="inline-flex items-center gap-1"><Clock className="h-3.5 w-3.5" aria-hidden="true" />{story.readingTime[language]}</span></>)}
             </div>
           </header>
 
@@ -69,7 +69,7 @@ export function ArticleContent({ slug }: ArticleContentProps) {
             <Divider />
             <div className="flex flex-wrap items-center justify-between gap-4">
               <ul className="flex flex-wrap gap-2">
-                {story.tags.map((tag) => (<li key={tag} className="text-xs uppercase tracking-[0.14em] text-ink-muted border border-rule px-2 py-1">#{tag}</li>))}
+                {story.tags.map((tag) => (<li key={tag} className="text-xs text-ink-muted border border-rule px-2 py-1">#{tag}</li>))}
               </ul>
               <ShareButtons title={story.title[language]} url={`${siteConfig.url}/articles/${story.slug}`} />
             </div>

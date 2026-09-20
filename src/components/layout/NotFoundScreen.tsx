@@ -40,10 +40,10 @@ export function NotFoundScreen() {
         <h1 className="mt-4 font-serif text-2xl sm:text-3xl text-ink leading-tight">{L.title}</h1>
         <p className="mt-3 text-base text-ink-soft max-w-md mx-auto">{L.desc}</p>
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href={`/${locale}`} className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-ink text-paper text-sm font-semibold uppercase tracking-[0.14em] hover:bg-newsroom transition-colors">
+          <Link href={`/${locale}`} className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-ink text-paper text-sm font-semibold hover:bg-newsroom transition-colors">
             {L.home}<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
           </Link>
-          <Link href={`/${locale}/work`} className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-ink text-ink text-sm font-semibold uppercase tracking-[0.14em] hover:bg-ink hover:text-paper transition-colors">
+          <Link href={`/${locale}/work`} className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-ink text-ink text-sm font-semibold hover:bg-ink hover:text-paper transition-colors">
             {L.browse}
           </Link>
         </div>

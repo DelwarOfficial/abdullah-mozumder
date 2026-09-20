@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { profile } from "@/content/profile";
 
 import type { Locale } from "@/content/types";
@@ -51,10 +50,9 @@ export function ProfileSpread({ locale }: ProfileSpreadProps) {
               <div className="mt-10 pt-6 border-t border-rule-soft">
                 <Link
                   href={`/about`}
-                  className="group inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink hover:text-newsroom transition-colors"
+                  className="group inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-newsroom transition-colors"
                 >
                   {ctaLabel}
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
                 </Link>
               </div>
             </div>

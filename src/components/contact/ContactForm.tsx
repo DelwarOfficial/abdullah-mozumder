@@ -95,7 +95,7 @@ export function ContactForm({ locale }: ContactFormProps) {
         <div className="inline-flex items-center justify-center w-12 h-12 bg-newsroom text-paper mb-4"><Check className="h-6 w-6" aria-hidden="true" /></div>
         <h3 className="font-serif text-2xl font-semibold text-ink">{L.sent}</h3>
         <p className="mt-2 text-sm text-ink-soft max-w-md mx-auto">{L.sentDesc}</p>
-        <button type="button" onClick={() => setStatus("idle")} className="mt-6 inline-flex items-center px-5 py-2.5 border border-ink text-ink text-xs font-semibold uppercase tracking-[0.14em] hover:bg-ink hover:text-paper transition-colors">{L.sendAnother}</button>
+        <button type="button" onClick={() => setStatus("idle")} className="mt-6 inline-flex items-center px-5 py-2.5 border border-ink text-ink text-xs font-semibold hover:bg-ink hover:text-paper transition-colors">{L.sendAnother}</button>
       </div>
     );
   }
@@ -122,7 +122,7 @@ export function ContactForm({ locale }: ContactFormProps) {
         </div>
       )}
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
-        <button type="submit" disabled={status === "submitting"} className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-ink text-paper text-sm font-semibold uppercase tracking-[0.14em] hover:bg-newsroom transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
+        <button type="submit" disabled={status === "submitting"} className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-ink text-paper text-sm font-semibold hover:bg-newsroom transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
           {status === "submitting" ? (<><Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />{L.sending}</>) : L.send}
         </button>
         <p className="text-xs text-ink-muted">{L.orEmail}: <a href={`mailto:${siteConfig.email}`} className="text-ink hover:text-newsroom underline underline-offset-2 transition-colors">{siteConfig.email}</a></p>

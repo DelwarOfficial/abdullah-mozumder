@@ -39,7 +39,7 @@ function useClippingLabels() {
 /** Evidence badge — filled, so it is unmistakably distinct from the Demo badge. */
 export function VerifiedBadge({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center gap-1 bg-newsroom text-paper text-[0.6875rem] uppercase tracking-[0.14em] px-2 py-1 font-semibold whitespace-nowrap">
+    <span className="inline-flex items-center gap-1 bg-newsroom text-paper text-[0.6875rem] px-2 py-1 font-semibold whitespace-nowrap">
       <BadgeCheck className="h-3 w-3" aria-hidden="true" />
       {label}
     </span>
@@ -175,7 +175,7 @@ function ClippingViewer({ clippings, index, onClose, onNavigate }: ViewerProps) 
         <p className="mt-1 text-sm text-paper/80">
           {item.publication[L.language]}
           {item.byline && (<>
-            {" · "}
+            {", "}
             {item.byline[L.language]}
           </>)}
         </p>
@@ -245,9 +245,8 @@ export function PressClippings() {
                 </h3>
                 {lead.byline && <p className="clipping-meta mt-4 text-newsroom">{lead.byline[L.language]}</p>}
                 <p className="body-small mt-3 line-clamp-2">{lead.summary[L.language]}</p>
-                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink group-hover:text-newsroom transition-colors">
+                <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink group-hover:text-newsroom transition-colors">
                   {L.view}
-                  <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
                 </span>
               </div>
             </div>
@@ -280,7 +279,7 @@ export function PressClippings() {
                 <div className="flex flex-wrap items-center gap-3 mb-2">
                   <VerifiedBadge label={L.verified} />
                   <span className="clipping-meta">{clip.publication[L.language]}</span>
-                  <span aria-hidden="true" className="text-rule">·</span>
+                  
                   {clip.byline && <span className="clipping-meta text-newsroom">{clip.byline[L.language]}</span>}
                 </div>
                 <h3
@@ -292,7 +291,6 @@ export function PressClippings() {
                 <p className="body-small mt-1.5 line-clamp-1">{clip.summary[L.language]}</p>
               </div>
               <div className="hidden sm:flex col-span-1 items-center justify-end">
-                <ChevronRight className="h-5 w-5 text-ink-muted group-hover:text-newsroom transition-colors" aria-hidden="true" />
               </div>
             </button>
           ))}
@@ -346,7 +344,7 @@ export function ClippingsStrip() {
               <div className="col-span-8 sm:col-span-9">
                 <div className="flex flex-wrap items-center gap-3 mb-1.5">
                   <span className="clipping-meta">{clip.publication[L.language]}</span>
-                  <span aria-hidden="true" className="text-rule">·</span>
+                  
                   {clip.byline && <span className="clipping-meta text-newsroom">{clip.byline[L.language]}</span>}
                 </div>
                 <h3
@@ -358,7 +356,6 @@ export function ClippingsStrip() {
                 <p className="body-small mt-1.5 line-clamp-1">{clip.summary[L.language]}</p>
               </div>
               <div className="hidden sm:flex col-span-1 items-center justify-end">
-                <ChevronRight className="h-5 w-5 text-ink-muted group-hover:text-newsroom transition-colors" aria-hidden="true" />
               </div>
             </button>
           </li>

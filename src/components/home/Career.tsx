@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { experiences } from "@/content/experiences";
 import { localeDigits } from "@/lib/format";
 
@@ -33,10 +32,9 @@ export function Career({ locale }: CareerProps) {
           <div className="col-span-12 lg:col-span-4 flex lg:items-end lg:justify-end">
             <Link
               href={`/experience`}
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink hover:text-newsroom transition-colors"
+              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-newsroom transition-colors"
             >
               {fullLabel}
-              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -79,7 +77,7 @@ export function Career({ locale }: CareerProps) {
               {/* Role + org */}
               <div className="col-span-12 lg:col-span-7 lg:col-start-6">
                 {exp.current && (
-                  <span className="inline-block bg-newsroom text-paper text-[0.6875rem] uppercase tracking-[0.14em] px-2 py-1 font-semibold mb-4">
+                  <span className="inline-block bg-newsroom text-paper text-[0.6875rem] px-2 py-1 font-semibold mb-4">
                     {locale === "en" ? "Current" : "বর্তমান"}
                   </span>
                 )}

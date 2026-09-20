@@ -35,7 +35,7 @@ export function AboutContent() {
               {profile.name[language]}
             </h1>
             <p className="mt-4 text-lg sm:text-xl text-ink-soft font-medium">
-              {profile.title[language]} · {profile.location[language]}
+              {profile.title[language]}, {profile.location[language]}
             </p>
 
             <Divider variant="thick" className="mt-10 mb-10" />

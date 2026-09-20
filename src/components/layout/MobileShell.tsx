@@ -206,7 +206,7 @@ export function MobileShell() {
 
             <Link
               href={navContact.href}
-              className="mt-8 flex items-center justify-center gap-2 min-h-[48px] px-5 bg-ink text-paper text-sm font-semibold uppercase tracking-[0.14em] hover:bg-newsroom transition-colors"
+              className="mt-8 flex items-center justify-center gap-2 min-h-[48px] px-5 bg-ink text-paper text-sm font-semibold hover:bg-newsroom transition-colors"
             >
               {navContact.label[language]}
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -231,7 +231,7 @@ export function MobileShell() {
               <LanguageSwitcher variant="block" />
             </div>
             <p className="mt-4 text-[0.6875rem] text-ink-muted">
-              © {new Date().getFullYear()} {language === "en" ? "Abdullah Mozomdar" : "আবদুল্লাহ মোজুমদার"} · {siteConfig.url.replace("https://", "")}
+              © {new Date().getFullYear()} {language === "en" ? "Abdullah Mozomdar" : "আবদুল্লাহ মোজুমদার"}, {siteConfig.url.replace("https://", "")}
             </p>
           </div>
         </div>

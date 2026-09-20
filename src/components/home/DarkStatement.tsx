@@ -4,6 +4,9 @@ interface DarkStatementProps {
   locale: Locale;
 }
 
+/**
+ * §8.11 — Approach to journalism. Website copy, not a quote from Abdullah.
+ */
 export function DarkStatement({ locale }: DarkStatementProps) {
   const words = locale === "en"
     ? ["Report.", "Verify.", "Explain."]
@@ -11,51 +14,27 @@ export function DarkStatement({ locale }: DarkStatementProps) {
 
   return (
     <section
-      aria-label={locale === "en" ? "Editorial principles" : "সম্পাদকীয় নীতি"}
-      className="relative bg-night text-paper py-20 sm:py-32 lg:py-40 overflow-hidden"
+      aria-label={locale === "en" ? "Approach to journalism" : "সাংবাদিকতার কর্মপদ্ধতি"}
+      className="bg-night text-paper py-20 sm:py-32 lg:py-40"
     >
-      {/* Ghost background type */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-      >
-        <span
-          className="font-serif font-bold text-paper/[0.03] leading-none tracking-[-0.05em]"
-          style={{ fontSize: "clamp(14rem, 40vw, 40rem)" }}
-        >
-          {locale === "en" ? "AM" : "আম"}
-        </span>
-      </div>
-
-      <div className="relative mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
         <div className="max-w-5xl">
-          <p className="editorial-eyebrow text-paper/40 mb-8">
-            {locale === "en" ? "Editorial Statement" : "সম্পাদকীয় বিবৃতি"}
-          </p>
-
           <div className="space-y-2 sm:space-y-4">
-            {words.map((word, idx) => (
-              <div key={idx} className="flex items-baseline gap-4 sm:gap-8">
-                <span
-                  className="font-mono text-newsroom font-bold tabular-nums text-sm sm:text-base"
-                  aria-hidden="true"
-                >
-                  0{idx + 1}
-                </span>
-                <h2
-                  className="font-serif font-bold text-paper leading-[0.95] tracking-[-0.035em]"
-                  style={{ fontSize: "clamp(3rem, 10vw, 9rem)" }}
-                >
-                  {word}
-                </h2>
-              </div>
+            {words.map((word) => (
+              <h2
+                key={word}
+                className="font-serif font-semibold text-paper leading-[1.02] tracking-[-0.02em]"
+                style={{ fontSize: "clamp(3rem, 9vw, 8rem)" }}
+              >
+                {word}
+              </h2>
             ))}
           </div>
 
           <p className="mt-12 text-sm sm:text-base text-paper/50 italic max-w-xl">
             {locale === "en"
-              ? "Editorial site copy describing journalism principles. Not a direct quote attributed to the journalist."
-              : "এই বিবৃতিটি সাংবাদিকতার কর্মপদ্ধতি বোঝাতে লেখা — সাংবাদিকের সরাসরি উক্তি নয়।"}
+              ? "This is website copy describing an approach to journalism — not a direct quote attributed to Abdullah Mozomdar."
+              : "এই বিবৃতিটি সাংবাদিকতার কর্মপদ্ধতি বোঝাতে লেখা — আবদুল্লাহ মোজুমদারের সরাসরি উক্তি নয়।"}
           </p>
         </div>
       </div>

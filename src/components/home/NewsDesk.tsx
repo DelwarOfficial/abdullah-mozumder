@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { stories } from "@/content/stories";
 import { formatDate } from "@/lib/format";
@@ -53,10 +52,9 @@ export function NewsDesk({ locale }: NewsDeskProps) {
           <div className="col-span-12 lg:col-span-2 flex lg:items-end lg:justify-end">
             <Link
               href={`/articles`}
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink hover:text-newsroom transition-colors"
+              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-newsroom transition-colors"
             >
               {allLabel}
-              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -101,7 +99,7 @@ export function NewsDesk({ locale }: NewsDeskProps) {
                       {story.publication[locale]}
                       {story.readingTime && (
                         <>
-                          <span aria-hidden="true"> · </span>
+                          <span aria-hidden="true">, </span>
                           {story.readingTime[locale]}
                         </>
                       )}
@@ -110,10 +108,6 @@ export function NewsDesk({ locale }: NewsDeskProps) {
 
                   {/* Arrow */}
                   <div className="hidden lg:flex col-span-1 items-center justify-end">
-                    <ArrowRight
-                      className="h-5 w-5 text-ink-muted transition-all duration-300 group-hover:translate-x-2 group-hover:text-newsroom"
-                      aria-hidden="true"
-                    />
                   </div>
                 </Link>
               </li>

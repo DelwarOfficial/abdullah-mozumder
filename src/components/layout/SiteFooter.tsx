@@ -33,7 +33,7 @@ export function SiteFooter() {
           >
             {profile.title[language]}
             <br />
-            {profile.currentPosition.organization[language]} · {profile.location[language]}
+            {profile.currentPosition.organization[language]}, {profile.location[language]}
           </p>
         </div>
 
@@ -74,10 +74,9 @@ export function SiteFooter() {
             <div className="mt-6">
               <Link
                 href={navContact.href}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-paper border border-paper/30 px-4 py-2.5 hover:bg-paper hover:text-ink transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-paper border border-paper/30 px-4 py-2.5 hover:bg-paper hover:text-ink transition-colors"
               >
                 {navContact.label[language]}
-                <span aria-hidden="true">↗</span>
               </Link>
             </div>
           </div>

@@ -69,7 +69,7 @@ export function PortraitPlaceholder({
       <span className="font-serif text-3xl sm:text-4xl font-semibold text-ink-muted/70 leading-none">
         {label.split(" ").map((n) => n[0]).join("")}
       </span>
-      <span className="mt-2 text-[0.625rem] uppercase tracking-[0.16em] text-ink-muted/70 max-w-[80%]">
+      <span className="mt-2 text-[0.625rem] text-ink-muted/70 max-w-[80%]">
         Portrait pending
       </span>
     </div>

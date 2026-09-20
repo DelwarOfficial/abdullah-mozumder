@@ -56,7 +56,7 @@ export function ReportingAreas({ locale }: ReportingAreasProps) {
               </div>
               <div className="col-span-12 lg:col-span-1 lg:text-right">
                 {area.isPlaceholder && (
-                  <span className="inline-block border border-newsroom/40 text-newsroom text-[0.6875rem] uppercase tracking-[0.14em] px-2 py-0.5 font-semibold">
+                  <span className="inline-block border border-newsroom/40 text-newsroom text-[0.6875rem] px-2 py-0.5 font-semibold">
                     {demoLabel}
                   </span>
                 )}
