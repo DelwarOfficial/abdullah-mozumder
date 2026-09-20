@@ -19,7 +19,7 @@ export function ReportingAreas({ locale }: ReportingAreasProps) {
   return (
     <section aria-labelledby="areas-heading" className="py-16 sm:py-24 lg:py-32 bg-paper-deep/30">
       <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
-        <ChapterMark number="06" label={chapterLabel} locale={locale} className="mb-8 lg:mb-12" />
+        <ChapterMark number="07" label={chapterLabel} locale={locale} className="mb-8 lg:mb-12" />
         <h2
           id="areas-heading"
           className="section-headline text-ink mb-12 lg:mb-16"

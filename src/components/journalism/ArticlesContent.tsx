@@ -6,59 +6,56 @@ import { ArrowRight, Search } from "lucide-react";
 import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { stories, storyCategories, getStoryYears, getStoryPublications } from "@/content/stories";
 import { formatDate, localeDigits, localeCount } from "@/lib/format";
-import type { Locale } from "@/content/types";
+import { useLanguage } from "@/i18n/language-context";
 
-interface ArticlesExplorerProps {
-  locale: Locale;
-}
-
-export function ArticlesExplorer({ locale }: ArticlesExplorerProps) {
+export function ArticlesContent() {
+  const { language } = useLanguage();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [year, setYear] = useState("All");
   const [publication, setPublication] = useState("All");
 
   const years = useMemo(() => getStoryYears(), []);
-  const publications = useMemo(() => getStoryPublications(locale), [locale]);
-  const categories = storyCategories[locale];
+  const publications = useMemo(() => getStoryPublications(language), [language]);
+  const categories = storyCategories[language];
 
   const filtered = useMemo(() => {
     return stories
       .filter((s) => {
-        if (category !== "All" && s.category[locale] !== category) return false;
+        if (category !== "All" && s.category[language] !== category) return false;
         if (year !== "All" && new Date(s.publishedAt).getFullYear().toString() !== year) return false;
-        if (publication !== "All" && s.publication[locale] !== publication) return false;
+        if (publication !== "All" && s.publication[language] !== publication) return false;
         if (query.trim()) {
           const q = query.toLowerCase();
-          const haystack = `${s.title[locale]} ${s.deck[locale]} ${s.summary[locale]} ${s.tags.join(" ")} ${s.publication[locale]}`.toLowerCase();
+          const haystack = `${s.title[language]} ${s.deck[language]} ${s.summary[language]} ${s.tags.join(" ")} ${s.publication[language]}`.toLowerCase();
           if (!haystack.includes(q)) return false;
         }
         return true;
       })
       .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
-  }, [query, category, year, publication, locale]);
+  }, [query, category, year, publication, language]);
 
   const reset = () => { setQuery(""); setCategory("All"); setYear("All"); setPublication("All"); };
   const hasFilters = query.trim() || category !== "All" || year !== "All" || publication !== "All";
 
   const L = {
-    chapter: locale === "en" ? "Latest" : "সর্বশেষ",
-    title: locale === "en" ? "Articles" : "লেখা",
-    desc: locale === "en" ? "A text-first index of articles, interviews and features." : "লেখা, সাক্ষাৎকার ও ফিচারের সূচি।",
-    search: locale === "en" ? "Search" : "খুঁজুন",
-    searchPh: locale === "en" ? "Search headlines, summaries…" : "শিরোনাম বা সারসংক্ষেপ লিখুন…",
-    cat: locale === "en" ? "Category" : "বিভাগ",
-    yr: locale === "en" ? "Year" : "সাল",
-    pub: locale === "en" ? "Publication" : "পত্রিকা",
-    all: locale === "en" ? "All" : "সব",
-    noMatch: locale === "en" ? "No articles match." : "কোনো লেখা মেলেনি।",
-    tryAdj: locale === "en" ? "Try adjusting or resetting filters." : "ফিল্টার বদলে দেখুন, অথবা সব মুছুন।",
-    reset: locale === "en" ? "Reset filters" : "ফিল্টার মুছুন",
+    chapter: language === "en" ? "Latest" : "সর্বশেষ",
+    title: language === "en" ? "Articles" : "লেখা",
+    desc: language === "en" ? "A text-first index of articles, interviews and features." : "লেখা, সাক্ষাৎকার ও ফিচারের সূচি।",
+    search: language === "en" ? "Search" : "খুঁজুন",
+    searchPh: language === "en" ? "Search headlines, summaries…" : "শিরোনাম বা সারসংক্ষেপ লিখুন…",
+    cat: language === "en" ? "Category" : "বিভাগ",
+    yr: language === "en" ? "Year" : "সাল",
+    pub: language === "en" ? "Publication" : "পত্রিকা",
+    all: language === "en" ? "All" : "সব",
+    noMatch: language === "en" ? "No articles match." : "কোনো লেখা মেলেনি।",
+    tryAdj: language === "en" ? "Try adjusting or resetting filters." : "ফিল্টার বদলে দেখুন, অথবা সব মুছুন।",
+    reset: language === "en" ? "Reset filters" : "ফিল্টার মুছুন",
   };
 
   return (
     <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12 pt-24 lg:pt-32 pb-16 lg:pb-24">
-      <ChapterMark number="02" label={L.chapter} locale={locale} className="mb-6" />
+      <ChapterMark number="02" label={L.chapter} locale={language} className="mb-6" />
       <h1 className="section-headline text-ink mb-6" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>{L.title}</h1>
       <p className="text-lg text-ink-soft leading-relaxed max-w-2xl mb-12">{L.desc}</p>
 
@@ -71,11 +68,11 @@ export function ArticlesExplorer({ locale }: ArticlesExplorerProps) {
           </div>
         </div>
         <div className="md:col-span-2"><label htmlFor="art-cat" className="editorial-eyebrow block mb-2">{L.cat}</label><select id="art-cat" value={category} onChange={(e) => setCategory(e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink">{categories.map((c) => <option key={c} value={c}>{c}</option>)}</select></div>
-        <div className="md:col-span-2"><label htmlFor="art-yr" className="editorial-eyebrow block mb-2">{L.yr}</label><select id="art-yr" value={year} onChange={(e) => setYear(e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink"><option value="All">{L.all}</option>{years.map((y) => <option key={y} value={y}>{localeDigits(y, locale)}</option>)}</select></div>
+        <div className="md:col-span-2"><label htmlFor="art-yr" className="editorial-eyebrow block mb-2">{L.yr}</label><select id="art-yr" value={year} onChange={(e) => setYear(e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink"><option value="All">{L.all}</option>{years.map((y) => <option key={y} value={y}>{localeDigits(y, language)}</option>)}</select></div>
         <div className="md:col-span-2"><label htmlFor="art-pb" className="editorial-eyebrow block mb-2">{L.pub}</label><select id="art-pb" value={publication} onChange={(e) => setPublication(e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink"><option value="All">{L.all}</option>{publications.map((p) => <option key={p} value={p}>{p}</option>)}</select></div>
       </div>
 
-      {hasFilters && <div className="mt-4 flex items-center gap-3"><span className="text-xs text-ink-muted">{localeCount(filtered.length, locale, "articles", "লেখা")}</span><button type="button" onClick={reset} className="text-xs text-newsroom hover:text-newsroom-deep underline underline-offset-2 transition-colors">{L.reset}</button></div>}
+      {hasFilters && <div className="mt-4 flex items-center gap-3"><span className="text-xs text-ink-muted">{localeCount(filtered.length, language, "articles", "লেখা")}</span><button type="button" onClick={reset} className="text-xs text-newsroom hover:text-newsroom-deep underline underline-offset-2 transition-colors">{L.reset}</button></div>}
 
       <ol className="mt-8 divide-y divide-rule border-t border-rule">
         {filtered.length === 0 ? (
@@ -83,13 +80,13 @@ export function ArticlesExplorer({ locale }: ArticlesExplorerProps) {
         ) : (
           filtered.map((story) => (
             <li key={story.id}>
-              <Link href={`/${locale}/articles/${story.slug}`} className="group grid grid-cols-12 gap-4 py-6 hover:bg-paper-deep/30 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
-                <div className="col-span-12 sm:col-span-2"><span className="editorial-meta text-ink-muted">{formatDate(story.publishedAt, locale)}</span></div>
+              <Link href={`/articles/${story.slug}`} className="group grid grid-cols-12 gap-4 py-6 hover:bg-paper-deep/30 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
+                <div className="col-span-12 sm:col-span-2"><span className="editorial-meta text-ink-muted">{formatDate(story.publishedAt, language)}</span></div>
                 <div className="col-span-12 sm:col-span-8">
-                  <div className="flex items-baseline gap-3 mb-1.5"><span className="editorial-eyebrow text-newsroom">{story.category[locale]}</span><span className="text-xs text-ink-muted">{story.publication[locale]}</span></div>
-                  <h2 className="font-serif text-xl sm:text-2xl text-ink leading-tight tracking-[-0.01em] group-hover:text-newsroom transition-colors">{story.title[locale]}</h2>
-                  <p className="mt-2 text-sm text-ink-soft leading-relaxed line-clamp-2">{story.summary[locale]}</p>
-                  {story.readingTime && <span className="text-xs text-ink-muted mt-2 inline-block">{story.readingTime[locale]}</span>}
+                  <div className="flex items-baseline gap-3 mb-1.5"><span className="editorial-eyebrow text-newsroom">{story.category[language]}</span><span className="text-xs text-ink-muted">{story.publication[language]}</span></div>
+                  <h2 className="font-serif text-xl sm:text-2xl text-ink leading-tight tracking-[-0.01em] group-hover:text-newsroom transition-colors">{story.title[language]}</h2>
+                  <p className="mt-2 text-sm text-ink-soft leading-relaxed line-clamp-2">{story.summary[language]}</p>
+                  {story.readingTime && <span className="text-xs text-ink-muted mt-2 inline-block">{story.readingTime[language]}</span>}
                 </div>
                 <div className="hidden sm:flex col-span-2 items-center justify-end"><ArrowRight className="h-4 w-4 text-ink-muted transition-transform duration-300 group-hover:translate-x-1 group-hover:text-newsroom" aria-hidden="true" /></div>
               </Link>

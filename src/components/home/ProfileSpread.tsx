@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { profile } from "@/content/profile";
-import { localeHref } from "@/i18n/config";
+
 import type { Locale } from "@/content/types";
 
 interface ProfileSpreadProps {
@@ -19,7 +19,7 @@ export function ProfileSpread({ locale }: ProfileSpreadProps) {
   return (
     <section aria-labelledby="profile-heading" className="py-16 sm:py-24 lg:py-32 bg-paper-deep/30">
       <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
-        <ChapterMark number="04" label={chapterLabel} locale={locale} className="mb-12 lg:mb-20" />
+        <ChapterMark number="05" label={chapterLabel} locale={locale} className="mb-12 lg:mb-20" />
 
         <div className="grid grid-cols-12 gap-x-4 lg:gap-x-12 gap-y-12">
           {/* Left — heading */}
@@ -52,7 +52,7 @@ export function ProfileSpread({ locale }: ProfileSpreadProps) {
               </p>
               <div className="mt-10 pt-6 border-t border-rule-soft">
                 <Link
-                  href={localeHref("/about", locale)}
+                  href={`/about`}
                   className="group inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink hover:text-newsroom transition-colors"
                 >
                   {ctaLabel}

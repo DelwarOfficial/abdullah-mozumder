@@ -4,23 +4,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSyncExternalStore } from "react";
 import { ArrowRight } from "lucide-react";
-import { isLocale } from "@/i18n/config";
+import { useLanguage } from "@/i18n/language-context";
 import type { Locale } from "@/content/types";
 
 const emptySubscribe = () => () => {};
+const getTrue = () => true;
+const getFalse = () => false;
 
 /**
- * Branded 404 screen. Next.js does not pass route params to not-found
- * boundaries, so the locale is read from the pathname on the client.
- * SSR/first render is English (no hydration mismatch); it flips to the
- * correct locale immediately after hydration.
+ * Branded 404 screen. Locale comes from the language preference store
+ * (instant — same mechanism as the rest of the site).
  */
 export function NotFoundScreen() {
-  const pathname = usePathname();
-  const hydrated = useSyncExternalStore(emptySubscribe, () => true, () => false);
-
-  const segment = pathname?.split("/").filter(Boolean)[0] ?? "";
-  const locale: Locale = hydrated && isLocale(segment) ? segment : "en";
+  const { language: stored } = useLanguage();
+  const hydrated = useSyncExternalStore(emptySubscribe, getTrue, getFalse);
+  const locale: Locale = hydrated ? stored : "en";
 
   const L = {
     error: locale === "en" ? "Error 404" : "ত্রুটি ৪০৪",

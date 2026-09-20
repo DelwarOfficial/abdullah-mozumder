@@ -299,6 +299,32 @@
     color: var(--ink-muted);
   }
 
+  /* Clipping metadata is text evidence — keep it ≥14px on phones */
+  .clipping-meta {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+  }
+  @media (min-width: 640px) {
+    .clipping-meta {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+    }
+  }
+  html[lang="bn"] .clipping-meta {
+    text-transform: none;
+    letter-spacing: 0.04em;
+    font-size: 0.9375rem;
+  }
+  @media (min-width: 640px) {
+    html[lang="bn"] .clipping-meta {
+      font-size: 0.8125rem;
+    }
+  }
+
   /* Drop cap — Latin convention, disabled for Bangla via the bn override above */
   .drop-cap:first-letter {
     float: left;

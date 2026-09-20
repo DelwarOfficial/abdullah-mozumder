@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
 import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { siteConfig } from "@/content/site";
-import { localeHref } from "@/i18n/config";
+
 import type { Locale } from "@/content/types";
 
 interface ContactCTAProps {
@@ -22,7 +22,7 @@ export function ContactCTA({ locale }: ContactCTAProps) {
   return (
     <section aria-labelledby="contact-heading" className="py-24 sm:py-32 lg:py-48">
       <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
-        <ChapterMark number="09" label={chapterLabel} locale={locale} className="mb-12 lg:mb-20" />
+        <ChapterMark number="10" label={chapterLabel} locale={locale} className="mb-12 lg:mb-20" />
 
         <div className="grid grid-cols-12 gap-x-4 lg:gap-x-12 gap-y-16">
           {/* Heading — deliberate final editorial statement */}
@@ -54,7 +54,7 @@ export function ContactCTA({ locale }: ContactCTAProps) {
             </p>
             <div className="space-y-6">
               <Link
-                href={localeHref("/contact", locale)}
+                href={`/contact`}
                 className="group inline-flex items-center gap-2 px-8 py-4 bg-ink text-paper text-sm font-semibold uppercase tracking-[0.14em] hover:bg-newsroom transition-colors duration-300"
               >
                 {ctaLabel}

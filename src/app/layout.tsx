@@ -2,8 +2,13 @@ import { Inter, Newsreader, Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/content/site";
-import { siteName, siteDescription } from "@/content/site-messages";
+import { serverTitle, serverDescription } from "@/i18n/ui";
 import { themeInitScript } from "@/lib/theme";
+import { LanguageProvider } from "@/i18n/language-context";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SkipLink } from "@/components/layout/SkipLink";
+import { MobileShell } from "@/components/layout/MobileShell";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,11 +37,11 @@ const banglaSerif = Noto_Serif_Bengali({
 export const metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteName.en} — Journalist & Senior Reporter`,
-    template: `%s — ${siteName.en}`,
+    default: serverTitle,
+    template: `%s — Abdullah Mozomdar`,
   },
-  description: siteDescription.en,
-  applicationName: siteName.en,
+  description: serverDescription,
+  applicationName: "Abdullah Mozomdar",
   manifest: "/manifest.webmanifest",
   robots: {
     index: true,
@@ -68,13 +73,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Resolves theme + lang before first paint — no flash, no mismatch */}
+        {/* Resolves theme + language before first paint — no flash, no mismatch */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
         className={`${inter.variable} ${newsreader.variable} ${banglaSerif.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
       >
-        {children}
+        <LanguageProvider>
+          <SkipLink />
+          <SiteHeader />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <SiteFooter />
+          {/* Spacer so footer content clears the mobile bottom navigation */}
+          <div aria-hidden="true" className="h-16 lg:hidden bg-night" />
+          <MobileShell />
+        </LanguageProvider>
         <Toaster />
       </body>
     </html>

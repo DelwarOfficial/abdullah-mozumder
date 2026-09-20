@@ -18,6 +18,7 @@ export function themeLabel(choice: ThemeChoice, locale: Locale): string {
  * Inline script string — runs before first paint to resolve the theme
  * from localStorage (or system preference) with no flash and no
  * hydration mismatch (React never renders theme classes).
+ * Also applies the stored language to <html lang> before paint.
  */
 export const themeInitScript = `
 (function(){
@@ -30,8 +31,8 @@ export const themeInitScript = `
     root.classList.toggle("dark", dark);
     root.dataset.theme = mode;
     root.style.colorScheme = dark ? "dark" : "light";
-    var lang = location.pathname.split("/")[1] === "bn" ? "bn" : "en";
-    root.lang = lang;
+    var lang = localStorage.getItem("site-language");
+    root.lang = lang === "bn" ? "bn" : "en";
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute("content", dark ? "#0E0E0D" : "#F7F6F2");
   } catch (e) {}

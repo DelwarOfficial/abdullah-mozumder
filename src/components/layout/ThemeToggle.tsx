@@ -10,10 +10,9 @@ import {
   type ThemeChoice,
 } from "@/lib/theme";
 import { cn } from "@/lib/utils";
-import type { Locale } from "@/content/types";
+import { useLanguage } from "@/i18n/language-context";
 
 interface ThemeToggleProps {
-  locale: Locale;
   /** "icons" shows the three-state selector, "cycle" is a single compact button */
   variant?: "icons" | "cycle";
   className?: string;
@@ -29,7 +28,8 @@ const icons: Record<ThemeChoice, typeof Sun> = {
 
 const getServerTheme = (): ThemeChoice => "system";
 
-export function ThemeToggle({ locale, variant = "cycle", className }: ThemeToggleProps) {
+export function ThemeToggle({ variant = "cycle", className }: ThemeToggleProps) {
+  const { language } = useLanguage();
   // External store: no effect-time setState, no hydration mismatch
   const choice = useSyncExternalStore(subscribeTheme, getStoredTheme, getServerTheme);
 
@@ -47,7 +47,7 @@ export function ThemeToggle({ locale, variant = "cycle", className }: ThemeToggl
     return (
       <div
         role="radiogroup"
-        aria-label={locale === "en" ? "Colour theme" : "থিম"}
+        aria-label={language === "en" ? "Colour theme" : "থিম"}
         className={cn("inline-flex items-center border border-rule", className)}
       >
         {ORDER.map((mode) => {
@@ -59,7 +59,7 @@ export function ThemeToggle({ locale, variant = "cycle", className }: ThemeToggl
               type="button"
               role="radio"
               aria-checked={selected}
-              aria-label={themeLabel(mode, locale)}
+              aria-label={themeLabel(mode, language)}
               onClick={() => select(mode)}
               className={cn(
                 "inline-flex items-center justify-center w-10 h-10 transition-colors",
@@ -81,11 +81,11 @@ export function ThemeToggle({ locale, variant = "cycle", className }: ThemeToggl
       type="button"
       onClick={cycle}
       aria-label={
-        locale === "en"
+        language === "en"
           ? `Theme: ${themeLabel(choice, "en")}. Switch theme.`
           : `থিম: ${themeLabel(choice, "bn")}. থিম বদলান।`
       }
-      title={themeLabel(choice, locale)}
+      title={themeLabel(choice, language)}
       className={cn(
         "inline-flex items-center justify-center w-10 h-10 transition-colors hover:text-newsroom focus-visible:outline-2 focus-visible:outline-offset-2",
         className,
@@ -95,3 +95,4 @@ export function ThemeToggle({ locale, variant = "cycle", className }: ThemeToggl
     </button>
   );
 }
+

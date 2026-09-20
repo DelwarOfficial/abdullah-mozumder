@@ -4,7 +4,7 @@ import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { getFeaturedStory, stories } from "@/content/stories";
 import { formatDate } from "@/lib/format";
-import { localeHref } from "@/i18n/config";
+
 import type { Locale } from "@/content/types";
 
 interface SelectedReportingProps {
@@ -40,7 +40,7 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
           </div>
           <div className="col-span-12 lg:col-span-2 flex lg:items-end lg:justify-end">
             <Link
-              href={localeHref("/work", locale)}
+              href={`/work`}
               className="group inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink hover:text-newsroom transition-colors"
             >
               {allWorkLabel}
@@ -52,7 +52,7 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
         {/* Lead story — strong asymmetry: image ~60%, content ~40% */}
         <article className="group mb-20 lg:mb-32">
           <Link
-            href={localeHref(`/work/${lead.slug}`, locale)}
+            href={`/work/${lead.slug}`}
             className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
           >
             <div className="grid grid-cols-12 gap-x-4 lg:gap-x-10 gap-y-8 items-start">
@@ -113,7 +113,7 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
           {secondary[0] && (
           <article className="col-span-12 lg:col-span-7 group">
             <Link
-              href={localeHref(`/work/${secondary[0].slug}`, locale)}
+              href={`/work/${secondary[0].slug}`}
               className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
             >
               <div className="grid grid-cols-12 gap-x-4 lg:gap-x-6 gap-y-4 items-start">
@@ -153,7 +153,7 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
           {secondary[1] && (
           <article className="col-span-12 lg:col-span-5 group lg:pt-8">
             <Link
-              href={localeHref(`/work/${secondary[1].slug}`, locale)}
+              href={`/work/${secondary[1].slug}`}
               className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
             >
               <div className="flex items-baseline gap-3 mb-4">
@@ -181,7 +181,7 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
           {secondary[2] && (
           <article className="col-span-12 lg:col-span-5 group">
             <Link
-              href={localeHref(`/work/${secondary[2].slug}`, locale)}
+              href={`/work/${secondary[2].slug}`}
               className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
             >
               <StoryImagePlaceholder
@@ -212,7 +212,7 @@ export function SelectedReporting({ locale }: SelectedReportingProps) {
           {brief && (
             <article className="col-span-12 lg:col-span-7 group lg:pt-4">
               <Link
-                href={localeHref(`/work/${brief.slug}`, locale)}
+                href={`/work/${brief.slug}`}
                 className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
               >
                 <div className="grid grid-cols-12 gap-4 items-baseline">

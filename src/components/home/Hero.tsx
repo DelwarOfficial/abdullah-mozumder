@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { profile } from "@/content/profile";
-import { sectionLabels } from "@/content/site";
-import { localeHref } from "@/i18n/config";
+import { sectionLabels } from "@/i18n/ui";
+
 import type { Locale } from "@/content/types";
 
 interface HeroProps {
@@ -114,7 +114,7 @@ export function Hero({ locale }: HeroProps) {
             {/* CTA */}
             <div className="col-span-12 sm:col-span-6 lg:col-span-4 lg:text-center">
               <Link
-                href={localeHref("/work", locale)}
+                href={`/work`}
                 className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-paper hover:text-newsroom transition-colors"
               >
                 {locale === "en" ? "Selected Reporting" : "নির্বাচিত প্রতিবেদন দেখুন"}

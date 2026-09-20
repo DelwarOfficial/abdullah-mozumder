@@ -7,7 +7,7 @@ import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { stories } from "@/content/stories";
 import { formatDate } from "@/lib/format";
-import { localeHref } from "@/i18n/config";
+
 import type { Locale } from "@/content/types";
 
 interface NewsDeskProps {
@@ -54,7 +54,7 @@ export function NewsDesk({ locale }: NewsDeskProps) {
           </div>
           <div className="col-span-12 lg:col-span-2 flex lg:items-end lg:justify-end">
             <Link
-              href={localeHref("/articles", locale)}
+              href={`/articles`}
               className="group inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink hover:text-newsroom transition-colors"
             >
               {allLabel}
@@ -76,7 +76,7 @@ export function NewsDesk({ locale }: NewsDeskProps) {
             {items.map((story, idx) => (
               <li key={story.id}>
                 <Link
-                  href={localeHref(`/articles/${story.slug}`, locale)}
+                  href={`/articles/${story.slug}`}
                   className="group grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-2 py-8 sm:py-10 lg:py-12 hover:bg-paper/50 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}

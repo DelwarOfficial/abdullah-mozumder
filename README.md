@@ -8,13 +8,15 @@ Production-grade bilingual portfolio for Bangladeshi journalist **Abdullah Mozom
 
 ## Features
 
-### Bilingual by design (EN / বাংলা)
-- Every route under `/en/*` and `/bn/*` — fully static, 41 prerendered pages
-- Bangla rewritten as **natural newsroom Bengali**, not machine translation
-- Locale-aware dates via `Intl.DateTimeFormat` (`১২ সেপ্টেম্বর ২০২৬`) and Bangla numerals (২০২৫) — never hand-maintained strings
-- Dedicated Bangla typography: Noto Serif Bengali, relaxed line-height, no letter-spacing artifacts, drop caps disabled
-- Language switch preserves the exact page (`/en/work/story` → `/bn/work/story`)
-- Machine-readable data (ISO dates, URLs, JSON-LD) stays technically correct in both locales
+### Two languages, ONE React application (EN / বাংলা)
+- **Language is a user preference, not a URL** — one domain, one route tree, one build. No `/en`, no `/bn`.
+- Switching EN ⇄ বাংলা is **instant**: updates localized text in place via React — no reload, no navigation, no network request, no scroll jump.
+- Persisted in `localStorage` (`site-language`); survives refresh, navigation and return visits; pre-paint script sets `<html lang>` before paint.
+- Zero-dependency runtime (`useSyncExternalStore` store + provider, ~2KB) — no i18n framework, no state manager, **zero runtime machine translation**: both languages ship in the typed content layer.
+- Server metadata stays in one stable language (English, the default) — the SEO-honest single-URL model: one canonical per page, no fake hreflang, legacy `/en/*` & `/bn/*` URLs 301-redirect preserving slugs.
+- Locale-aware dates via `Intl.DateTimeFormat` (`১২ সেপ্টেম্বর ২০২৬`) and Bangla numerals (২০২৫) — never hand-maintained strings; ISO dates and JSON-LD stay machine-correct.
+- Dedicated Bangla typography: Noto Serif Bengali, relaxed line-height, no letter-spacing artifacts, conjunct-safe display rules, drop caps disabled.
+- Switch preserves the exact page and never resets the theme (and vice versa).
 
 ### Complete light / dark / system theme
 - Editorial dark palette ("late-night newsroom") — not an inverted light theme
@@ -71,31 +73,39 @@ No animation frameworks, no state managers, no localization libraries — the i1
 
 ```
 src/
-├── app/
-│   ├── layout.tsx              # fonts, theme init script, viewport, metadata
+├── app/                        # ONE route tree — no locale dimension
+│   ├── layout.tsx              # fonts, theme+language pre-paint script, shell
+│   ├── page.tsx                # /            (home)
+│   ├── about/page.tsx          # /about
+│   ├── experience/page.tsx     # /experience
+│   ├── work/page.tsx           # /work
+│   ├── work/[slug]/page.tsx    # /work/[slug] (SSG)
+│   ├── articles/page.tsx       # /articles
+│   ├── articles/[slug]/page.tsx
+│   ├── gallery/page.tsx  contact/page.tsx
+│   ├── not-found.tsx           # branded, preference-aware 404
 │   ├── opengraph-image.tsx     # generated 1200×630 social card
-│   ├── icon.tsx / apple-icon.tsx
-│   ├── sitemap.ts / robots.ts
-│   ├── not-found.tsx           # branded, locale-aware 404
-│   ├── api/contact/route.ts    # honeypot → validate → rate-limit → DB → email
-│   └── [locale]/               # en | bn — all pages (home, about, experience,
-│                               #   work, articles, gallery, contact, 404)
+│   ├── icon.tsx / apple-icon.tsx / sitemap.ts / robots.ts
+│   └── api/contact/route.ts    # honeypot → validate → rate-limit → DB → email
 ├── components/
-│   ├── layout/                 # SiteHeader, SiteFooter, MobileShell (bottom nav +
-│   │                           #   menu sheet), ThemeToggle, LanguageSwitcher, 404
+│   ├── layout/                 # SiteHeader, SiteFooter, MobileShell, ThemeToggle,
+│   │                           #   LanguageSwitcher (instant toggle), 404 screen
+│   ├── pages/                  # client content roots per page (useLanguage)
 │   ├── home/                   # Hero, SelectedReporting, NewsDesk, Career, …
-│   ├── journalism/             # Work/Articles explorers, ShareButtons, ReadingProgress
-│   ├── contact/ gallery/ seo/ ui/ ui-editorial/
-├── content/                    # ← ALL editable copy lives here (typed, bilingual)
-│   ├── site.ts                 # identity, nav, section labels
-│   ├── profile.ts              # bio, headline, current position
-│   ├── stories.ts              # journalism archive
-│   ├── experiences.ts / education.ts / memberships.ts
-│   ├── reporting-areas.ts / gallery.ts
-│   └── types.ts                # Localized<T> + L() helper
-├── i18n/config.ts              # localeHref, switchLocalePath, stripLocale
-└── lib/                        # db (Prisma), theme, format (dates/numerals)
+│   ├── journalism/ gallery/ contact/ seo/ ui/ ui-editorial/
+├── content/                    # editorial content — typed, bilingual (L(en, bn))
+│   ├── profile.ts / stories.ts / experiences.ts / education.ts
+│   ├── memberships.ts / reporting-areas.ts / gallery.ts / types.ts
+├── i18n/
+│   ├── ui.ts                   # UI dictionary (nav, labels, chrome) — separate
+│   │                           #   from journalism content
+│   └── language-context.tsx    # language store + provider + hook
+└── lib/                        # db (Prisma), theme, format (dates/numerals), seo
 ```
+
+Each page is a thin **server** component (metadata + JSON-LD + static shell)
+wrapping a client content root that consumes `useLanguage()`. English is
+prerendered to HTML; the visible tree re-renders in place on language switch.
 
 ---
 
@@ -176,10 +186,11 @@ Back up `db/custom.db` on a schedule — it holds contact messages.
 
 ## Quality gates (current status)
 
-- ESLint: clean · TypeScript: clean (build-enforced) · Production build: 41 pages
-- Live-verified: all routes 200, contact POST persists to DB, honeypot silent, security headers present (`X-Frame-Options`, `nosniff`, `Referrer-Policy`, HSTS in prod), OG/icon endpoints render, branded localized 404
-- Images: `next/image` everywhere (responsive srcset, AVIF/WebP via sharp) — portrait in hero/about, real story heroes, 12-photo gallery, publication mastheads on experience rows; every route emits a correct `og:image`
-- Zero hydration warnings; CLS-safe theme and fonts
+- ESLint: clean · TypeScript: clean (build-enforced) · Production build: 26 static pages (single-URL tree)
+- Live-verified: all routes 200, legacy `/en/*` + `/bn/*` 308→301-equivalent redirects preserving slugs, contact POST persists to DB, honeypot silent, security headers present, branded 404
+- One canonical per page, zero hreflang, sitemap = single URLs only, `og:image` on every route
+- Zero hydration warnings; no-flash theme; no-reload language switching
+- Images: `next/image` everywhere — portrait in hero/about, real story heroes, 12-photo gallery, mastheads on experience rows
 
 ---
 

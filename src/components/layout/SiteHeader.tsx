@@ -5,18 +5,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/content/site";
-import { navItems, navContact, languageLabels } from "@/content/site";
-import { siteName } from "@/content/site-messages";
+import { navItems, navContact, sectionLabels } from "@/i18n/ui";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { localeHref, otherLocale } from "@/i18n/config";
-import type { Locale } from "@/content/types";
+import { useLanguage } from "@/i18n/language-context";
 
-interface SiteHeaderProps {
-  locale: Locale;
-}
-
-export function SiteHeader({ locale }: SiteHeaderProps) {
+export function SiteHeader() {
+  const { language } = useLanguage();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [atTop, setAtTop] = useState(true);
@@ -33,7 +28,7 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
   }, []);
 
   // Determine if we're on the homepage (hero is full-screen there)
-  const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
+  const isHome = pathname === "/";
   const onHero = isHome && atTop;
 
   return (
@@ -52,9 +47,9 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
         )}>
           {/* Wordmark */}
           <Link
-            href={localeHref("/", locale)}
+            href="/"
             className="group inline-flex items-baseline gap-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink shrink-0"
-            aria-label={`${siteName[locale]} — ${locale === "en" ? "home" : "হোম"}`}
+            aria-label={language === "en" ? "Abdullah Mozomdar — home" : "আবদুল্লাহ মোজোমদার — হোম"}
           >
             <span className={cn(
               "font-serif font-bold tracking-tight transition-all duration-300",
@@ -67,22 +62,21 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
               "hidden sm:inline-block font-sans font-medium tracking-wide transition-all duration-300 text-xs",
               onHero ? "text-paper/70" : "text-ink-muted",
             )}>
-              {siteName[locale]}
+              {language === "en" ? "Abdullah Mozomdar" : "আবদুল্লাহ মোজোমদার"}
             </span>
           </Link>
 
           {/* Desktop nav */}
           <nav
-            aria-label={locale === "en" ? "Primary" : "প্রধান মেনু"}
+            aria-label={sectionLabels.primaryNav[language]}
             className="hidden lg:flex items-center gap-8"
           >
             {navItems.map((item) => {
-              const href = localeHref(item.href, locale);
-              const isActive = pathname === href || (item.href !== "/" && pathname?.startsWith(href));
+              const isActive = pathname === item.href || pathname?.startsWith(item.href);
               return (
                 <Link
                   key={item.href}
-                  href={href}
+                  href={item.href}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "relative font-medium tracking-wide transition-colors hover:opacity-100",
@@ -92,7 +86,7 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
                   )}
                   style={{ fontSize: "0.9375rem" }}
                 >
-                  {item.label[locale]}
+                  {item.label[language]}
                   <span
                     aria-hidden="true"
                     className={cn(
@@ -108,20 +102,17 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
 
           {/* Right cluster — brand, theme, language, contact */}
           <div className="flex items-center gap-1.5 sm:gap-3 lg:gap-5">
-            <ThemeToggle
-              locale={locale}
-              className={cn(onHero ? "text-paper" : "text-ink")}
-            />
+            <ThemeToggle className={cn(onHero ? "text-paper" : "text-ink")} />
 
             <LanguageSwitcher
-              locale={locale}
-              other={otherLocale[locale]}
-              otherLabel={languageLabels[otherLocale[locale]]}
-              isHome={onHero}
+              className={cn(
+                "text-xs font-semibold tracking-wide",
+                onHero ? "text-paper/80" : "text-ink-muted",
+              )}
             />
 
             <Link
-              href={localeHref(navContact.href, locale)}
+              href={navContact.href}
               className={cn(
                 "hidden lg:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors duration-300",
                 onHero
@@ -129,7 +120,7 @@ export function SiteHeader({ locale }: SiteHeaderProps) {
                   : "bg-ink text-paper hover:bg-newsroom",
               )}
             >
-              {navContact.label[locale]}
+              {navContact.label[language]}
               <span aria-hidden="true" className="text-[0.9em]">↗</span>
             </Link>
           </div>

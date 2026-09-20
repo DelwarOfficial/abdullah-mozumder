@@ -1,43 +1,52 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useLanguage } from "@/i18n/language-context";
 import { cn } from "@/lib/utils";
-import { switchLocalePath } from "@/i18n/config";
-import { languageLabels } from "@/content/site";
-import type { Locale } from "@/content/types";
 
 interface LanguageSwitcherProps {
-  locale: Locale;
-  other: Locale;
-  otherLabel: string;
-  isHome: boolean;
+  className?: string;
+  variant?: "text" | "block";
 }
 
-export function LanguageSwitcher({ locale, other, otherLabel, isHome }: LanguageSwitcherProps) {
-  const pathname = usePathname();
-  const otherPath = switchLocalePath(pathname, other);
+/**
+ * Instant language toggle — EN ⇄ বাংলা.
+ * No navigation, no reload: flips the language store in place.
+ * Active language strong, inactive muted (never color-only — the label
+ * itself changes and aria-pressed exposes state).
+ */
+export function LanguageSwitcher({ className, variant = "text" }: LanguageSwitcherProps) {
+  const { language, toggleLanguage } = useLanguage();
+
+  if (variant === "block") {
+    return (
+      <button
+        type="button"
+        onClick={toggleLanguage}
+        aria-pressed={language === "bn"}
+        aria-label={language === "en" ? "Switch to Bangla" : "Switch to English"}
+        className={cn(
+          "min-h-[44px] min-w-[64px] px-4 py-2 border border-rule text-sm font-semibold transition-colors hover:border-ink focus-visible:outline-2 focus-visible:outline-offset-2",
+          className,
+        )}
+      >
+        {language === "en" ? "বাংলা" : "English"}
+      </button>
+    );
+  }
 
   return (
-    <div
+    <button
+      type="button"
+      onClick={toggleLanguage}
+      aria-pressed={language === "bn"}
+      aria-label={language === "en" ? "Switch to Bangla" : "Switch to English"}
+      title={language === "en" ? "বাংলা" : "English"}
       className={cn(
-        "inline-flex items-center gap-1.5 text-xs font-semibold tracking-wide transition-colors",
-        isHome ? "text-paper/80" : "text-ink-muted",
+        "inline-flex items-center h-10 px-2 transition-colors hover:text-newsroom focus-visible:outline-2 focus-visible:outline-offset-2",
+        className,
       )}
-      aria-label="Language selector"
     >
-      <span className={cn(locale === "en" && (isHome ? "text-paper" : "text-ink"))}>EN</span>
-      <span aria-hidden="true" className={isHome ? "text-paper/40" : "text-rule"}>|</span>
-      <Link
-        href={otherPath}
-        className={cn(
-          "transition-colors hover:underline underline-offset-2",
-          locale === "bn" && (isHome ? "text-paper" : "text-ink"),
-        )}
-        aria-label={`Switch to ${otherLabel}`}
-      >
-        {languageLabels.bn}
-      </Link>
-    </div>
+      {language === "en" ? "বাংলা" : "EN"}
+    </button>
   );
 }

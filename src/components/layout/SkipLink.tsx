@@ -1,7 +1,10 @@
-import type { Locale } from "@/content/types";
+"use client";
 
-export function SkipLink({ locale }: { locale?: Locale }) {
-  const label = locale === "bn" ? "মূল অংশে যান" : "Skip to content";
+import { useLanguage } from "@/i18n/language-context";
+
+export function SkipLink() {
+  const { language } = useLanguage();
+  const label = language === "bn" ? "মূল অংশে যান" : "Skip to content";
   return (
     <a
       href="#main"

@@ -13,7 +13,7 @@ export function Credentials({ locale }: CredentialsProps) {
   return (
     <section aria-labelledby="credentials-heading" className="py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
-        <ChapterMark number="05" label={chapterLabel} locale={locale} className="mb-8 lg:mb-12" />
+        <ChapterMark number="06" label={chapterLabel} locale={locale} className="mb-8 lg:mb-12" />
         <h2
           id="credentials-heading"
           className="section-headline text-ink mb-12 lg:mb-20"

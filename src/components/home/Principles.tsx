@@ -34,9 +34,7 @@ export function Principles({ locale }: PrinciplesProps) {
           <span
             className="font-sans font-bold text-paper tabular-nums tracking-tight"
             style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
-          >
-            08
-          </span>
+          >09</span>
           <span className="h-px bg-paper/20" style={{ width: "clamp(20px, 3vw, 48px)" }} aria-hidden="true" />
           <span className="editorial-eyebrow text-paper/50">
             {locale === "en" ? "Journalism Principles" : "সাংবাদিকতার নীতি"}

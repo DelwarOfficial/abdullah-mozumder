@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { ChapterMark } from "@/components/ui-editorial/ChapterMark";
 import { experiences } from "@/content/experiences";
 import { localeDigits } from "@/lib/format";
-import { localeHref } from "@/i18n/config";
+
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/content/types";
 
@@ -23,7 +23,7 @@ export function Career({ locale }: CareerProps) {
       <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-12 gap-4 mb-12 lg:mb-20">
           <div className="col-span-12 lg:col-span-8">
-            <ChapterMark number="03" label={chapterLabel} locale={locale} />
+            <ChapterMark number="04" label={chapterLabel} locale={locale} />
             <h2
               id="career-heading"
               className="section-headline text-ink mt-6"
@@ -34,7 +34,7 @@ export function Career({ locale }: CareerProps) {
           </div>
           <div className="col-span-12 lg:col-span-4 flex lg:items-end lg:justify-end">
             <Link
-              href={localeHref("/experience", locale)}
+              href={`/experience`}
               className="group inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink hover:text-newsroom transition-colors"
             >
               {fullLabel}
