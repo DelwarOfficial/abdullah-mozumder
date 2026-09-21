@@ -6,7 +6,7 @@ import { ExperienceContent } from "@/components/pages/ExperienceContent";
 
 export const metadata: Metadata = {
   title: "Experience",
-  description: "Career timeline of Abdullah Mozomdar — reporting experience across national news organizations in Bangladesh.",
+  description: "Explore Abdullah Mozomdar's reporting career, from Daily Banglar Nabokantha and Dhaka Times to his current Senior Reporter role at Daily Banijjo Pratidin.",
   alternates: {
     canonical: "/experience",
   },

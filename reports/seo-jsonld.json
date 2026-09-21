@@ -1,0 +1,646 @@
+{
+  "/about": [
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://abdullamozomdar.com/#website",
+          "name": "Abdullah Mozomdar",
+          "url": "https://abdullamozomdar.com",
+          "description": "Abdullah Mozomdar, a Bangladeshi journalist and Senior Reporter at Daily Banijjo Pratidin. Explore his career, portfolio, memberships and contact details.",
+          "publisher": {
+            "@id": "https://abdullamozomdar.com/#person"
+          },
+          "inLanguage": [
+            "en",
+            "bn"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://abdullamozomdar.com/#person",
+          "name": "Abdullah Mozomdar",
+          "alternateName": "আবদুল্লাহ মোজুমদার",
+          "jobTitle": "Journalist & Senior Reporter",
+          "email": "mailto:amozomdar@gmail.com",
+          "url": "https://abdullamozomdar.com",
+          "image": "https://abdullamozomdar.com/image/portrait-hero.png",
+          "description": "Abdullah Mozomdar is a Bangladeshi journalist and Senior Reporter with professional reporting experience across national news organizations.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Dhaka, Bangladesh"
+          },
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Daily Banijjo Pratidin"
+          },
+          "alumniOf": [
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "Jagannath University, Dhaka"
+            }
+          ],
+          "memberOf": [
+            {
+              "@type": "OrganizationRole",
+              "roleName": "Executive Member",
+              "memberOf": {
+                "@type": "Organization",
+                "name": "Dhaka Union of Journalists"
+              }
+            },
+            {
+              "@type": "OrganizationRole",
+              "roleName": "Permanent Member",
+              "memberOf": {
+                "@type": "Organization",
+                "name": "National Press Club"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://abdullamozomdar.com/about/#page",
+          "url": "https://abdullamozomdar.com/about",
+          "name": "About — Abdullah Mozomdar",
+          "description": "Learn about Abdullah Mozomdar, a journalist in Dhaka, including his reporting career, education at Jagannath University and professional memberships.",
+          "isPartOf": {
+            "@id": "https://abdullamozomdar.com/#website"
+          },
+          "about": {
+            "@id": "https://abdullamozomdar.com/#person"
+          },
+          "mainEntity": {
+            "@id": "https://abdullamozomdar.com/#person"
+          },
+          "inLanguage": [
+            "en",
+            "bn"
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://abdullamozomdar.com/about/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Abdullah Mozomdar",
+              "item": "https://abdullamozomdar.com"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "About",
+              "item": "https://abdullamozomdar.com/about"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "/articles/sample-city-report": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/articles/sample-city-report/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Articles",
+          "item": "https://abdullamozomdar.com/articles"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sample City Report",
+          "item": "https://abdullamozomdar.com/articles/sample-city-report"
+        }
+      ]
+    }
+  ],
+  "/articles/sample-feature-story": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/articles/sample-feature-story/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Articles",
+          "item": "https://abdullamozomdar.com/articles"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sample Feature Story",
+          "item": "https://abdullamozomdar.com/articles/sample-feature-story"
+        }
+      ]
+    }
+  ],
+  "/articles/sample-interview": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/articles/sample-interview/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Articles",
+          "item": "https://abdullamozomdar.com/articles"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sample Interview",
+          "item": "https://abdullamozomdar.com/articles/sample-interview"
+        }
+      ]
+    }
+  ],
+  "/articles/sample-multimedia-piece": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/articles/sample-multimedia-piece/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Articles",
+          "item": "https://abdullamozomdar.com/articles"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sample Multimedia Piece",
+          "item": "https://abdullamozomdar.com/articles/sample-multimedia-piece"
+        }
+      ]
+    }
+  ],
+  "/articles/sample-report-title": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/articles/sample-report-title/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Articles",
+          "item": "https://abdullamozomdar.com/articles"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sample Report Title",
+          "item": "https://abdullamozomdar.com/articles/sample-report-title"
+        }
+      ]
+    }
+  ],
+  "/articles": [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": "https://abdullamozomdar.com/articles/#collection",
+      "url": "https://abdullamozomdar.com/articles",
+      "name": "Articles - Abdullah Mozomdar",
+      "description": "Browse Abdullah Mozomdar's article index, with clearly labeled sample reports, features and interviews presented in a readable format in English and Bangla.",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Sample Report Title",
+            "url": "https://abdullamozomdar.com/articles/sample-report-title"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Sample Feature Story",
+            "url": "https://abdullamozomdar.com/articles/sample-feature-story"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Sample Interview",
+            "url": "https://abdullamozomdar.com/articles/sample-interview"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Sample Multimedia Piece",
+            "url": "https://abdullamozomdar.com/articles/sample-multimedia-piece"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Sample City Report",
+            "url": "https://abdullamozomdar.com/articles/sample-city-report"
+          }
+        ]
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/articles/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Articles",
+          "item": "https://abdullamozomdar.com/articles"
+        }
+      ]
+    }
+  ],
+  "/contact": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/contact/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "https://abdullamozomdar.com/contact"
+        }
+      ]
+    }
+  ],
+  "/experience": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/experience/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Experience",
+          "item": "https://abdullamozomdar.com/experience"
+        }
+      ]
+    }
+  ],
+  "/gallery": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/gallery/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Gallery",
+          "item": "https://abdullamozomdar.com/gallery"
+        }
+      ]
+    }
+  ],
+  "/": [
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://abdullamozomdar.com/#website",
+          "name": "Abdullah Mozomdar",
+          "url": "https://abdullamozomdar.com",
+          "description": "Abdullah Mozomdar, a Bangladeshi journalist and Senior Reporter at Daily Banijjo Pratidin. Explore his career, portfolio, memberships and contact details.",
+          "publisher": {
+            "@id": "https://abdullamozomdar.com/#person"
+          },
+          "inLanguage": [
+            "en",
+            "bn"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://abdullamozomdar.com/#person",
+          "name": "Abdullah Mozomdar",
+          "alternateName": "আবদুল্লাহ মোজুমদার",
+          "jobTitle": "Journalist & Senior Reporter",
+          "email": "mailto:amozomdar@gmail.com",
+          "url": "https://abdullamozomdar.com",
+          "image": "https://abdullamozomdar.com/image/portrait-hero.png",
+          "description": "Abdullah Mozomdar is a Bangladeshi journalist and Senior Reporter with professional reporting experience across national news organizations.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Dhaka, Bangladesh"
+          },
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Daily Banijjo Pratidin"
+          },
+          "alumniOf": [
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "Jagannath University, Dhaka"
+            }
+          ],
+          "memberOf": [
+            {
+              "@type": "OrganizationRole",
+              "roleName": "Executive Member",
+              "memberOf": {
+                "@type": "Organization",
+                "name": "Dhaka Union of Journalists"
+              }
+            },
+            {
+              "@type": "OrganizationRole",
+              "roleName": "Permanent Member",
+              "memberOf": {
+                "@type": "Organization",
+                "name": "National Press Club"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://abdullamozomdar.com/#page",
+          "url": "https://abdullamozomdar.com",
+          "name": "Abdullah Mozomdar — Journalist & Senior Reporter",
+          "description": "Abdullah Mozomdar, a Bangladeshi journalist and Senior Reporter at Daily Banijjo Pratidin. Explore his career, portfolio, memberships and contact details.",
+          "isPartOf": {
+            "@id": "https://abdullamozomdar.com/#website"
+          },
+          "about": {
+            "@id": "https://abdullamozomdar.com/#person"
+          },
+          "inLanguage": [
+            "en",
+            "bn"
+          ]
+        }
+      ]
+    }
+  ],
+  "/work/sample-city-report": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/work/sample-city-report/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://abdullamozomdar.com/work"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sample City Report",
+          "item": "https://abdullamozomdar.com/work/sample-city-report"
+        }
+      ]
+    }
+  ],
+  "/work/sample-feature-story": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/work/sample-feature-story/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://abdullamozomdar.com/work"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sample Feature Story",
+          "item": "https://abdullamozomdar.com/work/sample-feature-story"
+        }
+      ]
+    }
+  ],
+  "/work/sample-interview": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/work/sample-interview/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://abdullamozomdar.com/work"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sample Interview",
+          "item": "https://abdullamozomdar.com/work/sample-interview"
+        }
+      ]
+    }
+  ],
+  "/work/sample-multimedia-piece": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/work/sample-multimedia-piece/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://abdullamozomdar.com/work"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sample Multimedia Piece",
+          "item": "https://abdullamozomdar.com/work/sample-multimedia-piece"
+        }
+      ]
+    }
+  ],
+  "/work/sample-report-title": [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/work/sample-report-title/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://abdullamozomdar.com/work"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Sample Report Title",
+          "item": "https://abdullamozomdar.com/work/sample-report-title"
+        }
+      ]
+    }
+  ],
+  "/work": [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": "https://abdullamozomdar.com/work/#collection",
+      "url": "https://abdullamozomdar.com/work",
+      "name": "Work - Abdullah Mozomdar",
+      "description": "Explore Abdullah Mozomdar's journalism portfolio, with press clippings and clearly labeled sample reports, features, interviews and multimedia work.",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Sample Report Title",
+            "url": "https://abdullamozomdar.com/work/sample-report-title"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Sample Feature Story",
+            "url": "https://abdullamozomdar.com/work/sample-feature-story"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Sample Interview",
+            "url": "https://abdullamozomdar.com/work/sample-interview"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Sample Multimedia Piece",
+            "url": "https://abdullamozomdar.com/work/sample-multimedia-piece"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Sample City Report",
+            "url": "https://abdullamozomdar.com/work/sample-city-report"
+          }
+        ]
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": "https://abdullamozomdar.com/work/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Abdullah Mozomdar",
+          "item": "https://abdullamozomdar.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://abdullamozomdar.com/work"
+        }
+      ]
+    }
+  ]
+}

@@ -6,7 +6,7 @@ import { GalleryContent } from "@/components/gallery/GalleryContent";
 
 export const metadata: Metadata = {
   title: "Gallery",
-  description: "Photojournalism gallery by Abdullah Mozomdar.",
+  description: "Browse Abdullah Mozomdar's portfolio gallery, with photographs and captions covering professional activities, newsroom moments and reporting assignments.",
   alternates: {
     canonical: "/gallery",
   },

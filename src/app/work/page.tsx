@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { WorkContent } from "@/components/journalism/WorkContent";
 import { ClippingsStrip } from "@/components/journalism/PressClippings";
-import { BreadcrumbSchema } from "@/components/seo/StructuredData";
+import { BreadcrumbSchema, StructuredData, buildCollectionNode } from "@/components/seo/StructuredData";
 import { siteConfig } from "@/content/site";
 import { siteName } from "@/i18n/ui";
 import { stories } from "@/content/stories";
@@ -10,7 +10,7 @@ import { ogImage } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Selected journalism by Abdullah Mozomdar. Reports, features, interviews and multimedia.",
+  description: "Explore Abdullah Mozomdar's journalism portfolio, with press clippings and clearly labeled sample reports, features, interviews and multimedia work.",
   alternates: {
     canonical: "/work",
   },
@@ -24,6 +24,12 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <>
+      <StructuredData data={buildCollectionNode({
+        url: `${siteConfig.url}/work`,
+        name: "Work - Abdullah Mozomdar",
+        description: metadata.description ?? undefined,
+        items: stories.map((story) => ({ name: story.title.en, url: `${siteConfig.url}/work/${story.slug}` })),
+      })} />
       <BreadcrumbSchema items={[
         { name: siteName.en, url: siteConfig.url },
         { name: "Work", url: `${siteConfig.url}/work` },

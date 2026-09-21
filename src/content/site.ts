@@ -5,7 +5,7 @@
  */
 export const siteConfig = {
   email: "amozomdar@gmail.com",
-  url: "https://abdullahmozomdar.com",
+  url: "https://abdullamozomdar.com",
   wordmark: "AM/",
   portrait: "/image/portrait-hero.png",
 } as const;

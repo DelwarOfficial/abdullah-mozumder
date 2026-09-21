@@ -7,8 +7,6 @@ import { stories } from "@/content/stories";
  * no alternates. Language is a user preference, not an indexable URL.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
   const staticPaths = [
     { path: "", priority: 1.0, changeFrequency: "weekly" as const },
     { path: "/about", priority: 0.9, changeFrequency: "monthly" as const },
@@ -21,7 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes: MetadataRoute.Sitemap = staticPaths.map(({ path, priority, changeFrequency }) => ({
     url: `${siteConfig.url}${path}`,
-    lastModified: now,
     changeFrequency,
     priority,
   }));

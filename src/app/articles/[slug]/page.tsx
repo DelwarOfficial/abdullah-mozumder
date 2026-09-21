@@ -21,8 +21,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!story) return {};
   const url = `${siteConfig.url}/articles/${story.slug}`;
   return {
-    title: story.title.en,
-    description: story.summary.en,
+    title: `${story.title.en} | Article`,
+    description: story.isDemo
+      ? `${story.title.en}: a sample article layout by Abdullah Mozomdar. Demo content illustrates the reading experience; verified reporting will replace it.`
+      : story.summary.en,
     alternates: {
       canonical: `/articles/${story.slug}`,
     },
@@ -53,7 +55,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
   return (
     <>
-      <ArticleSchema
+      {story && !story.isDemo && <ArticleSchema
         headline={story?.title.en ?? "Article"}
         description={story?.summary.en ?? ""}
         datePublished={story?.publishedAt ?? ""}
@@ -61,7 +63,7 @@ export default async function ArticlePage({ params }: PageProps) {
         url={`${siteConfig.url}/articles/${slug}`}
         image={story?.heroImage ?? undefined}
         publication={story?.publication.en}
-      />
+      />}
       <BreadcrumbSchema items={[
         { name: siteName.en, url: siteConfig.url },
         { name: "Articles", url: `${siteConfig.url}/articles` },

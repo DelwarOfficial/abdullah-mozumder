@@ -6,7 +6,7 @@ import { ContactContent } from "@/components/contact/ContactContent";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Abdullah Mozomdar — for editorial enquiries, story tips, media collaborations.",
+  description: "Contact Abdullah Mozomdar for editorial enquiries, story tips or media collaborations. Find contact details and send a message through the portfolio website.",
   alternates: {
     canonical: "/contact",
   },

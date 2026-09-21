@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, Mail } from "lucide-react";
 import { profile } from "@/content/profile";
+import { HeroCarousel } from "./HeroCarousel";
 import { useLanguage } from "@/i18n/language-context";
 
 export function Hero({ locale }: { locale: "en" | "bn" }) {
@@ -66,7 +66,7 @@ export function Hero({ locale }: { locale: "en" | "bn" }) {
             </div>
           </div>
 
-          {/* Portrait — 5 cols, dominant */}
+          {/* Portrait — 5 cols, dominant, motion carousel */}
           <div className="lg:col-span-5 order-1 lg:order-2">
             <div className="relative mx-auto lg:mx-0 max-w-[420px] lg:max-w-none">
               {/* restrained accent panel behind portrait */}
@@ -74,15 +74,8 @@ export function Hero({ locale }: { locale: "en" | "bn" }) {
                 aria-hidden="true"
                 className="absolute -top-4 -right-4 bottom-8 left-8 rounded-2xl bg-newsroom-soft"
               />
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-rule shadow-[var(--shadow-card-hover)]">
-                <Image
-                  src="/image/portrait-hero.png"
-                  alt={profile.portraitAlt[locale]}
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 40vw, (min-width: 640px) 420px, 100vw"
-                  className="object-cover object-top"
-                />
+              <div className="relative">
+                <HeroCarousel />
               </div>
               {/* name plate */}
               <div className="absolute -bottom-5 left-6 right-6 sm:left-8 sm:right-auto card-surface px-5 py-3.5">

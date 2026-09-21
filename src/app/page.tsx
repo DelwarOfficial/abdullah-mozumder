@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { PersonSchema, WebsiteSchema } from "@/components/seo/StructuredData";
-import { profile } from "@/content/profile";
+import { StructuredDataGraph } from "@/components/seo/StructuredData";
+import { personSchema, websiteSchema } from "@/lib/person-schema";
 import { siteConfig } from "@/content/site";
 import { serverTitle, serverDescription, siteName } from "@/i18n/ui";
 import { HomeContent } from "@/components/pages/HomeContent";
@@ -29,17 +29,12 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <PersonSchema
-        name={profile.name.en}
-        jobTitle={profile.title.en}
-        email={profile.email}
-        url={siteConfig.url}
-        location={profile.location.en}
-      />
-      <WebsiteSchema
-        name={siteName.en}
-        url={siteConfig.url}
-        description={serverDescription}
+      <StructuredDataGraph
+        pageUrl={siteConfig.url}
+        pageName={serverTitle}
+        pageDescription={serverDescription}
+        person={personSchema}
+        website={websiteSchema}
       />
       <HomeContent />
     </>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { BreadcrumbSchema, PersonSchema } from "@/components/seo/StructuredData";
+import { buildBreadcrumbNode, StructuredDataGraph } from "@/components/seo/StructuredData";
+import { personSchema, websiteSchema } from "@/lib/person-schema";
 import { profile } from "@/content/profile";
 import { siteConfig } from "@/content/site";
 import { siteName } from "@/i18n/ui";
@@ -7,7 +8,7 @@ import { AboutContent } from "@/components/pages/AboutContent";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${profile.name.en} — ${profile.title.en} based in ${profile.location.en}.`,
+  description: "Learn about Abdullah Mozomdar, a journalist in Dhaka, including his reporting career, education at Jagannath University and professional memberships.",
   alternates: {
     canonical: "/about",
   },
@@ -23,11 +24,18 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <PersonSchema name={profile.name.en} jobTitle={profile.title.en} email={profile.email} url={`${siteConfig.url}/about`} location={profile.location.en} />
-      <BreadcrumbSchema items={[
+      <StructuredDataGraph
+        pageUrl={`${siteConfig.url}/about`}
+        pageType="ProfilePage"
+        pageName={`About — ${siteName.en}`}
+        pageDescription={metadata.description ?? undefined}
+        person={personSchema}
+        website={websiteSchema}
+        extraNodes={[buildBreadcrumbNode([
         { name: siteName.en, url: siteConfig.url },
         { name: "About", url: `${siteConfig.url}/about` },
-      ]} />
+        ])]}
+      />
       <AboutContent />
     </>
   );
