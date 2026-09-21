@@ -55,3 +55,7 @@ server.log
 # runtime data
 db/*.db
 db/*.db-journal
+
+# runtime/agent artifacts
+*.pid
+tool-results/
