@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description: `About ${profile.name.en}.`,
     url: `${siteConfig.url}/about`,
     type: "profile",
-    images: [{ url: "/image/profile.jpg", alt: profile.portraitAlt.en }],
+      images: [{ url: "/image/profile.webp", alt: profile.portraitAlt.en }],
   },
 };
 

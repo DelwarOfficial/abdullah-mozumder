@@ -22,7 +22,7 @@ const slides: HeroSlide[] = [
     position: "68% 20%",
   },
   {
-    src: "/image/profile.jpg",
+    src: "/image/profile.webp",
     alt: {
       en: "Abdullah Mozomdar at a press conference",
       bn: "সংবাদ সম্মেলনে আবদুল্লাহ মোজুমদার",
