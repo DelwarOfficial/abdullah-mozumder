@@ -118,7 +118,3 @@ export interface Profile {
   };
 }
 
-export interface NavItem {
-  label: Localized<string>;
-  href: string;
-}

@@ -11,7 +11,6 @@ import type { Localized } from "@/content/types";
 
 export const siteName: Localized<string> = L("Abdullah Mozomdar", "আবদুল্লাহ মোজুমদার");
 
-export const siteTitle: Localized<string> = L("Journalist & Senior Reporter", "সাংবাদিক ও সিনিয়র রিপোর্টার");
 
 export const siteDescription: Localized<string> = L(
   "Abdullah Mozomdar, a Bangladeshi journalist and Senior Reporter at Daily Banijjo Pratidin. Explore his career, portfolio, memberships and contact details.",
