@@ -5,7 +5,6 @@ import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { galleryItems } from "@/content/gallery";
 import type { GalleryItem } from "@/content/types";
-import { cn } from "@/lib/utils";
 import { useLockBodyScroll } from "@/lib/use-lock-body-scroll";
 import { localeDigits } from "@/lib/format";
 import type { Locale } from "@/content/types";

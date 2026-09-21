@@ -1,12 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { getFeaturedStory, stories } from "@/content/stories";
 import { formatDate } from "@/lib/format";
-import { useLanguage } from "@/i18n/language-context";
 
 /**
  * §Featured Reports — one large card + clean responsive cards.

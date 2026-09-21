@@ -5,7 +5,6 @@ import { experiences } from "@/content/experiences";
 import { memberships } from "@/content/memberships";
 import { education } from "@/content/education";
 import { localeDigits } from "@/lib/format";
-import { useLanguage } from "@/i18n/language-context";
 import { GraduationCap, ShieldCheck, Landmark } from "lucide-react";
 
 /**

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useSyncExternalStore } from "react";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/language-context";

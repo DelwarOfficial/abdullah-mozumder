@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import { siteConfig } from "@/content/site";
-import { useLanguage } from "@/i18n/language-context";
 
 /**
  * §Contact CTA — clean branded panel.

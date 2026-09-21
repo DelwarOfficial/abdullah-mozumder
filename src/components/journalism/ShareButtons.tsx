@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Copy, Link2, Share2 } from "lucide-react";
+import { Check, Copy, Share2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ShareButtonsProps {

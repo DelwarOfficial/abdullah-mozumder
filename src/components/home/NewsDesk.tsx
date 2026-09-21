@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { stories } from "@/content/stories";
 import { formatDate, formatShortDate } from "@/lib/format";
-import { useLanguage } from "@/i18n/language-context";
 
 /**
  * §Latest Work — list left, featured preview right.

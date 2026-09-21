@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { profile } from "@/content/profile";
 import { sectionLabels } from "@/i18n/ui";
-import { useLanguage } from "@/i18n/language-context";
 
 /**
  * §About — two-column: on-assignment photo left, bio + facts right.

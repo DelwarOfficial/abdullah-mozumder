@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Home, Newspaper, PenLine, Images, Menu as MenuIcon, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { navItems, navContact, sectionLabels, siteName } from "@/i18n/ui";
+import { navItems, navContact, sectionLabels } from "@/i18n/ui";
 import { siteConfig } from "@/content/site";
 import { useLanguage } from "@/i18n/language-context";
 import { useLockBodyScroll } from "@/lib/use-lock-body-scroll";

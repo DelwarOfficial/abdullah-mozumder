@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
 import { profile } from "@/content/profile";
 import { HeroCarousel } from "./HeroCarousel";
-import { useLanguage } from "@/i18n/language-context";
 
 export function Hero({ locale }: { locale: "en" | "bn" }) {
   const en = locale === "en";

@@ -6,7 +6,6 @@ import Link from "next/link";
 import { X } from "lucide-react";
 import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
 import { stories, storyCategories, getStoryYears, getStoryPublications } from "@/content/stories";
-import { cn } from "@/lib/utils";
 import { formatDate, localeDigits, localeCount } from "@/lib/format";
 import { useLanguage } from "@/i18n/language-context";
 
