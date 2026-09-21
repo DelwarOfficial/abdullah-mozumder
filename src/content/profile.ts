@@ -19,7 +19,7 @@ export const profile: Profile = {
   ),
   location: L("Dhaka, Bangladesh", "ঢাকা, বাংলাদেশ"),
   email: "amozomdar@gmail.com",
-  portrait: "/image/profile.jpg",
+  portrait: "/image/portrait-hero.png",
   portraitAlt: L(
     "Portrait of Abdullah Mozomdar",
     "আবদুল্লাহ মোজুমদারের ছবি",

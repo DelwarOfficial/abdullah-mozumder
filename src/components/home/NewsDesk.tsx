@@ -1,139 +1,84 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { StoryImagePlaceholder } from "@/components/journalism/StoryImagePlaceholder";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { stories } from "@/content/stories";
 import { formatDate } from "@/lib/format";
+import { useLanguage } from "@/i18n/language-context";
 
-import type { Locale } from "@/content/types";
-
-interface NewsDeskProps {
-  locale: Locale;
-}
-
-export function NewsDesk({ locale }: NewsDeskProps) {
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const items = [...stories]
-    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
-    .slice(0, 6);
-
-  useEffect(() => {
-    if (hoveredIdx === null) return;
-    const onMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, [hoveredIdx]);
-
-  const chapterLabel = locale === "en" ? "Latest" : "সর্বশেষ";
-  const sectionTitle = locale === "en" ? "Latest Reporting" : "সাম্প্রতিক প্রতিবেদন";
-  const allLabel = locale === "en" ? "All Articles" : "সব লেখা";
+/**
+ * §Latest Work — list left, featured preview right.
+ */
+export function NewsDesk({ locale }: { locale: "en" | "bn" }) {
+  const en = locale === "en";
+  const sorted = [...stories].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  const [first, ...rest] = sorted.slice(0, 4);
 
   return (
-    <section aria-labelledby="news-desk-heading" className="py-16 sm:py-24 lg:py-32 bg-paper-deep/30">
-      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-12 gap-4 mb-12 lg:mb-16">
-          <div className="col-span-12 lg:col-span-10">
-            <h2
-              id="news-desk-heading"
-              className="section-headline text-ink mt-6"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
-            >
-              {sectionTitle}
+    <section aria-labelledby="latest-heading" className="py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+          <div>
+            <p className="text-sm font-medium text-newsroom mb-2">{en ? "Newsroom" : "নিউজরুম"}</p>
+            <h2 id="latest-heading" className="section-headline text-ink" style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)" }}>
+              {en ? "Latest Work" : "সাম্প্রতিক কাজ"}
             </h2>
           </div>
-          <div className="col-span-12 lg:col-span-2 flex lg:items-end lg:justify-end">
-            <Link
-              href={`/articles`}
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-newsroom transition-colors"
-            >
-              {allLabel}
-            </Link>
-          </div>
+          <Link href="/articles" className="group inline-flex items-center gap-1.5 text-sm font-semibold text-newsroom hover:text-newsroom-deep transition-colors">
+            {en ? "View all articles" : "সব লেখা"}
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+          </Link>
         </div>
 
-        {/* News desk list — headline dominates each row */}
-        <div ref={containerRef} className="relative">
-          {items.length === 0 ? (
-            <p className="border-t border-rule py-16 text-ink-muted body-readable">
-              {locale === "en"
-                ? "The reporting archive is being prepared. Selected work will appear here."
-                : "প্রতিবেদনের সংগ্রহ প্রস্তুত হচ্ছে। বাছাই করা কাজ শিগগিরই এখানে যোগ হবে।"}
-            </p>
-          ) : (
-          <ol className="divide-y divide-rule border-t border-rule">
-            {items.map((story, idx) => (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* List */}
+          <ol className="lg:col-span-7 divide-y divide-rule border-t border-b border-rule">
+            {[first, ...rest].map((story) => (
               <li key={story.id}>
                 <Link
                   href={`/articles/${story.slug}`}
-                  className="group grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-2 py-8 sm:py-10 lg:py-12 hover:bg-paper/50 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-                  onMouseEnter={() => setHoveredIdx(idx)}
-                  onMouseLeave={() => setHoveredIdx(null)}
+                  className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-x-4 py-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-newsroom"
                 >
-                  {/* Date + Category — left, small metadata */}
-                  <div className="col-span-12 lg:col-span-3 flex flex-col gap-1.5">
-                    <span className="editorial-meta text-ink">
-                      {formatDate(story.publishedAt, locale)}
-                    </span>
-                    <span className="editorial-eyebrow text-newsroom">
-                      {story.category[locale]}
-                    </span>
-                  </div>
-
-                  {/* Headline — dominates the row */}
-                  <div className="col-span-12 lg:col-span-8">
-                    <h3
-                      className="font-serif text-ink leading-[1.1] tracking-[-0.015em] group-hover:text-newsroom transition-colors"
-                      style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
-                    >
+                  <time className="text-xs text-ink-muted tabular-nums shrink-0 w-20">
+                    {formatDate(story.publishedAt, locale).replace(/ \d{4}$/, "")}
+                  </time>
+                  <span className="min-w-0">
+                    <span className="block text-xs font-semibold text-newsroom mb-1">{story.category[locale]}</span>
+                    <span className="block font-semibold text-ink leading-snug group-hover:text-newsroom transition-colors">
                       {story.title[locale]}
-                    </h3>
-                    <p className="body-small mt-3 text-ink-muted">
-                      {story.publication[locale]}
-                      {story.readingTime && (
-                        <>
-                          <span aria-hidden="true">, </span>
-                          {story.readingTime[locale]}
-                        </>
-                      )}
-                    </p>
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="hidden lg:flex col-span-1 items-center justify-end">
-                  </div>
+                    </span>
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-ink-muted group-hover:text-newsroom transition-colors shrink-0" aria-hidden="true" />
                 </Link>
               </li>
             ))}
           </ol>
-          )}
 
-          {/* Floating thumbnail preview — desktop only */}
-          {hoveredIdx !== null && (
-            <div
-              className="hidden lg:block fixed pointer-events-none z-30 transition-opacity duration-200"
-              style={{
-                left: mousePos.x + 24,
-                top: mousePos.y - 80,
-              }}
-            >
-              <div className="w-72 aspect-[4/3] border border-rule shadow-2xl overflow-hidden">
-                <StoryImagePlaceholder
-                  ratio="4/3"
-                  alt={items[hoveredIdx].heroAlt[locale]}
-                  src={items[hoveredIdx].heroImage}
-                  className="!border-0"
-                />
-              </div>
+          {/* Featured preview */}
+          <Link
+            href={`/articles/${first.slug}`}
+            className="lg:col-span-5 group block card-surface overflow-hidden hover:-translate-y-0.5 rounded-[var(--radius)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-newsroom"
+          >
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <Image
+                src={first.heroImage ?? "/image/newsroom-meeting.jpg"}
+                alt={first.heroAlt[locale]}
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
+              />
             </div>
-          )}
+            <div className="p-5">
+              <p className="text-xs font-semibold text-newsroom mb-2">
+                {first.category[locale]} , {formatDate(first.publishedAt, locale)}
+              </p>
+              <h3 className="text-lg font-bold text-ink leading-snug group-hover:text-newsroom transition-colors">
+                {first.title[locale]}
+              </h3>
+              <p className="mt-2 text-sm text-ink-soft leading-relaxed line-clamp-2">{first.summary[locale]}</p>
+            </div>
+          </Link>
         </div>
       </div>
     </section>

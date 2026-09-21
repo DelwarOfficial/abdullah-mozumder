@@ -91,11 +91,11 @@ export function ContactForm({ locale }: ContactFormProps) {
 
   if (status === "success") {
     return (
-      <div role="status" aria-live="polite" className="border border-ink bg-paper-deep/40 p-8 text-center">
+      <div role="status" aria-live="polite" className="card-surface p-8 text-center">
         <div className="inline-flex items-center justify-center w-12 h-12 bg-newsroom text-paper mb-4"><Check className="h-6 w-6" aria-hidden="true" /></div>
         <h3 className="font-serif text-2xl font-semibold text-ink">{L.sent}</h3>
         <p className="mt-2 text-sm text-ink-soft max-w-md mx-auto">{L.sentDesc}</p>
-        <button type="button" onClick={() => setStatus("idle")} className="mt-6 inline-flex items-center px-5 py-2.5 border border-ink text-ink text-xs font-semibold hover:bg-ink hover:text-paper transition-colors">{L.sendAnother}</button>
+        <button type="button" onClick={() => setStatus("idle")} className="btn btn-secondary mt-6">{L.sendAnother}</button>
       </div>
     );
   }
@@ -116,13 +116,13 @@ export function ContactForm({ locale }: ContactFormProps) {
       </div>
       <Field id="message" label={L.message} required error={errors.message}><textarea id="message" name="message" required rows={6} value={form.message} onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))} aria-invalid={!!errors.message} aria-describedby={errors.message ? "message-error" : undefined} className={cn(inputClass(!!errors.message), "resize-y min-h-[150px]")} /></Field>
       {serverError && (
-        <div id="form-server-error" role="alert" className="border border-newsroom bg-newsroom-soft p-4 flex items-start gap-3">
+        <div id="form-server-error" role="alert" className="rounded-lg border border-newsroom bg-newsroom-soft p-4 flex items-start gap-3">
           <AlertCircle className="h-5 w-5 text-newsroom mt-0.5 shrink-0" aria-hidden="true" />
           <div><p className="text-sm font-medium text-newsroom-deep">{L.couldNotSend}</p><p className="text-sm text-newsroom-deep/80 mt-0.5">{serverError}</p></div>
         </div>
       )}
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
-        <button type="submit" disabled={status === "submitting"} className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-ink text-paper text-sm font-semibold hover:bg-newsroom transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
+        <button type="submit" disabled={status === "submitting"} className="btn btn-primary w-full sm:w-auto disabled:opacity-60 disabled:cursor-not-allowed">
           {status === "submitting" ? (<><Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />{L.sending}</>) : L.send}
         </button>
         <p className="text-xs text-ink-muted">{L.orEmail}: <a href={`mailto:${siteConfig.email}`} className="text-ink hover:text-newsroom underline underline-offset-2 transition-colors">{siteConfig.email}</a></p>
@@ -142,5 +142,5 @@ function Field({ id, label, required, error, children }: { id: string; label: st
 }
 
 function inputClass(hasError: boolean): string {
-  return cn("w-full bg-transparent border px-3 py-2.5 text-sm text-ink placeholder:text-ink-muted/60 transition-colors focus:outline-none focus:border-ink", hasError ? "border-newsroom" : "border-rule");
+  return cn("w-full rounded-lg border bg-card px-3 py-2.5 text-sm text-ink placeholder:text-ink-muted transition focus:outline-none focus:border-newsroom focus:ring-2 focus:ring-newsroom/20", hasError ? "border-newsroom" : "border-rule");
 }

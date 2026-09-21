@@ -12,8 +12,8 @@ export function GalleryContent() {
   const en = language === "en";
 
   return (
-    <section className="pt-24 lg:pt-32 pb-16 lg:pb-24">
-      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
+    <section className="pt-10 lg:pt-14 pb-16 lg:pb-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Breadcrumbs items={[
           { label: sectionLabels.home[language], href: "/" },
           { label: sectionLabels.gallery[language] },

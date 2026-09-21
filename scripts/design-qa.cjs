@@ -1,55 +1,71 @@
-/* Design QA probe: overflow diagnosis + screenshots via headless Edge */
+/* Design QA v2: isolated-context 4-state screenshots + hydration probe */
 const puppeteer = require("puppeteer-core");
 
 const EDGE = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
 const BASE = "http://127.0.0.1:3100";
+const OUT = "C:\\Users\\Admin\\AppData\\Local\\Temp\\am-shots";
 
 async function main() {
   const browser = await puppeteer.launch({
     executablePath: EDGE,
     headless: "new",
-    args: ["--disable-gpu", "--hide-scrollbars"],
+    args: ["--disable-gpu", "--hide-scrollbars", "--no-sandbox", "--disable-dev-shm-usage"],
   });
 
-  for (const [label, path, w, h] of [
-    ["mobile", "/", 390, 844],
-  ]) {
-    const page = await browser.newPage();
+  const shots = [
+    ["en-light-desktop", "/", 1440, 2400, "light", "en"],
+    ["en-dark-desktop", "/", 1440, 2400, "dark", "en"],
+    ["bn-dark-desktop", "/", 1440, 2400, "dark", "bn"],
+    ["bn-light-desktop", "/", 1440, 2400, "light", "bn"],
+    ["en-light-mobile", "/", 390, 3000, "light", "en"],
+    ["en-dark-mobile", "/", 390, 3000, "dark", "en"],
+    ["bn-dark-mobile", "/", 390, 3000, "dark", "bn"],
+    ["bn-light-mobile", "/", 390, 3000, "light", "bn"],
+    ["work-dark-desktop", "/work", 1440, 2200, "dark", "en"],
+    ["story-light-mobile", "/work/sample-report-title", 390, 2600, "light", "en"],
+    ["story-dark-mobile", "/articles/sample-interview", 390, 2600, "dark", "bn"],
+  ];
+
+  for (const [name, path, w, h, scheme, lang] of shots) {
+    // Isolated storage per shot — no state leakage between screenshots
+    const context = await browser.createBrowserContext();
+    const page = await context.newPage();
     await page.setViewport({ width: w, height: h });
-    await page.goto(BASE + path, { waitUntil: "networkidle0", timeout: 30000 });
+    await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: scheme }]);
 
-    const report = await page.evaluate(() => {
-      const vw = document.documentElement.clientWidth;
-      const out = [];
-      const walk = (el) => {
-        for (const child of el.children) {
-          const r = child.getBoundingClientRect();
-          if (r.right > vw + 1 || r.left < -1) {
-            out.push({
-              tag: child.tagName,
-              cls: (child.className || "").toString().slice(0, 90),
-              left: Math.round(r.left),
-              right: Math.round(r.right),
-              w: Math.round(r.width),
-              text: (child.textContent || "").trim().slice(0, 40),
-            });
-          }
-          walk(child);
-        }
-      };
-      walk(document.body);
-      return {
-        scrollWidth: document.documentElement.scrollWidth,
-        clientWidth: vw,
-        offenders: out.slice(0, 20),
-      };
-    });
+    // Seed the preference, then load: the pre-paint script must apply it
+    // before paint (this validates the no-flash path end-to-end).
+    // Seed language on the origin (fast text route), then load target:
+    // the pre-paint script must apply it before paint (no-flash path).
+    await page.goto(BASE + "/robots.txt", { waitUntil: "domcontentloaded", timeout: 30000 });
+    await page.evaluate((l) => localStorage.setItem("site-language", l), lang);
+    await page.goto(BASE + path, { waitUntil: "domcontentloaded", timeout: 60000 });
+    // settle: fonts, lazy images, RSC prefetch
+    await new Promise((r) => setTimeout(r, 1500));
 
-    console.log(`[${label}] scrollWidth=${report.scrollWidth} clientWidth=${report.clientWidth}`);
-    for (const o of report.offenders) {
-      console.log(`  <${o.tag}> ${o.left}..${o.right} w=${o.w} cls="${o.cls}" text="${o.text}"`);
+    const htmlLang = await page.evaluate(() => document.documentElement.lang);
+    const isDark = await page.evaluate(() => document.documentElement.classList.contains("dark"));
+    const sw = await page.evaluate(() => document.documentElement.scrollWidth);
+    console.log(
+      `${name}: lang=${htmlLang} dark=${isDark} scrollW=${sw}${sw > w + 1 ? " !!OVERFLOW" : ""}`,
+    );
+
+    await new Promise((r) => setTimeout(r, 500));
+    await page.screenshot({ path: `${OUT}\\${name}.png` });
+
+    // Hydration probe on the first mobile-dark shot: menu must open
+    if (name === "en-dark-mobile") {
+      await page.click('button[aria-controls="mobile-menu-sheet"]');
+      await new Promise((r) => setTimeout(r, 500));
+      const open = await page.evaluate(() => {
+        const s = document.getElementById("mobile-menu-sheet");
+        return s ? getComputedStyle(s).transform !== "none" : false;
+      });
+      console.log(`  menu-sheet opens: ${open}`);
+      await page.screenshot({ path: `${OUT}\\en-dark-mobile-menu.png` });
     }
-    await page.close();
+
+    await context.close();
   }
 
   await browser.close();

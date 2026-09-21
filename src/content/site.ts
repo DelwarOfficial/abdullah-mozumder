@@ -7,7 +7,7 @@ export const siteConfig = {
   email: "amozomdar@gmail.com",
   url: "https://abdullahmozomdar.com",
   wordmark: "AM/",
-  portrait: "/image/profile.jpg",
+  portrait: "/image/portrait-hero.png",
 } as const;
 
 export type SiteConfig = typeof siteConfig;

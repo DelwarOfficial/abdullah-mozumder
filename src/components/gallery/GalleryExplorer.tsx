@@ -12,6 +12,8 @@ import type { Locale } from "@/content/types";
 
 interface GalleryExplorerProps {
   locale: Locale;
+  /** Compact mode renders a limited grid (home strip) */
+  compact?: boolean;
 }
 
 interface LightboxProps {
@@ -97,15 +99,16 @@ function Lightbox({ items, initialIndex, onClose, locale }: LightboxProps) {
   );
 }
 
-export function GalleryExplorer({ locale }: GalleryExplorerProps) {
+export function GalleryExplorer({ locale, compact = false }: GalleryExplorerProps) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const items = compact ? galleryItems.slice(0, 8) : galleryItems;
 
   return (
     <>
-      <ul className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
-        {galleryItems.map((item, idx) => (
-          <li key={item.id} className={cn("relative aspect-square", idx === 0 && "col-span-2 row-span-2 aspect-square")}>
-            <button type="button" onClick={() => setOpenIdx(idx)} aria-label={`${locale === "en" ? "Open image" : "ছবি দেখুন"}: ${item.title[locale]}`} className="group block w-full h-full bg-paper-deep border border-rule overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
+      <ul className="mt-0 grid grid-cols-2 md:grid-cols-4 gap-3">
+        {items.map((item, idx) => (
+          <li key={item.id} className="relative aspect-square">
+            <button type="button" onClick={() => setOpenIdx(idx)} aria-label={`${locale === "en" ? "Open image" : "ছবি দেখুন"}: ${item.title[locale]}`} className="group block w-full h-full overflow-hidden rounded-xl border border-rule bg-paper-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-newsroom">
               {item.src ? (
                 <Image src={item.thumbnail ?? item.src} alt={item.alt[locale]} fill sizes={idx === 0 ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"} loading={idx < 4 ? "eager" : "lazy"} className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]" />
               ) : (

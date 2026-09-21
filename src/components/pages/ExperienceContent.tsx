@@ -12,8 +12,8 @@ export function ExperienceContent() {
   const en = language === "en";
 
   return (
-    <article className="pt-24 lg:pt-32 pb-16 lg:pb-24">
-      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
+    <article className="pt-10 lg:pt-14 pb-16 lg:pb-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Breadcrumbs items={[
           { label: sectionLabels.home[language], href: "/" },
           { label: en ? "Experience" : "অভিজ্ঞতা" },

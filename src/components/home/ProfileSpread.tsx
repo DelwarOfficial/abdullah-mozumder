@@ -1,94 +1,79 @@
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { profile } from "@/content/profile";
+import { sectionLabels } from "@/i18n/ui";
+import { useLanguage } from "@/i18n/language-context";
 
-import type { Locale } from "@/content/types";
+/**
+ * §About — two-column: on-assignment photo left, bio + facts right.
+ */
+export function ProfileSpread({ locale }: { locale: "en" | "bn" }) {
+  const en = locale === "en";
 
-interface ProfileSpreadProps {
-  locale: Locale;
-}
-
-export function ProfileSpread({ locale }: ProfileSpreadProps) {
-  const chapterLabel = locale === "en" ? "Profile" : "পরিচিতি";
-  const heading = locale === "en"
-    ? ["A journalist", "covering", "stories that count."]
-    : ["একজন সাংবাদিক,", "গুরুত্বপূর্ণ গল্পের", "সন্ধানে।"];
-  const ctaLabel = locale === "en" ? "More about Abdullah" : "বিস্তারিত পরিচিতি";
+  const facts = [
+    { label: en ? "Role" : "পদ", value: profile.currentPosition.role[locale] },
+    { label: en ? "Organization" : "প্রতিষ্ঠান", value: profile.currentPosition.organization[locale] },
+    { label: sectionLabels.location[locale], value: profile.location[locale] },
+    { label: sectionLabels.languages[locale], value: profile.languages[locale].join(" / ") },
+    { label: en ? "Experience" : "অভিজ্ঞতা", value: en ? "2019 — Present" : "২০১৯ — বর্তমান" },
+  ];
 
   return (
-    <section aria-labelledby="profile-heading" className="py-16 sm:py-24 lg:py-32 bg-paper-deep/30">
-      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
-
-        <div className="grid grid-cols-12 gap-x-4 lg:gap-x-12 gap-y-12">
-          {/* Left — heading */}
-          <div className="col-span-12 lg:col-span-5">
-            <h2
-              id="profile-heading"
-              className="chapter-title text-ink"
-              style={{ fontSize: "clamp(2rem, 4.5vw, 4rem)" }}
-            >
-              {heading.map((line, i) => (
-                <span key={i} className="block">
-                  {i === heading.length - 1 ? (
-                    <span className="italic font-normal text-newsroom">{line}</span>
-                  ) : (
-                    line
-                  )}
-                </span>
-              ))}
-            </h2>
-          </div>
-
-          {/* Center — bio with drop cap, comfortable reading width */}
-          <div className="col-span-12 lg:col-span-5 lg:col-start-7">
-            <div className="max-w-[52ch]">
-              <p
-                className="drop-cap font-serif text-ink leading-[1.8]"
-                style={{ fontSize: "clamp(1.125rem, 1.4vw, 1.375rem)" }}
-              >
-                {profile.longBio[locale]}
-              </p>
-              <div className="mt-10 pt-6 border-t border-rule-soft">
-                <Link
-                  href={`/about`}
-                  className="group inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-newsroom transition-colors"
-                >
-                  {ctaLabel}
-                </Link>
-              </div>
+    <section aria-labelledby="about-heading" className="py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Photo */}
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-rule">
+              <Image
+                src="/image/on-assignment.png"
+                alt={en ? "Abdullah Mozomdar on assignment" : "কাজের মাঠে আবদুল্লাহ মোজুমদার"}
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
             </div>
           </div>
 
-          {/* Bottom — sidebar moved to full-width row below */}
-          <div className="col-span-12 mt-4">
-            <dl className="grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-rule pt-8">
-              <div>
-                <dt className="editorial-eyebrow mb-2">
-                  {locale === "en" ? "Current" : "বর্তমানে"}
-                </dt>
-                <dd className="body-readable font-medium text-ink">
-                  {profile.currentPosition.role[locale]}
-                </dd>
-                <dd className="body-small mt-1">
-                  {profile.currentPosition.organization[locale]}
-                </dd>
-              </div>
-              <div>
-                <dt className="editorial-eyebrow mb-2">
-                  {locale === "en" ? "Based" : "অবস্থান"}
-                </dt>
-                <dd className="body-readable font-medium text-ink">
-                  {profile.location[locale]}
-                </dd>
-              </div>
-              <div>
-                <dt className="editorial-eyebrow mb-2">
-                  {locale === "en" ? "Languages" : "ভাষা"}
-                </dt>
-                <dd className="body-readable font-medium text-ink">
-                  {profile.languages[locale].join(" / ")}
-                </dd>
-              </div>
+          {/* Bio + facts */}
+          <div className="lg:col-span-7">
+            <p className="text-sm font-medium text-newsroom mb-3">
+              {en ? "About me" : "আমার সম্পর্কে"}
+            </p>
+            <h2
+              id="about-heading"
+              className="section-headline text-ink"
+              style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)" }}
+            >
+              {en
+                ? "A journalist covering stories that matter."
+                : "যে গল্পগুলো জানা দরকার, সেগুলোই আমার কাজ।"}
+            </h2>
+
+            <p className="mt-5 text-lg text-ink-soft leading-relaxed max-w-2xl">
+              {profile.shortBio[locale]}
+            </p>
+
+            {/* Compact factual details */}
+            <dl className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 rounded-xl border border-rule bg-card p-6">
+              {facts.map((f) => (
+                <div key={f.label}>
+                  <dt className="text-xs font-medium text-ink-muted">{f.label}</dt>
+                  <dd className="text-sm font-semibold text-ink mt-0.5">{f.value}</dd>
+                </div>
+              ))}
             </dl>
+
+            <Link
+              href="/about"
+              className="group mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-newsroom hover:text-newsroom-deep transition-colors"
+            >
+              {en ? "More about me" : "বিস্তারিত পরিচিতি"}
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </div>

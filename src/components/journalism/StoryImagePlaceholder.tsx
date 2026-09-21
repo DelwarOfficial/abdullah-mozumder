@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 interface StoryImagePlaceholderProps {
   src?: string | null;
   alt: string;
-  ratio?: "3/2" | "4/3" | "16/9" | "1/1";
+  ratio?: "3/2" | "4/3" | "16/9" | "16/10" | "1/1";
   className?: string;
   priority?: boolean;
   /** Responsive sizes hint for next/image */
@@ -15,6 +15,7 @@ const ratioClasses = {
   "3/2": "aspect-[3/2]",
   "4/3": "aspect-[4/3]",
   "16/9": "aspect-[16/9]",
+  "16/10": "aspect-[16/10]",
   "1/1": "aspect-square",
 };
 

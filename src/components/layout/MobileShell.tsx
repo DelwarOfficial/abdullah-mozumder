@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Home, Newspaper, PenLine, Images, Menu as MenuIcon, X, ArrowUpRight } from "lucide-react";
+import { Home, Newspaper, PenLine, Images, Menu as MenuIcon, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navItems, navContact, sectionLabels, siteName } from "@/i18n/ui";
 import { siteConfig } from "@/content/site";
@@ -206,10 +206,9 @@ export function MobileShell() {
 
             <Link
               href={navContact.href}
-              className="mt-8 flex items-center justify-center gap-2 min-h-[48px] px-5 bg-ink text-paper text-sm font-semibold hover:bg-newsroom transition-colors"
+              className="btn btn-primary mt-8 w-full"
             >
               {navContact.label[language]}
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </nav>
 

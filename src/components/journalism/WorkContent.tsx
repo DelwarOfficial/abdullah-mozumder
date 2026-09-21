@@ -73,7 +73,7 @@ export function WorkContent() {
   };
 
   return (
-    <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12 pt-24 lg:pt-32 pb-16 lg:pb-24">
+    <div className="mx-auto max-w-6xl px-5 sm:px-8 pt-10 lg:pt-14 pb-16 lg:pb-24">
       <h1 className="section-headline text-ink mb-6" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>{labels.title}</h1>
       <p className="text-lg text-ink-soft leading-relaxed max-w-2xl mb-12">{labels.desc}</p>
 
@@ -81,24 +81,24 @@ export function WorkContent() {
       <div className="border-t border-b border-rule py-5 grid grid-cols-1 lg:grid-cols-12 gap-5">
         <div className="lg:col-span-5">
           <label htmlFor="work-search" className="editorial-eyebrow block mb-2">{labels.search}</label>
-          <input id="work-search" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={labels.searchPh} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink placeholder:text-ink-muted/60 focus:outline-none focus:border-ink transition-colors" />
+          <input id="work-search" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={labels.searchPh} className="w-full rounded-lg border border-rule bg-card px-3 py-2.5 text-sm text-ink placeholder:text-ink-muted focus:outline-none focus:border-newsroom focus:ring-2 focus:ring-newsroom/20 transition" />
         </div>
         <div className="lg:col-span-3">
           <label htmlFor="filter-cat" className="editorial-eyebrow block mb-2">{labels.category}</label>
-          <select id="filter-cat" value={activeCategory} onChange={(e) => updateParam("category", e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink">
+          <select id="filter-cat" value={activeCategory} onChange={(e) => updateParam("category", e.target.value)} className="w-full rounded-lg border border-rule bg-card px-3 py-2.5 text-sm text-ink focus:outline-none focus:border-newsroom focus:ring-2 focus:ring-newsroom/20 transition">
             {categories.map((c) => <option key={c} value={c}>{c}</option>)}
           </select>
         </div>
         <div className="lg:col-span-2">
           <label htmlFor="filter-year" className="editorial-eyebrow block mb-2">{labels.year}</label>
-          <select id="filter-year" value={activeYear} onChange={(e) => updateParam("year", e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink">
+          <select id="filter-year" value={activeYear} onChange={(e) => updateParam("year", e.target.value)} className="w-full rounded-lg border border-rule bg-card px-3 py-2.5 text-sm text-ink focus:outline-none focus:border-newsroom focus:ring-2 focus:ring-newsroom/20 transition">
             <option value="All">{language === "en" ? "All" : "সব"}</option>
             {years.map((y) => <option key={y} value={y}>{localeDigits(y, language)}</option>)}
           </select>
         </div>
         <div className="lg:col-span-2">
           <label htmlFor="filter-pub" className="editorial-eyebrow block mb-2">{labels.pub}</label>
-          <select id="filter-pub" value={activePublication} onChange={(e) => updateParam("publication", e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink">
+          <select id="filter-pub" value={activePublication} onChange={(e) => updateParam("publication", e.target.value)} className="w-full rounded-lg border border-rule bg-card px-3 py-2.5 text-sm text-ink focus:outline-none focus:border-newsroom focus:ring-2 focus:ring-newsroom/20 transition">
             <option value="All">{language === "en" ? "All" : "সব"}</option>
             {publications.map((p) => <option key={p} value={p}>{p}</option>)}
           </select>
@@ -118,18 +118,18 @@ export function WorkContent() {
       <div className="mt-10">
         <p className="text-xs text-ink-muted mb-6" aria-live="polite">{labels.results(filtered.length)}</p>
         {filtered.length === 0 ? (
-          <div className="py-20 text-center border border-rule bg-paper-deep/30">
+          <div className="py-20 text-center rounded-xl border border-rule bg-card">
             <p className="font-serif text-2xl text-ink max-w-md mx-auto">{labels.noResults}</p>
             <p className="mt-2 text-sm text-ink-muted max-w-md mx-auto">{labels.tryReset}</p>
-            <button type="button" onClick={resetFilters} className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-ink text-paper text-xs font-semibold hover:bg-newsroom transition-colors">{labels.resetBtn}</button>
+            <button type="button" onClick={resetFilters} className="btn btn-primary mt-6 !h-10 !px-5 !text-sm">{labels.resetBtn}</button>
           </div>
         ) : (
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
             {filtered.map((story) => (
               <li key={story.id}>
-                <article className="group flex flex-col h-full">
+                <article className="group card-surface overflow-hidden h-full rounded-[var(--radius)] hover:-translate-y-0.5">
                   <Link href={`/work/${story.slug}`} className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink">
-                    <StoryImagePlaceholder ratio="4/3" alt={story.heroAlt[language]} src={story.heroImage} className="group-hover:scale-[1.02] transition-transform duration-500 ease-out" />
+                    <StoryImagePlaceholder ratio="4/3" alt={story.heroAlt[language]} src={story.heroImage} className="!rounded-none !border-0 !shadow-none group-hover:scale-[1.03] transition-transform duration-500" />
                     <div className="mt-4 flex items-baseline gap-3 mb-1.5">
                       <span className="editorial-eyebrow text-newsroom">{story.category[language]}</span>
                       <span className="editorial-eyebrow">{formatDate(story.publishedAt, language)}</span>

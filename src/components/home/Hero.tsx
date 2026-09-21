@@ -1,174 +1,100 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
-
+import { ArrowRight, Mail } from "lucide-react";
 import { profile } from "@/content/profile";
-import { sectionLabels } from "@/i18n/ui";
+import { useLanguage } from "@/i18n/language-context";
 
-import type { Locale } from "@/content/types";
+export function Hero({ locale }: { locale: "en" | "bn" }) {
+  const en = locale === "en";
 
-interface HeroProps {
-  locale: Locale;
-}
-
-export function Hero({ locale }: HeroProps) {
   return (
-    <section
-      aria-labelledby="hero-heading"
-      className="relative bg-night text-paper min-h-[88svh] flex flex-col overflow-hidden"
-    >`n      {/* Top bar — wordmark + language (handled by fixed header, this is spacing) */}
-      <div className="h-16 lg:h-20 shrink-0" aria-hidden="true" />
+    <section aria-labelledby="hero-name" className="bg-paper">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 pt-10 pb-14 sm:pt-16 lg:pt-20 lg:pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Content — 7 cols */}
+          <div className="lg:col-span-7 order-2 lg:order-1">
+            <p className="text-sm font-medium text-newsroom mb-4">
+              {en ? "Hello, I'm" : "আসসালামু আলাইকুম, আমি"}
+            </p>
 
-      {/* Main hero grid */}
-      <div className="relative flex-1 flex flex-col justify-between px-5 sm:px-8 lg:px-12 pb-8">
-        <div className="mx-auto w-full max-w-[1560px] flex-1 flex flex-col justify-center py-8 lg:py-12">
-          {/* 12-column grid */}
-          <div className="grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-8 items-start">
-            {/* Left — eyebrow + name */}
-            <div className="col-span-12 lg:col-span-7 xl:col-span-8">
-              {/* Eyebrow */}
-              <div className="flex items-center gap-3 mb-6 lg:mb-10">
-                <span className="editorial-eyebrow text-paper/60">
-                  {sectionLabels.journalist[locale]}, {profile.location[locale]}
-                </span>
-                <span className="h-px flex-1 max-w-[120px] bg-paper/20" aria-hidden="true" />
-              </div>
+            <h1
+              id="hero-name"
+              className="font-bold text-ink tracking-[-0.02em] leading-[1.04]"
+              style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
+            >
+              {profile.name[locale]}
+            </h1>
 
-              {/* Oversized headline */}
-              <h1
-                id="hero-heading"
-                className="display-headline text-paper"
-                style={{ fontSize: "clamp(3rem, 9vw, 9rem)" }}
-              >
-                {locale === "en" ? (
-                  <>
-                    <span className="block">Reporting</span>
-                    <span className="block">stories</span>
-                    <span className="block italic font-normal text-newsroom">that matter.</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="block">যে গল্প</span>
-                    <span className="block italic font-normal text-newsroom">জানা জরুরি।</span>
-                  </>
-                )}
-              </h1>
+            <p
+              className="mt-3 font-semibold text-ink-soft"
+              style={{ fontSize: "clamp(1.125rem, 2vw, 1.5rem)" }}
+            >
+              {profile.title[locale]}
+            </p>
 
-              {/* Name + title */}
-              <div className="mt-8 lg:mt-12 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                <span className="font-serif text-xl sm:text-2xl lg:text-3xl font-semibold text-paper">
-                  {profile.name[locale]}
-                </span>
-                <span className="h-3 w-px bg-paper/30" aria-hidden="true" />
-                <span
-                  className="text-paper/70 font-medium"
-                  style={{ fontSize: "clamp(0.9375rem, 1.1vw, 1.125rem)" }}
-                >
-                  {profile.title[locale]}
-                </span>
-              </div>
+            <p className="mt-5 text-lg text-ink-muted leading-relaxed max-w-xl">
+              {en
+                ? "I report for Daily Banijjo Pratidin in Dhaka, covering the stories that matter with accuracy and care."
+                : "আমি ঢাকার দৈনিক বাণিজ্য প্রতিদিনে কর্মরত একজন সাংবাদিক — নির্ভুলতা ও দায়বদ্ধতার সঙ্গে গুরুত্বপূর্ণ খবরগুলো তুলে ধরি।"}
+            </p>
+
+            {/* CTAs */}
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link href="/work" className="btn btn-primary group">
+                {en ? "View my work" : "আমার প্রতিবেদন"}
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+              </Link>
+              <Link href="/contact" className="btn btn-secondary">
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                {en ? "Contact me" : "যোগাযোগ করুন"}
+              </Link>
             </div>
 
-            {/* Right — portrait frame */}
-            <div className="col-span-12 lg:col-span-5 xl:col-span-4 lg:flex lg:justify-end">
-              <HeroPortrait locale={locale} />
+            {/* Current role */}
+            <div className="mt-8 flex items-center gap-2.5 text-sm text-ink-muted">
+              <span className="relative inline-flex h-2.5 w-2.5" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-newsroom opacity-40" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-newsroom" />
+              </span>
+              <span>
+                {profile.currentPosition.role[locale]} · {profile.currentPosition.organization[locale]}
+              </span>
+              <span aria-hidden="true">·</span>
+              <span>{profile.location[locale]}</span>
             </div>
           </div>
-        </div>
 
-        {/* Bottom bar — current position + CTA + scroll hint */}
-        <div className="relative mx-auto w-full max-w-[1560px] border-t border-paper/15 pt-6">
-          <div className="grid grid-cols-12 gap-4 items-end">
-            {/* Current position */}
-            <div className="col-span-12 sm:col-span-6 lg:col-span-4">
-              <p className="editorial-eyebrow text-paper/50 mb-2">
-                {locale === "en" ? "01 / Current" : "০১ / বর্তমান"}
-              </p>
-              <p
-                className="font-serif font-semibold text-paper leading-tight"
-                style={{ fontSize: "clamp(1.0625rem, 1.4vw, 1.375rem)" }}
-              >
-                {profile.currentPosition.role[locale]}
-              </p>
-              <p
-                className="text-paper/60 mt-1"
-                style={{ fontSize: "clamp(0.9375rem, 1.1vw, 1.0625rem)" }}
-              >
-                {profile.currentPosition.organization[locale]}
-              </p>
-            </div>
-
-            {/* CTA */}
-            <div className="col-span-12 sm:col-span-6 lg:col-span-4 lg:text-center">
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 sm:justify-end lg:justify-center">
-                <Link
-                  href="/work"
-                  className="group inline-flex items-center gap-2 text-sm font-semibold text-paper hover:text-newsroom transition-colors"
-                >
-                  {locale === "en" ? "Selected Reporting" : "নির্বাচিত প্রতিবেদন দেখুন"}
-                </Link>
-                <span aria-hidden="true" className="hidden sm:block h-4 w-px bg-paper/25" />
-                <Link
-                  href="/contact"
-                  className={cn(
-                    "inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold border border-paper/30 text-paper transition-colors duration-300",
-                    "hover:bg-paper hover:text-ink",
-                  )}
-                >
-                  {locale === "en" ? "Contact" : "যোগাযোগ"}
-                </Link>
+          {/* Portrait — 5 cols, dominant */}
+          <div className="lg:col-span-5 order-1 lg:order-2">
+            <div className="relative mx-auto lg:mx-0 max-w-[420px] lg:max-w-none">
+              {/* restrained accent panel behind portrait */}
+              <div
+                aria-hidden="true"
+                className="absolute -top-4 -right-4 bottom-8 left-8 rounded-2xl bg-newsroom-soft"
+              />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-rule shadow-[var(--shadow-card-hover)]">
+                <Image
+                  src="/image/portrait-hero.png"
+                  alt={profile.portraitAlt[locale]}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 40vw, (min-width: 640px) 420px, 100vw"
+                  className="object-cover object-top"
+                />
+              </div>
+              {/* name plate */}
+              <div className="absolute -bottom-5 left-6 right-6 sm:left-8 sm:right-auto card-surface px-5 py-3.5">
+                <p className="text-sm font-semibold text-ink">{profile.name[locale]}</p>
+                <p className="text-xs text-ink-muted mt-0.5">
+                  {en ? "Dhaka, Bangladesh" : "ঢাকা, বাংলাদেশ"}
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function HeroPortrait({ locale }: { locale: Locale }) {
-  return (
-    <div
-      className="relative aspect-[4/5] w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[340px] xl:max-w-[380px] mx-auto lg:mx-0 border border-paper/20 bg-paper/5 flex flex-col items-center justify-center overflow-hidden"
-      role="img"
-      aria-label={profile.portraitAlt[locale]}
-    >
-      {/* Inner frame */}
-      <div
-        className="absolute inset-3 border border-paper/10 pointer-events-none z-10"
-        aria-hidden="true"
-      />
-
-      {profile.portrait ? (
-        <Image
-          src={profile.portrait}
-          alt={profile.portraitAlt[locale]}
-          fill
-          priority
-          sizes="(min-width: 1280px) 380px, (min-width: 1024px) 340px, (min-width: 640px) 320px, 280px"
-          className="object-cover"
-        />
-      ) : (
-        <>
-          {/* Large initials */}
-          <span
-            className="font-serif font-bold text-paper/20 leading-none"
-            style={{ fontSize: "clamp(4rem, 12vw, 8rem)" }}
-          >
-            AM
-          </span>
-
-          {/* Label */}
-          <div className="absolute bottom-6 left-6 right-6 text-center">
-            <p className="editorial-eyebrow text-paper/40">
-              {locale === "en" ? "Portrait" : "ছবি"}
-            </p>
-            <p className="text-xs text-paper/60 mt-1 font-medium ">
-              {locale === "en" ? "To be added" : "শীঘ্রই যোগ হবে"}
-            </p>
-          </div>
-        </>
-      )}
-    </div>
   );
 }

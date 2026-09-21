@@ -29,7 +29,7 @@ export default function WorkPage() {
         { name: "Work", url: `${siteConfig.url}/work` },
       ]} />
       {/* Verified evidence leads — prerendered, outside the Suspense boundary */}
-      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12 pt-24 lg:pt-32">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 pt-10 lg:pt-14">
         <ClippingsStrip />
       </div>
       <Suspense fallback={<div className="text-center text-sm text-ink-muted">Loading…</div>}>

@@ -18,8 +18,8 @@ export function AboutContent() {
   const en = language === "en";
 
   return (
-    <article className="pt-24 lg:pt-32">
-      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
+    <article className="pt-10 lg:pt-14">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Breadcrumbs items={[
           { label: sectionLabels.home[language], href: "/" },
           { label: en ? "About" : "পরিচিতি" },
@@ -41,7 +41,7 @@ export function AboutContent() {
             <Divider variant="thick" className="mt-10 mb-10" />
 
             <div className="prose-editorial" style={{ marginInline: 0 }}>
-              <p className="drop-cap">{profile.longBio[language]}</p>
+              <p>{profile.longBio[language]}</p>
             </div>
 
             {/* Memberships */}

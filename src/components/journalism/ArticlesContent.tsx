@@ -78,7 +78,7 @@ export function ArticlesContent() {
   };
 
   return (
-    <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12 pt-24 lg:pt-32 pb-16 lg:pb-24">
+    <div className="mx-auto max-w-6xl px-5 sm:px-8 pt-10 lg:pt-14 pb-16 lg:pb-24">
       <h1 className="section-headline text-ink mb-6" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>{L.title}</h1>
       <p className="text-lg text-ink-soft leading-relaxed max-w-2xl mb-12">{L.desc}</p>
 
@@ -87,12 +87,12 @@ export function ArticlesContent() {
           <label htmlFor="art-search" className="editorial-eyebrow block mb-2">{L.search}</label>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-muted pointer-events-none" aria-hidden="true" />
-            <input id="art-search" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={L.searchPh} className="w-full bg-transparent border border-rule pl-9 pr-3 py-2 text-sm text-ink placeholder:text-ink-muted/60 focus:outline-none focus:border-ink transition-colors" />
+            <input id="art-search" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={L.searchPh} className="w-full rounded-lg border border-rule bg-card pl-9 pr-3 py-2.5 text-sm text-ink placeholder:text-ink-muted focus:outline-none focus:border-newsroom focus:ring-2 focus:ring-newsroom/20 transition" />
           </div>
         </div>
-        <div className="md:col-span-2"><label htmlFor="art-cat" className="editorial-eyebrow block mb-2">{L.cat}</label><select id="art-cat" value={category} onChange={(e) => updateParam("category", e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink">{categories.map((c) => <option key={c} value={c}>{c}</option>)}</select></div>
-        <div className="md:col-span-2"><label htmlFor="art-yr" className="editorial-eyebrow block mb-2">{L.yr}</label><select id="art-yr" value={year} onChange={(e) => updateParam("year", e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink"><option value="All">{L.all}</option>{years.map((y) => <option key={y} value={y}>{localeDigits(y, language)}</option>)}</select></div>
-        <div className="md:col-span-2"><label htmlFor="art-pb" className="editorial-eyebrow block mb-2">{L.pub}</label><select id="art-pb" value={publication} onChange={(e) => updateParam("publication", e.target.value)} className="w-full bg-transparent border border-rule px-3 py-2 text-sm text-ink focus:outline-none focus:border-ink"><option value="All">{L.all}</option>{publications.map((p) => <option key={p} value={p}>{p}</option>)}</select></div>
+        <div className="md:col-span-2"><label htmlFor="art-cat" className="editorial-eyebrow block mb-2">{L.cat}</label><select id="art-cat" value={category} onChange={(e) => updateParam("category", e.target.value)} className="w-full rounded-lg border border-rule bg-card px-3 py-2.5 text-sm text-ink focus:outline-none focus:border-newsroom focus:ring-2 focus:ring-newsroom/20 transition">{categories.map((c) => <option key={c} value={c}>{c}</option>)}</select></div>
+        <div className="md:col-span-2"><label htmlFor="art-yr" className="editorial-eyebrow block mb-2">{L.yr}</label><select id="art-yr" value={year} onChange={(e) => updateParam("year", e.target.value)} className="w-full rounded-lg border border-rule bg-card px-3 py-2.5 text-sm text-ink focus:outline-none focus:border-newsroom focus:ring-2 focus:ring-newsroom/20 transition"><option value="All">{L.all}</option>{years.map((y) => <option key={y} value={y}>{localeDigits(y, language)}</option>)}</select></div>
+        <div className="md:col-span-2"><label htmlFor="art-pb" className="editorial-eyebrow block mb-2">{L.pub}</label><select id="art-pb" value={publication} onChange={(e) => updateParam("publication", e.target.value)} className="w-full rounded-lg border border-rule bg-card px-3 py-2.5 text-sm text-ink focus:outline-none focus:border-newsroom focus:ring-2 focus:ring-newsroom/20 transition"><option value="All">{L.all}</option>{publications.map((p) => <option key={p} value={p}>{p}</option>)}</select></div>
       </div>
 
       {hasFilters && (

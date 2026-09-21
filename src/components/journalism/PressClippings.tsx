@@ -196,7 +196,7 @@ export function PressClippings() {
 
   return (
     <section aria-labelledby="clippings-heading" className="py-16 sm:py-24 lg:py-32 bg-paper-deep/30">
-      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="grid grid-cols-12 gap-4 mb-12 lg:mb-16">
           <div className="col-span-12 lg:col-span-10">
             <h2
@@ -211,16 +211,16 @@ export function PressClippings() {
         </div>
 
         {/* Lead clipping — image leads, evidence-first */}
-        <article className="group mb-16 lg:mb-20">
+        <article className="group mb-6">
           <button
             type="button"
             onClick={() => setOpenIdx(0)}
-            className="block w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+            className="group block w-full text-left card-surface overflow-hidden hover:-translate-y-0.5 rounded-[var(--radius)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-newsroom"
             aria-label={`${L.view}: ${lead.headline[L.language]}`}
           >
             <div className="grid grid-cols-12 gap-x-4 lg:gap-x-10 gap-y-6 items-start">
-              <div className="col-span-12 lg:col-span-7 relative overflow-hidden border border-rule bg-paper">
-                <div className="relative aspect-[4/3] sm:aspect-[3/2]">
+              <div className="col-span-12 lg:col-span-7 relative overflow-hidden bg-paper">
+                <div className="relative aspect-[16/10]">
                   <Image
                     src={lead.image}
                     alt={lead.alt[L.language]}
@@ -261,9 +261,9 @@ export function PressClippings() {
               type="button"
               onClick={() => setOpenIdx(i + 1)}
               aria-label={`${L.view}: ${clip.headline[L.language]}`}
-              className="group grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-3 py-6 sm:py-8 border-b border-rule text-left w-full hover:bg-paper/50 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+              className="group grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-3 p-4 sm:p-5 border-b border-rule text-left w-full hover:bg-paper-deep/60 transition-colors rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-newsroom"
             >
-              <div className="col-span-5 sm:col-span-2 relative overflow-hidden border border-rule bg-paper">
+              <div className="col-span-5 sm:col-span-2 relative overflow-hidden rounded-lg border border-rule bg-paper">
                 <div className="relative aspect-[4/3]">
                   <Image
                     src={clip.image}
@@ -327,9 +327,9 @@ export function ClippingsStrip() {
               type="button"
               onClick={() => setOpenIdx(i)}
               aria-label={`${L.view}: ${clip.headline[L.language]}`}
-              className="group grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-3 py-6 w-full text-left hover:bg-paper-deep/30 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+              className="group grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-3 py-5 w-full text-left hover:bg-paper-deep/60 transition-colors rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-newsroom"
             >
-              <div className="col-span-4 sm:col-span-2 relative overflow-hidden border border-rule bg-paper">
+              <div className="col-span-4 sm:col-span-2 relative overflow-hidden rounded-lg border border-rule bg-paper">
                 <div className="relative aspect-[4/3]">
                   <Image
                     src={clip.image}

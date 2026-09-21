@@ -34,7 +34,7 @@ export const themeInitScript = `
     var lang = localStorage.getItem("site-language");
     root.lang = lang === "bn" ? "bn" : "en";
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", dark ? "#131412" : "#FBFAF8");
+    if (meta) meta.setAttribute("content", dark ? "#171714" : "#FBFAF8");
   } catch (e) {}
 })();
 `;

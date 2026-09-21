@@ -25,7 +25,7 @@ export const serverDescription = siteDescription.en;
 export const navItems = [
   { label: L("About", "পরিচিতি"), href: "/about" },
   { label: L("Experience", "অভিজ্ঞতা"), href: "/experience" },
-  { label: L("Work", "প্রতিবেদন"), href: "/work" },
+  { label: L("Reports", "প্রতিবেদন"), href: "/work" },
   { label: L("Articles", "লেখা"), href: "/articles" },
   { label: L("Gallery", "গ্যালারি"), href: "/gallery" },
 ] as const;
@@ -35,7 +35,7 @@ export const navContact = { label: L("Contact", "যোগাযোগ"), href: 
 /** Section labels shared across header / footer / mobile navigation / pages */
 export const sectionLabels = {
   home: L("Home", "হোম"),
-  work: L("Reporting", "প্রতিবেদন"),
+  work: L("Reports", "প্রতিবেদন"),
   articles: L("Articles", "লেখা"),
   gallery: L("Gallery", "গ্যালারি"),
   menu: L("Menu", "মেনু"),

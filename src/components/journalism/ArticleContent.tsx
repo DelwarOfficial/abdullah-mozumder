@@ -31,7 +31,7 @@ export function ArticleContent({ slug }: ArticleContentProps) {
   return (
     <>
       <ReadingProgress />
-      <article className="pt-24 lg:pt-32 pb-16 lg:pb-24">
+      <article className="pt-10 lg:pt-14 pb-16 lg:pb-24">
         <div className="mx-auto max-w-3xl px-5 sm:px-8 lg:px-8">
           <Breadcrumbs items={[
             { label: sectionLabels.home[language], href: "/" },
@@ -47,7 +47,7 @@ export function ArticleContent({ slug }: ArticleContentProps) {
               {story.isDemo && <span className="inline-block border border-newsroom/40 text-newsroom text-[0.625rem] px-1.5 py-0.5">{en ? "Demo" : "নমুনা"}</span>}
             </div>
             <h1 className="font-serif font-bold text-ink leading-[1.1] tracking-[-0.02em]" style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>{story.title[language]}</h1>
-            <p className="mt-5 text-lg font-serif italic text-ink-soft leading-relaxed">{story.deck[language]}</p>
+            <p className="mt-5 text-lg font-reading italic text-ink-soft leading-relaxed">{story.deck[language]}</p>
             <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-ink-muted border-y border-rule py-3">
               <span className="font-medium text-ink">{profile.name[language]}</span>
               

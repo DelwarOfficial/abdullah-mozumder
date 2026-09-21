@@ -12,8 +12,8 @@ export function ContactContent() {
   const en = language === "en";
 
   return (
-    <section className="pt-24 lg:pt-32 pb-16 lg:pb-24">
-      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
+    <section className="pt-10 lg:pt-14 pb-16 lg:pb-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Breadcrumbs items={[
           { label: sectionLabels.home[language], href: "/" },
           { label: sectionLabels.contact[language] },
@@ -55,7 +55,7 @@ export function ContactContent() {
             </dl>
           </div>
           <div className="col-span-12 lg:col-span-7">
-            <div className="bg-paper-deep/30 border border-rule p-6 sm:p-10">
+            <div className="card-surface p-6 sm:p-10">
               <h2 className="font-serif text-xl font-semibold text-ink mb-6">
                 {en ? "Send a message" : "বার্তা পাঠান"}
               </h2>

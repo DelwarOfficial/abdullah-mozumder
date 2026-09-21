@@ -1,114 +1,111 @@
-import Link from "next/link";
+"use client";
+
 import Image from "next/image";
 import { experiences } from "@/content/experiences";
+import { memberships } from "@/content/memberships";
+import { education } from "@/content/education";
 import { localeDigits } from "@/lib/format";
+import { useLanguage } from "@/i18n/language-context";
+import { GraduationCap, ShieldCheck, Landmark } from "lucide-react";
 
-import { cn } from "@/lib/utils";
-import type { Locale } from "@/content/types";
-
-interface CareerProps {
-  locale: Locale;
-}
-
-export function Career({ locale }: CareerProps) {
-  const chapterLabel = locale === "en" ? "Career" : "পেশাগত অভিজ্ঞতা";
-  const sectionTitle = locale === "en" ? "Reporting Experience" : "সাংবাদিকতার অভিজ্ঞতা";
-  const fullLabel = locale === "en" ? "Full Timeline" : "সম্পূর্ণ সময়রেখা";
-  const nowLabel = locale === "en" ? "Now" : "বর্তমান";
+/**
+ * §Experience + Credentials + Education — clean timeline & compact credentials.
+ */
+export function Career({ locale }: { locale: "en" | "bn" }) {
+  const en = locale === "en";
 
   return (
-    <section aria-labelledby="career-heading" className="py-16 sm:py-24 lg:py-32">
-      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-12 gap-4 mb-12 lg:mb-20">
-          <div className="col-span-12 lg:col-span-8">
-            <h2
-              id="career-heading"
-              className="section-headline text-ink mt-6"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
-            >
-              {sectionTitle}
+    <section aria-labelledby="experience-heading" className="py-16 sm:py-20 lg:py-24 bg-paper-deep/50">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+          {/* Timeline */}
+          <div className="lg:col-span-7">
+            <p className="text-sm font-medium text-newsroom mb-2">{en ? "Career" : "কর্মজীবন"}</p>
+            <h2 id="experience-heading" className="section-headline text-ink mb-8" style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)" }}>
+              {en ? "Experience" : "অভিজ্ঞতা"}
             </h2>
-          </div>
-          <div className="col-span-12 lg:col-span-4 flex lg:items-end lg:justify-end">
-            <Link
-              href={`/experience`}
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-newsroom transition-colors"
-            >
-              {fullLabel}
-            </Link>
-          </div>
-        </div>
 
-        {/* Career entries — oversized dates */}
-        <div className="border-t border-rule">
-          {experiences.map((exp, idx) => (
-            <div
-              key={exp.id}
-              className={cn(
-                "grid grid-cols-12 gap-x-4 lg:gap-x-8 gap-y-4 py-8 sm:py-12 lg:py-16 border-b border-rule",
-                exp.current && "bg-paper-deep/30 -mx-5 px-5 sm:-mx-8 sm:px-8 lg:-mx-12 lg:px-12",
-              )}
-            >
-              {/* Oversized dates */}
-              <div className="col-span-12 lg:col-span-4">
-                <div className="flex items-baseline gap-2 lg:gap-3">
+            <ol className="relative border-l-2 border-rule space-y-8 ml-2">
+              {experiences.map((exp) => (
+                <li key={exp.id} className="relative pl-8">
                   <span
-                    className={cn(
-                      "font-serif font-bold tabular-nums leading-none tracking-[-0.02em]",
-                      exp.current ? "text-newsroom" : "text-ink",
+                    aria-hidden="true"
+                    className={`absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 ${
+                      exp.current ? "bg-newsroom border-newsroom" : "bg-paper border-rule"
+                    }`}
+                  />
+                  <p className="text-xs font-semibold text-newsroom tabular-nums">
+                    {exp.periodLabel[locale]}
+                    {exp.current && (
+                      <span className="ml-2 inline-block rounded-full bg-newsroom-soft px-2 py-0.5 text-[0.6875rem] text-newsroom-deep font-semibold">
+                        {en ? "Current" : "বর্তমান"}
+                      </span>
                     )}
-                    style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
-                  >
-                    {localeDigits(exp.startDate, locale)}
-                  </span>
-                  <span className="text-ink-muted font-serif text-2xl sm:text-3xl">—</span>
-                  <span
-                    className={cn(
-                      "font-serif font-bold tabular-nums leading-none tracking-[-0.02em]",
-                      exp.current ? "text-newsroom" : "text-ink-soft",
+                  </p>
+                  <h3 className="mt-1.5 text-lg font-bold text-ink">{exp.role[locale]}</h3>
+                  <p className="mt-1 flex flex-wrap items-center gap-2.5 text-sm text-ink-soft font-medium">
+                    {exp.logo && (
+                      <span className="inline-flex items-center rounded-md border border-rule bg-card px-1.5 py-1">
+                        <Image src={exp.logo} alt="" width={64} height={20} className="h-4 w-auto object-contain" aria-hidden="true" />
+                      </span>
                     )}
-                    style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
-                  >
-                    {exp.current ? nowLabel : localeDigits(exp.endDate ?? "", locale)}
-                  </span>
-                </div>
-              </div>
+                    {exp.organization[locale]}
+                    <span className="text-ink-muted font-normal">, {exp.location[locale]}</span>
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
 
-              {/* Role + org */}
-              <div className="col-span-12 lg:col-span-7 lg:col-start-6">
-                {exp.current && (
-                  <span className="inline-block bg-newsroom text-paper text-[0.6875rem] px-2 py-1 font-semibold mb-4">
-                    {locale === "en" ? "Current" : "বর্তমান"}
-                  </span>
-                )}
-                <h3
-                  className="font-serif font-bold text-ink leading-[1.1] tracking-[-0.015em]"
-                  style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
-                >
-                  {exp.role[locale]}
-                </h3>
-                <p
-                  className="font-serif text-ink-soft font-medium mt-3 flex items-center gap-3"
-                  style={{ fontSize: "clamp(1.0625rem, 1.4vw, 1.375rem)" }}
-                >
-                  {exp.logo && (
-                    <span className="inline-flex items-center bg-paper border border-rule px-2 py-1 shrink-0">
-                      <Image
-                        src={exp.logo}
-                        alt=""
-                        width={112}
-                        height={36}
-                        className="h-6 sm:h-7 w-auto object-contain"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  )}
-                  {exp.organization[locale]}
-                </p>
-                <p className="body-small mt-2 text-ink-muted">{exp.location[locale]}</p>
-              </div>
+          {/* Credentials + Education */}
+          <div className="lg:col-span-5 space-y-10">
+            <div>
+              <p className="text-sm font-medium text-newsroom mb-2">{en ? "Credentials" : "পেশাগত সদস্যপদ"}</p>
+              <h2 className="section-headline text-ink mb-6" style={{ fontSize: "clamp(1.5rem, 2.6vw, 2rem)" }}>
+                {en ? "Professional Memberships" : "সদস্যপদ"}
+              </h2>
+              <ul className="space-y-4">
+                {memberships.map((m, i) => {
+                  const Icon = i === 0 ? ShieldCheck : Landmark;
+                  return (
+                    <li key={m.id} className="card-surface flex items-center gap-4 p-4 rounded-[var(--radius)]">
+                      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-newsroom-soft text-newsroom">
+                        <Icon className="h-5 w-5" aria-hidden="true" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="text-sm font-bold text-ink leading-snug">{m.organization[locale]}</p>
+                        <p className="text-xs text-ink-muted mt-0.5">{m.role[locale]}</p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-          ))}
+
+            <div>
+              <p className="text-sm font-medium text-newsroom mb-2">{en ? "Education" : "শিক্ষা"}</p>
+              <h2 className="section-headline text-ink mb-6" style={{ fontSize: "clamp(1.5rem, 2.6vw, 2rem)" }}>
+                {en ? "Academic Background" : "শিক্ষাজীবন"}
+              </h2>
+              <ul className="space-y-4">
+                {education.map((edu) => (
+                  <li key={edu.id} className="card-surface flex items-center gap-4 p-4 rounded-[var(--radius)]">
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-newsroom-soft text-newsroom">
+                      <GraduationCap className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-bold text-ink leading-snug">
+                        {edu.degree[locale]}{en ? ` in ${edu.field.en}` : ` — ${edu.field.bn}`}
+                      </p>
+                      <p className="text-xs text-ink-muted mt-0.5">
+                        {edu.institution[locale]} , {localeDigits(edu.year, locale)}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>

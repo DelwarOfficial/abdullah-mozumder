@@ -31,8 +31,8 @@ export function NotFoundScreen() {
   };
 
   return (
-    <section className="pt-32 lg:pt-40 pb-20 min-h-[60vh] flex items-center">
-      <div className="mx-auto max-w-[1560px] px-5 sm:px-8 lg:px-12 text-center">
+    <section className="pt-16 lg:pt-24 pb-20 min-h-[60vh] flex items-center">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 text-center">
         <p className="editorial-eyebrow text-newsroom">{L.error}</p>
         <p className="mt-6 font-serif font-bold text-ink leading-none tracking-[-0.04em]" style={{ fontSize: "clamp(5rem, 18vw, 14rem)" }}>
           404
