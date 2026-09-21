@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 
 /* ============================================================
    STRUCTURED DATA — linked @graph with stable @id nodes
@@ -329,12 +328,4 @@ export function ArticleSchema(props: NewsArticleNodeInput) {
 
 export function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
   return <StructuredData data={buildBreadcrumbNode(items)} />;
-}
-
-interface NodeProps {
-  children?: ReactNode;
-}
-
-export function StructuredDataNode({ children }: NodeProps) {
-  return <>{children}</>;
 }
