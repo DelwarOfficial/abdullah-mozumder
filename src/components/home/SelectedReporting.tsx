@@ -25,7 +25,7 @@ export function SelectedReporting({ locale }: { locale: "en" | "bn" }) {
           <div>
             <p className="text-sm font-medium text-newsroom mb-2">{en ? "Portfolio" : "পোর্টফোলিও"}</p>
             <h2 id="featured-heading" className="section-headline text-ink" style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)" }}>
-              {en ? "Featured Reports" : "নির্বাচিত প্রতিবেদন"}
+              {en ? "Featured works and movements" : "নির্বাচিত প্রতিবেদন ও আন্দোলন"}
             </h2>
           </div>
           <Link href="/work" className="group inline-flex items-center gap-1.5 text-sm font-semibold text-newsroom hover:text-newsroom-deep transition-colors">
