@@ -43,7 +43,7 @@ function GalleryStrip({ locale }: { locale: "en" | "bn" }) {
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
           <div>
-            <p className="text-sm font-medium text-newsroom mb-2">{en ? "On assignment" : "মাঠে"}</p>
+            <p className="text-sm font-medium text-newsroom mb-2">{en ? "On assignment" : "ফটোসাংবাদিকতা"}</p>
             <h2 id="gallery-heading" className="section-headline text-ink" style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)" }}>
               {en ? "From the field" : "ফটো গ্যালারি"}
             </h2>

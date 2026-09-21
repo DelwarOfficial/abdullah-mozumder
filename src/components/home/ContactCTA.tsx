@@ -19,7 +19,7 @@ export function ContactCTA({ locale }: { locale: "en" | "bn" }) {
           <div aria-hidden="true" className="absolute inset-y-0 left-0 w-1 bg-newsroom" />
           <div className="px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:flex lg:items-center lg:justify-between lg:gap-12">
             <div className="max-w-2xl">
-              <p className="text-sm font-medium text-newsroom mb-3">{en ? "Let's connect" : "চলুন কথা বলি"}</p>
+              <p className="text-sm font-medium text-newsroom mb-3">{en ? "Let's connect" : "যোগাযোগ"}</p>
               <h2
                 id="contact-cta-heading"
                 className="font-bold leading-tight tracking-[-0.015em]"
@@ -27,12 +27,12 @@ export function ContactCTA({ locale }: { locale: "en" | "bn" }) {
               >
                 {en
                   ? "Have a story, collaboration, or professional enquiry?"
-                  : "খবর, সহযোগিতা বা পেশাগত কোনো প্রস্তাব আছে?"}
+                  : "সংবাদ, সহযোগিতা কিংবা পেশাগত কোনো জিজ্ঞাসা?"}
               </h2>
               <p className="mt-4 text-paper/70 leading-relaxed max-w-xl">
                 {en
                   ? "I'm available for editorial collaborations, media enquiries and professional opportunities."
-                  : "সম্পাদকীয় সহযোগিতা, গণমাধ্যম বিষয়ক যোগাযোগ এবং পেশাগত সুযোগের জন্য আমি উন্মুক্ত।"}
+                  : "সম্পাদকীয় সহযোগিতা, গণমাধ্যম-বিষয়ক যোগাযোগ ও পেশাগত সুযোগের জন্য আমি সর্বদা উন্মুক্ত।"}
               </p>
             </div>
 

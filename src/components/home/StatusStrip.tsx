@@ -30,8 +30,8 @@ export function StatusStrip() {
     },
     {
       Icon: MapPin,
-      top: en ? "Based in Dhaka" : "অবস্থান ঢাকা",
-      bottom: en ? "Bangladesh" : "বাংলাদেশ",
+      top: en ? "Based in Dhaka" : "অবস্থান",
+      bottom: en ? "Bangladesh" : "ঢাকা, বাংলাদেশ",
     },
   ];
 

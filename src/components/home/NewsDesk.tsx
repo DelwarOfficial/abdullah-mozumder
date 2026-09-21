@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { stories } from "@/content/stories";
-import { formatDate } from "@/lib/format";
+import { formatDate, formatShortDate } from "@/lib/format";
 import { useLanguage } from "@/i18n/language-context";
 
 /**
@@ -20,9 +20,9 @@ export function NewsDesk({ locale }: { locale: "en" | "bn" }) {
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
           <div>
-            <p className="text-sm font-medium text-newsroom mb-2">{en ? "Newsroom" : "নিউজরুম"}</p>
+            <p className="text-sm font-medium text-newsroom mb-2">{en ? "Newsroom" : "সাংবাদিকতা"}</p>
             <h2 id="latest-heading" className="section-headline text-ink" style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)" }}>
-              {en ? "Latest Work" : "সাম্প্রতিক কাজ"}
+              {en ? "Latest Work" : "সর্বশেষ কাজ"}
             </h2>
           </div>
           <Link href="/articles" className="group inline-flex items-center gap-1.5 text-sm font-semibold text-newsroom hover:text-newsroom-deep transition-colors">
@@ -40,8 +40,8 @@ export function NewsDesk({ locale }: { locale: "en" | "bn" }) {
                   href={`/articles/${story.slug}`}
                   className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-x-4 py-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-newsroom"
                 >
-                  <time className="text-xs text-ink-muted tabular-nums shrink-0 w-20">
-                    {formatDate(story.publishedAt, locale).replace(/ \d{4}$/, "")}
+                  <time className="text-xs text-ink-muted tabular-nums shrink-0">
+                    {formatShortDate(story.publishedAt, locale)}
                   </time>
                   <span className="min-w-0">
                     <span className="block text-xs font-semibold text-newsroom mb-1">{story.category[locale]}</span>

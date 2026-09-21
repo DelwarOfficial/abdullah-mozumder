@@ -37,7 +37,7 @@ export function SiteFooter() {
 
           {/* Links */}
           <nav aria-label={en ? "Footer" : "ফুটার মেনু"}>
-            <p className="text-sm font-semibold text-ink mb-4">{en ? "Quick links" : "দ্রুত লিংক"}</p>
+            <p className="text-sm font-semibold text-ink mb-4">{en ? "Quick links" : "গুরুত্বপূর্ণ লিংক"}</p>
             <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5">
               {[
                 { label: sectionLabels.home, href: "/" },

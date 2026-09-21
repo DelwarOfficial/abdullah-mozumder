@@ -13,14 +13,14 @@ export const galleryItems: GalleryItem[] = [
     title: L("At the DUJ council", "ডিইউজে সম্মেলনে"),
     caption: L(
       "Speaking at the triennial council of the Dhaka Union of Journalists.",
-      "ঢাকা ইউনিয়ন অব জার্নালিস্টস-এর ত্রি-বার্ষিক সম্মেলনে বক্তব্য।",
+      "ঢাকা সাংবাদিক ইউনিয়নের (ডিইউজে) ত্রি-বার্ষিক সম্মেলনে বক্তব্য।",
     ),
     location: L("Dhaka, Bangladesh", "ঢাকা, বাংলাদেশ"),
     date: "2024",
     credit: null,
     alt: L(
       "Speaking at the podium at the Dhaka Union of Journalists council",
-      "ঢাকা ইউনিয়ন অব জার্নালিস্টস সম্মেলনে মঞ্চ থেকে বক্তব্য",
+      "ঢাকা সাংবাদিক ইউনিয়নের (ডিইউজে) সম্মেলনে মঞ্চ থেকে বক্তব্য",
     ),
     isPlaceholder: false,
   },
@@ -31,7 +31,7 @@ export const galleryItems: GalleryItem[] = [
     title: L("DUJ rally", "ডিইউজে সমাবেশ"),
     caption: L(
       "With fellow journalists at a Dhaka Union of Journalists rally.",
-      "ঢাকা ইউনিয়ন অব জার্নালিস্টসের সমাবেশে সহকর্মী সাংবাদিকদের সঙ্গে।",
+      "ঢাকা সাংবাদিক ইউনিয়নের (ডিইউজে) সমাবেশে সহকর্মী সাংবাদিকদের সঙ্গে।",
     ),
     location: L("Dhaka, Bangladesh", "ঢাকা, বাংলাদেশ"),
     date: null,
@@ -154,7 +154,7 @@ export const galleryItems: GalleryItem[] = [
     id: "g-9",
     src: "/image/journalists-sports.jpg",
     thumbnail: "/image/journalists-sports.jpg",
-    title: L("On the court", "মাঠে"),
+    title: L("On the court", "ক্রীড়াঙ্গনে"),
     caption: L(
       "A journalists' sports tournament match.",
       "সাংবাদিক ক্রীড়া প্রতিযোগিতার এক ম্যাচ।",

@@ -59,6 +59,5 @@ export const sectionLabels = {
   openMenu: L("Open menu", "মেনু খুলুন"),
   closeMenu: L("Close menu", "মেনু বন্ধ করুন"),
   primaryNav: L("Primary", "প্রধান মেনু"),
-  switchLanguage: L("Switch to Bangla", "সুইচ টু ইংলিশ — Switch to English"),
 } as const;
 

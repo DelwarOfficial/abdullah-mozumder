@@ -16,7 +16,7 @@ export function Hero({ locale }: { locale: "en" | "bn" }) {
           {/* Content — 7 cols */}
           <div className="lg:col-span-7 order-2 lg:order-1">
             <p className="text-sm font-medium text-newsroom mb-4">
-              {en ? "Hello, I'm" : "আসসালামু আলাইকুম, আমি"}
+              {en ? "Hello, I'm" : "নমস্কার, আমি"}
             </p>
 
             <h1
@@ -37,13 +37,13 @@ export function Hero({ locale }: { locale: "en" | "bn" }) {
             <p className="mt-5 text-lg text-ink-muted leading-relaxed max-w-xl">
               {en
                 ? "I report for Daily Banijjo Pratidin in Dhaka, covering the stories that matter with accuracy and care."
-                : "আমি ঢাকার দৈনিক বাণিজ্য প্রতিদিনে কর্মরত একজন সাংবাদিক — নির্ভুলতা ও দায়বদ্ধতার সঙ্গে গুরুত্বপূর্ণ খবরগুলো তুলে ধরি।"}
+                : "দৈনিক বাণিজ্য প্রতিদিনের সিনিয়র প্রতিবেদক হিসেবে ঢাকা থেকে নির্ভুলতা ও বস্তুনিষ্ঠতার সঙ্গে গুরুত্বপূর্ণ প্রতিবেদন তুলে ধরি।"}
             </p>
 
             {/* CTAs */}
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link href="/work" className="btn btn-primary group">
-                {en ? "View my work" : "আমার প্রতিবেদন"}
+                {en ? "View my work" : "প্রতিবেদন দেখুন"}
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
               <Link href="/contact" className="btn btn-secondary">
@@ -59,7 +59,7 @@ export function Hero({ locale }: { locale: "en" | "bn" }) {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-newsroom" />
               </span>
               <span>
-                {profile.currentPosition.role[locale]} · {profile.currentPosition.organization[locale]}
+                {profile.currentPosition.role[locale]}, {profile.currentPosition.organization[locale]}
               </span>
               <span aria-hidden="true">·</span>
               <span>{profile.location[locale]}</span>

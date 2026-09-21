@@ -84,7 +84,7 @@ export const stories: Story[] = [
     heroImage: "/image/duj-council.jpg",
     heroAlt: L(
       "Speaking at the Dhaka Union of Journalists triennial council",
-      "ঢাকা ইউনিয়ন অব জার্নালিস্টস-এর ত্রি-বার্ষিক সম্মেলনে বক্তব্য",
+      "ঢাকা সাংবাদিক ইউনিয়নের (ডিইউজে) ত্রি-বার্ষিক সম্মেলনে বক্তব্য",
     ),
     caption: L(
       "Demo caption. Replace with the verified image caption and credit.",
@@ -118,7 +118,7 @@ export const stories: Story[] = [
     heroImage: "/image/duj-rally.jpg",
     heroAlt: L(
       "Journalists at a Dhaka Union of Journalists rally",
-      "ঢাকা ইউনিয়ন অব জার্নালিস্টসের সমাবেশে সাংবাদিকেরা",
+      "ঢাকা সাংবাদিক ইউনিয়নের (ডিইউজে) সমাবেশে সাংবাদিকেরা",
     ),
     caption: null,
     body: demoBody,

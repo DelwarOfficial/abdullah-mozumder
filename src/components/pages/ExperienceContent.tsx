@@ -39,7 +39,7 @@ export function ExperienceContent() {
                 <div className="flex items-baseline gap-2 lg:gap-3">
                   <span className={cn("font-serif font-bold tabular-nums leading-none tracking-[-0.02em]", exp.current ? "text-newsroom" : "text-ink")} style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>{localeDigits(exp.startDate, language)}</span>
                   <span className="text-ink-muted font-serif text-2xl sm:text-3xl">—</span>
-                  <span className={cn("font-serif font-bold tabular-nums leading-none tracking-[-0.02em]", exp.current ? "text-newsroom" : "text-ink-soft")} style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>{exp.current ? (en ? "Now" : "এখন") : localeDigits(exp.endDate ?? "", language)}</span>
+                  <span className={cn("font-serif font-bold tabular-nums leading-none tracking-[-0.02em]", exp.current ? "text-newsroom" : "text-ink-soft")} style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>{exp.current ? (en ? "Present" : "বর্তমান") : localeDigits(exp.endDate ?? "", language)}</span>
                 </div>
               </div>
               <div className="col-span-12 lg:col-span-6 lg:col-start-6">

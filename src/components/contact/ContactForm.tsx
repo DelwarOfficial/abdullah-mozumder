@@ -33,7 +33,7 @@ export function ContactForm({ locale }: ContactFormProps) {
     send: locale === "en" ? "Send message" : "বার্তা পাঠান",
     sending: locale === "en" ? "Sending…" : "পাঠানো হচ্ছে…",
     sent: locale === "en" ? "Message sent." : "বার্তা পাঠানো হয়েছে।",
-    sentDesc: locale === "en" ? "Thank you for reaching out. Your message has been received and will be reviewed shortly." : "যোগাযোগের জন্য ধন্যবাদ। আপনার বার্তা এসে পড়েছে — শিগগিরই দেখা হবে।",
+    sentDesc: locale === "en" ? "Thank you for reaching out. Your message has been received and will be reviewed shortly." : "যোগাযোগের জন্য ধন্যবাদ। আপনার বার্তা সফলভাবে পৌঁছেছে এবং শিগগিরই পর্যালোচনা করা হবে।",
     sendAnother: locale === "en" ? "Send another message" : "আরেকটি বার্তা লিখুন",
     couldNotSend: locale === "en" ? "Could not send message." : "বার্তা পাঠানো যায়নি। আবার চেষ্টা করুন।",
     orEmail: locale === "en" ? "Or email directly" : "অথবা সরাসরি ইমেইল করুন",

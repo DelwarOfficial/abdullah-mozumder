@@ -24,7 +24,7 @@ export function GalleryContent() {
         <p className="text-lg text-ink-soft leading-relaxed max-w-2xl mb-4">
           {en
             ? `${galleryItems.length} images. Click any image to open the viewer. Use arrow keys to navigate, Escape to close.`
-            : `${toBnDigits(galleryItems.length)}টি ছবি। ছবিতে চাপ দিলে বড় করে দেখা যাবে; পাশের তীরে চলুন, Escape দিয়ে বন্ধ করুন।`}
+            : `${toBnDigits(galleryItems.length)}টি ছবি। যেকোনো ছবিতে ক্লিক করলে বড় করে দেখা যাবে; পাশের তীর দিয়ে পরের ছবিতে যাওয়া যাবে, Escape চেপে বন্ধ করা যাবে।`}
         </p>
         <GalleryExplorer locale={language} />
       </div>

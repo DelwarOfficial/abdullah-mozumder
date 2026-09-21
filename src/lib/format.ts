@@ -25,6 +25,25 @@ export function formatDate(iso: string, locale: Locale): string {
   return locale === "bn" ? BN_DATE.format(date) : EN_DATE.format(date);
 }
 
+const EN_DATE_SHORT = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+});
+
+const BN_DATE_SHORT = new Intl.DateTimeFormat("bn-BD", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+});
+
+/** Compact variant for dense lists: "12 Sep 2026" / "১২ সেপ্টে, ২০২৬" */
+export function formatShortDate(iso: string, locale: Locale): string {
+  const date = new Date(`${iso}T00:00:00Z`);
+  if (Number.isNaN(date.getTime())) return iso;
+  return locale === "bn" ? BN_DATE_SHORT.format(date) : EN_DATE_SHORT.format(date);
+}
+
 /** Convert ASCII digits to Bangla numerals. "2025" → "২০২৫" */
 export function toBnDigits(value: string | number): string {
   const bn = "০১২৩৪৫৬৭৮৯";
