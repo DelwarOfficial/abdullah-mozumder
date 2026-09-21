@@ -27,23 +27,15 @@ const slides: HeroSlide[] = [
       en: "Abdullah Mozomdar at a press conference",
       bn: "সংবাদ সম্মেলনে আবদুল্লাহ মোজুমদার",
     },
-    position: "50% 20%",
-  },
-  {
-    src: "/image/duj-council.jpg",
-    alt: {
-      en: "Speaking at the Dhaka Union of Journalists council",
-      bn: "ঢাকা সাংবাদিক ইউনিয়নের সম্মেলনে বক্তব্য",
-    },
-    position: "62% 12%",
+    position: "50% 18%",
   },
   {
     src: "/image/on-assignment.png",
     alt: {
-      en: "On assignment at a public event",
-      bn: "জনসমাবেশে প্রতিবেদন চলাকালীন",
+      en: "Abdullah Mozomdar on assignment at a public event",
+      bn: "জনসমাবেশে প্রতিবেদন চলাকালীন আবদুল্লাহ মোজুমদার",
     },
-    position: "62% 30%",
+    position: "62% 28%",
   },
 ];
 
@@ -100,11 +92,11 @@ export function HeroCarousel() {
         />
       ))}
 
-      {/* Slide dots — manual control, ≥44px hit area */}
+      {/* Slide dots — manual control, ≥44px hit area, clear of the name plate */}
       <div
         role="tablist"
         aria-label={language === "en" ? "Portrait photos" : "পোর্ট্রেট ছবি"}
-        className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/35 px-3 py-2 backdrop-blur-sm"
+        className="absolute top-3 right-3 z-10 flex items-center gap-2 rounded-full bg-black/35 px-3 py-2 backdrop-blur-sm"
       >
         {slides.map((slide, i) => (
           <button
